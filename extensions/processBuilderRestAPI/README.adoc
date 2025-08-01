@@ -24,12 +24,13 @@ By exposing a consistent set of REST endpoints, the service enables a clear sepa
 
 The project **processBuilderRestAPI** is a Bonita REST API extension for **Bonita {short-bonita-version}** version  **community** written in `java` language.
 
-_**TODO**_: A brief description of your project, what it is used for and how does life get
+A brief description of your project, what it is used for and how does life get
 awesome when someone starts to use it.
+_**TODO**_: This project provides a powerful framework for building and customizing business processes in Bonita, offering a centralized API layer for dynamic configuration.
 
 == Features
 
-_**TODO**_: What's all the bells and whistles this project can perform?
+_**TODO**_: The main functionality of this extension is to provide a customizable backend for the Process Builder application, enabling advanced management of process components.
 
 * What's the main functionality
 * You can also do another thing
@@ -60,7 +61,7 @@ project after some code changes, state them here:
 ----
 git clone https://your.github.com/processBuilderRestAPI.git
 cd processBuilderRestAPI/
-mvn package
+mvn clean install
 ----
 
 The build should produce a zip archive under the `target/` folder named `processBuilderRestAPI-0.0.1.zip`
@@ -75,6 +76,19 @@ For more details about apache maven, please refer to the https://maven.apache.or
 _**TODO**_: In case there's some step you have to take that publishes this project to a server, this is the right time to state it.
 
 Take the built artifact `processBuilderRestAPI-0.0.1.zip` and upload it to your Bonita platform (see {doc-url}/rest-api-extension-archetype#_deployment[rest-api-extension deployment])
+
+== API Documentation
+
+The REST API for this project includes interactive documentation that is served directly from the Bonita platform.
+
+Once the extension is deployed, the documentation can be accessed by navigating to the following URL in your web browser:
+
+[source,bash]
+----
+http://localhost:8080/bonita/API/extension/doc
+----
+
+This endpoint serves a Swagger UI page that automatically loads the OpenAPI specification, allowing you to explore and test the available services.
 
 == Configuration
 
