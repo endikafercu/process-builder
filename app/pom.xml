@@ -93,12 +93,7 @@
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>resourceNameRestAPI</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
+    
     
   </dependencies>
   <build>
