@@ -1,0 +1,107 @@
+openapi: 3.0.4
+info:
+  title: Process Builder API
+  description: |
+    This API provides endpoints for the management and execution of business processes.
+    It allows users to interact with "Process Builder" components to
+    automate workflows and tasks.
+  version: 1.0.0
+servers:
+  - url: https://api.yourdomain.com/v1
+    description: Production server
+tags:
+  - name: process-builder
+    description: Operations related to the Process Builder
+paths:
+  /process-builder/paged:
+    get:
+      tags:
+        - process-builder
+      summary: Retrieves paginated results.
+      description: |
+        This endpoint retrieves a list of process results,
+        paginated based on input parameters. It is ideal for
+        large queries where loading all the information at once is not desired.
+      operationId: getPagedResult
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+          description: The page index (starting from 1).
+          example: 1
+        - name: count
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+          description: The number of items per page (maximum 100).
+          example: 25
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResult'
+        '400':
+          description: Invalid input parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ResultItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the result.
+          example: "pb-12345"
+        status:
+          type: string
+          description: The current status of the process.
+          example: "completed"
+      description: A single process result item.
+    PagedResult:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: The current page number.
+          example: 1
+        totalCount:
+          type: integer
+          description: The total number of available results.
+          example: 150
+        items:
+          type: array
+          description: The list of results for the current page.
+          items:
+            $ref: '#/components/schemas/ResultItem'
+      description: The API response containing a paginated list of results.
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: A specific error code.
+          example: "INVALID_PARAMETER"
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: "Pagination parameters 'page' and 'count' are required and must be integers."
+      description: The response structure for API errors.

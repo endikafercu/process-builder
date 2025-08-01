@@ -1,0 +1,239 @@
+= process-builder
+Generated with Bonita
+v0.0.1, {docdate}
+:toc: left
+:toc-title: Table of contents
+:toclevels: 2
+:bonita-version: 10.2
+:imagesdir: ./documentation/images
+:icons: font
+:sectnums: numbered
+:sectanchors:
+:hardbreaks:
+:experimental:
+
+== Business Data Model
+
+image::bdm.svg[link=images/bdm.svg]
+
+=== Package com.bonitasoftprocessbuilder.model.master
+
+==== MstContext
+
+Represents a specific operational environment or instance where a process is executed. This master table defines the available contexts, allowing processes to be categorized by their specific operational scope or related entity (e.g., a particular building, project, or operational unit)
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                               |Type          |Description                                    
+|[[MstContext.persistenceId]]persistenceId*         |Long          |                                               
+|[[MstContext.fullName]]fullName                    |String        |The complete, official name of an entity       
+|[[MstContext.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item
+|[[MstContext.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created          
+|[[MstContext.auCreationUser]]auCreationUser*       |String        |User who created this record                   
+|[[MstContext.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified    
+|[[MstContext.auModificationUser]]auModificationUser|String        |User who last modified this record             
+|===
+
+===== icon:link[] Unique constraints
+
+====== uqMContextName [<<MstContext.fullName,fullName>>]
+
+_No description available_
+
+==== MstDomain
+
+Defines the high-level business or functional area to which a process belongs. This master table provides a classification of processes into broader categories, facilitating organization, reporting, and access control based on the primary business function.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                              |Type          |Description                                     
+|[[MstDomain.persistenceId]]persistenceId*         |Long          |                                                
+|[[MstDomain.fullName]]fullName*                   |String        |The complete, official name of an entity.       
+|[[MstDomain.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item.
+|[[MstDomain.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created           
+|[[MstDomain.auCreationUser]]auCreationUser*       |String        |User who created this record                    
+|[[MstDomain.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified     
+|[[MstDomain.auModificationUser]]auModificationUser|String        |User who last modified this record              
+|===
+
+===== icon:link[] Unique constraints
+
+====== uqMDomaintName [<<MstDomain.fullName,fullName>>]
+
+_No description available_
+
+==== MstTypeFormField
+
+he MstTypeField master table classifies and defines the available input control types for form fields. It provides a standardized and extensible list of field types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                     |Type          |Description                                    
+|[[MstTypeFormField.persistenceId]]persistenceId*         |Long          |                                               
+|[[MstTypeFormField.fullName]]fullName                    |String        |The complete, official name of an entity       
+|[[MstTypeFormField.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item
+|[[MstTypeFormField.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created          
+|[[MstTypeFormField.auCreationUser]]auCreationUser*       |String        |User who created this record                   
+|[[MstTypeFormField.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified    
+|[[MstTypeFormField.auModificationUser]]auModificationUser|String        |User who last modified this record             
+|===
+
+===== icon:link[] Unique constraints
+
+====== uqMTypeFieldName [<<MstTypeFormField.fullName,fullName>>]
+
+_No description available_
+
+=== Package com.bonitasoftprocessbuilder.model.process
+
+==== FormField
+
+The FormField object defines the properties and configuration of an individual input field within a FormSection. It specifies how the field behaves, what kind of data it collects, and how it's presented to the user. Each FormField is associated with a specific FormSection and is crucial for capturing user input.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                              |Type                |Description                                                                                                                                                    
+|[[FormField.persistenceId]]persistenceId*         |Long                |                                                                                                                                                               
+|[[FormField.identifier]]identifier                |String              |A unique, internal, programmatic identifier for the field, used for backend processing and data mapping.                                                       
+|[[FormField.label]]label                          |String              |The user-friendly display name or title for the field, visible to the user.                                                                                    
+|[[FormField.placeholder]]placeholder              |String              |Optional instructional text displayed inside an empty input field as a hint.                                                                                   
+|[[FormField.regularExpression]]regularExpression  |String              |An optional pattern for validating the format of the field's input.                                                                                            
+|[[FormField.errorMessage]]errorMessage            |String              |The custom message shown to the user if the field's input fails validation.                                                                                    
+|[[FormField.encrypted]]encrypted                  |String              |A boolean flag indicating whether the data entered into this field should be encrypted.                                                                        
+|[[FormField.auCreationDate]]auCreationDate*       |OffsetDateTime      |Date and time this record was created                                                                                                                          
+|[[FormField.auCreationUser]]auCreationUser*       |String              |User who created this record                                                                                                                                   
+|[[FormField.auModificationDate]]auModificationDate|OffsetDateTime      |Date and time this record was last modified                                                                                                                    
+|[[FormField.auModificationUser]]auModificationUser|String              |User who last modified this record                                                                                                                             
+|[[FormField.typeFormField]]&#x25c6; typeFormField |<<MstTypeFormField>>|A reference to the predefined input control type for this field, sourced from the MstTypeField master table. This dictates its appearance and validation rules.
+|===
+
+==== FormSection
+
+FormSection represents a logical division within a form, grouping related fields for improved organization, readability, and user experience. Each section has a title and description, acting as a structural component for complex forms and facilitating structured data collection.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                |Type          |Description                                                                                                                                                                                                                                        
+|[[FormSection.persistenceId]]persistenceId*         |Long          |                                                                                                                                                                                                                                                   
+|[[FormSection.label]]label                          |String        |The label attribute stores a concise, human-readable name or title for the FormSection. It's used to display the section's heading or identifier in the user interface, aiding quick understanding of the form's structure.                        
+|[[FormSection.fullDescription]]fullDescription      |String        |The fullDescription attribute holds a more detailed explanation or introductory text for the FormSection. It provides additional context, instructions, or a summary of the section's purpose, enhancing user comprehension during form completion.
+|[[FormSection.displayOrder]]displayOrder            |Integer       |The attribute stores the numerical position of a section within a form. This value determines the visual order in which the section appears on the screen, allowing users to reorder sections and persist their arrangement.                       
+|[[FormSection.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created                                                                                                                                                                                                              
+|[[FormSection.auCreationUser]]auCreationUser*       |String        |User who created this record                                                                                                                                                                                                                       
+|[[FormSection.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified                                                                                                                                                                                                        
+|[[FormSection.auModificationUser]]auModificationUser|String        |User who last modified this record                                                                                                                                                                                                                 
+|===
+
+==== ProcessData
+
+Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                        |Type                 |Description                                                                                                                 
+|[[ProcessData.persistenceId]]persistenceId*                 |Long                 |                                                                                                                            
+|[[ProcessData.fullName]]fullName*                           |String               |The complete, official name of an entity                                                                                    
+|[[ProcessData.appName]]appName                              |String               |Name of the application to which the process is associated.                                                                 
+|[[ProcessData.token]]token*                                 |String               |                                                                                                                            
+|[[ProcessData.bpmProcessDefinitionId]]bpmProcessDefinitionId|Long                 |Unique identifier provided by the BPM engine (e.g., Bonita) corresponding to a specific process definition.                 
+|[[ProcessData.auCreationDate]]auCreationDate*               |OffsetDateTime       |Date and time this record was created                                                                                       
+|[[ProcessData.auCreationUser]]auCreationUser*               |String               |User who created this record                                                                                                
+|[[ProcessData.auModificationDate]]auModificationDate        |OffsetDateTime       |Date and time this record was last modified                                                                                 
+|[[ProcessData.auModificationUser]]auModificationUser        |String               |User who last modified this record                                                                                          
+|[[ProcessData.auActive]]auActive                            |Boolean              |Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.           
+|[[ProcessData.refContext]]&#x25c7; refContext*              |<<MstContext>>       |Unique identifier linking this process to a specific operational context, defined in the MstContext master table            
+|[[ProcessData.refDomain]]&#x25c7; refDomain*                |<<MstDomain>>        |Unique identifier linking this process to a high-level business or functional domain, defined in the MstDomain master table.
+|[[ProcessData.refProcessForm]]&#x25c6; refProcessForm       |List<<<ProcessForm>>>|A collection of references to ProcessForm objects, representing the forms linked to this process.                           
+|===
+
+===== icon:link[] Unique constraints
+
+====== uqProcessProcName [<<ProcessData.fullName,fullName>>]
+
+_No description available_
+
+====== uqProcessToken [<<ProcessData.token,token>>]
+
+_No description available_
+
+====== uqProcessProcDefId [<<ProcessData.bpmProcessDefinitionId,bpmProcessDefinitionId>>]
+
+_No description available_
+
+==== ProcessForm
+
+
+The ProcessForm object defines the structure and content of a particular form used within a process.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                  |Type           |Description                                                                                                 
+|[[ProcessForm.persistenceId]]persistenceId*           |Long           |                                                                                                            
+|[[ProcessForm.fullName]]fullName                      |String         |The complete, descriptive name of the form.                                                                 
+|[[ProcessForm.auCreationDate]]auCreationDate*         |OffsetDateTime |Date and time this record was created                                                                       
+|[[ProcessForm.auCreationUser]]auCreationUser*         |String         |User who created this record                                                                                
+|[[ProcessForm.auModificationDate]]auModificationDate  |OffsetDateTime |Date and time this record was last modified                                                                 
+|[[ProcessForm.auModificationUser]]auModificationUser  |String         |User who last modified this record                                                                          
+|[[ProcessForm.refFormSection]]&#x25c6; refFormSection*|<<FormSection>>|A collection of references to FormSection objects, representing the various sections that compose this form.
+|===
+
+== Organization
+
+=== Groups
+
+// Uncomment this line in organization_template.tpl to display the group hierarchy diagram.
+// image::groups.svg[link=images/groups.svg]
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Path                     |Display name          |Description                                                                         
+|/acme                    |Acme                  |This group represents the acme department of the ACME organization                  
+|/acme/hr                 |Human Resources       |This group represents the human resources department of the ACME organization       
+|/acme/finance            |Finance               |This group represents the finance department of the ACME organization               
+|/acme/it                 |Infrastructure        |This group represents the infrastructure department of the ACME organization        
+|/acme/marketing          |Marketing             |This group represents the marketing department of the ACME organization             
+|/acme/production         |Production            |This group represents the production department of the ACME organization            
+|/acme/production/rd      |Research & Development|This group represents the research & development department of the ACME organization
+|/acme/production/services|Services              |This group represents the services department of the ACME organization              
+|/acme/sales              |Sales                 |This group represents the sales department of the ACME organization                 
+|/acme/sales/europe       |Europe                |This group represents the europe department of the ACME organization                
+|/acme/sales/asia         |Asia                  |This group represents the asia department of the ACME organization                  
+|/acme/sales/latin_america|Latin America         |This group represents the latin america department of the ACME organization         
+|/acme/sales/north_america|North America         |This group represents the north america department of the ACME organization         
+|===
+
+=== Roles
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name  |Display name|Description
+|member|Member      |           
+|===
+
+=== Profiles
+
+[grid=cols,options="header",cols="1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                    |Description                                                                                                                 
+|[[_1300bb05-3afe-3c2d-af8b-543b4fb16c32]]User           |The user can view and perform tasks and can start a new case of a
+process.                                                  
+|[[_080d4ce6-9f34-37f2-a270-2edb021a60ec]]Administrator  |The administrator can install a process, manage the organization, and
+handle some errors (for example, by replaying a task).
+|[[_ec4b68ef-adbc-302e-8811-94d9a8fc9032]]Process manager|The Process manager can supervise designated processes, and manage
+cases and tasks of those processes.                      
+|===
+

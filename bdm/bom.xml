@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<businessObjectModel xmlns="http://documentation.bonitasoft.com/bdm-xml-schema/1.0" modelVersion="1.0">
+    <businessObjects>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstEntityType">
+            <description>This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Currency'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
+                    <description>The complete, official name of an entity.</description>
+                </field>
+                <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
+                    <description>A concise summary or brief overview of the item.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+            </fields>
+            <uniqueConstraints>
+                <uniqueConstraint name="uqMDomaintName">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </uniqueConstraint>
+            </uniqueConstraints>
+            <queries/>
+            <indexes>
+                <index name="idxMDomainName">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </index>
+            </indexes>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstGenericEntry">
+            <description>This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Domain, a Context, a Currency), allowing for standardized management and common auditing across different lookup lists.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="true" collection="false">
+                    <description>The complete, official name of an entity</description>
+                </field>
+                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                    <description>The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
+                </field>
+                <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
+                    <description>A concise summary or brief overview of the item</description>
+                </field>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.master.MstEntityType" fetchType="EAGER" name="refMstEntityTypeId" nullable="true" collection="false">
+                    <description>Reference to the type of master entity (e.g., Domain, Context).</description>
+                </relationField>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+            </fields>
+            <uniqueConstraints>
+                <uniqueConstraint name="uqMContextName">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </uniqueConstraint>
+            </uniqueConstraints>
+            <queries/>
+            <indexes>
+                <index name="idxMContextName">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </index>
+            </indexes>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstTypeFormField">
+            <description>he MstTypeField master table classifies and defines the available input control types for form fields. It provides a standardized and extensible list of field types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="true" collection="false">
+                    <description>The complete, official name of an entity</description>
+                </field>
+                <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
+                    <description>A concise summary or brief overview of the item</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+            </fields>
+            <uniqueConstraints>
+                <uniqueConstraint name="uqMTypeFieldName">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </uniqueConstraint>
+            </uniqueConstraints>
+            <queries/>
+            <indexes>
+                <index name="idxMTypeFieldName">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </index>
+            </indexes>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.FormField">
+            <description>The FormField object defines the properties and configuration of an individual input field within a FormSection. It specifies how the field behaves, what kind of data it collects, and how it's presented to the user. Each FormField is associated with a specific FormSection and is crucial for capturing user input.</description>
+            <fields>
+                <field type="STRING" length="255" name="identifier" nullable="true" collection="false">
+                    <description>A unique, internal, programmatic identifier for the field, used for backend processing and data mapping.</description>
+                </field>
+                <field type="STRING" length="255" name="label" nullable="true" collection="false">
+                    <description>The user-friendly display name or title for the field, visible to the user.</description>
+                </field>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.master.MstTypeFormField" fetchType="EAGER" name="refTypeFormField" nullable="true" collection="false">
+                    <description>A reference to the predefined input control type for this field, sourced from the MstTypeField master table. This dictates its appearance and validation rules.</description>
+                </relationField>
+                <field type="INTEGER" length="255" name="displayOrder" nullable="true" collection="false">
+                    <description>The attribute stores the numerical position of a field within a section. This value determines the visual order in which the field appears on the screen, allowing users to reorder fields and persist their arrangement.</description>
+                </field>
+                <field type="STRING" length="255" name="placeholder" nullable="true" collection="false">
+                    <description>Optional instructional text displayed inside an empty input field as a hint.</description>
+                </field>
+                <field type="STRING" length="255" name="regularExpression" nullable="true" collection="false">
+                    <description>An optional pattern for validating the format of the field's input.</description>
+                </field>
+                <field type="STRING" length="255" name="errorMessage" nullable="true" collection="false">
+                    <description>The custom message shown to the user if the field's input fails validation.</description>
+                </field>
+                <field type="STRING" length="255" name="encrypted" nullable="true" collection="false">
+                    <description>A boolean flag indicating whether the data entered into this field should be encrypted.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.FormSection">
+            <description>FormSection represents a logical division within a form, grouping related fields for improved organization, readability, and user experience. Each section has a title and description, acting as a structural component for complex forms and facilitating structured data collection.</description>
+            <fields>
+                <field type="STRING" length="255" name="label" nullable="true" collection="false">
+                    <description>The label attribute stores a concise, human-readable name or title for the FormSection. It's used to display the section's heading or identifier in the user interface, aiding quick understanding of the form's structure.</description>
+                </field>
+                <field type="TEXT" length="255" name="fullDescription" nullable="true" collection="false">
+                    <description>The fullDescription attribute holds a more detailed explanation or introductory text for the FormSection. It provides additional context, instructions, or a summary of the section's purpose, enhancing user comprehension during form completion.</description>
+                </field>
+                <field type="INTEGER" length="255" name="displayOrder" nullable="true" collection="false">
+                    <description>The attribute stores the numerical position of a section within a form. This value determines the visual order in which the section appears on the screen, allowing users to reorder sections and persist their arrangement.</description>
+                </field>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.FormField" fetchType="LAZY" name="refField" nullable="true" collection="true"/>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessForm">
+            <description>
+The ProcessForm object defines the structure and content of a particular form used within a process.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="true" collection="false">
+                    <description>The complete, descriptive name of the form.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.FormSection" fetchType="EAGER" name="refFormSection" nullable="false" collection="false">
+                    <description>A collection of references to FormSection objects, representing the various sections that compose this form.</description>
+                </relationField>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessParameter">
+            <description>Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
+                    <description>The complete, official name of an entity</description>
+                </field>
+                <field type="STRING" length="255" name="version" nullable="true" collection="false">
+                    <description>The version identifier for this specific process definition. Used to track changes and distinguish between different iterations.</description>
+                </field>
+                <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
+                    <description>A detailed description providing comprehensive information about the purpose and scope of this process.</description>
+                </field>
+                <field type="STRING" length="255" name="token" nullable="false" collection="false"/>
+                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                    <description>A user-friendly name for the process, optimized for display in user interfaces. It may be a shorter or more localized version of the process name.</description>
+                </field>
+                <field type="STRING" length="255" name="appName" nullable="true" collection="false">
+                    <description>Name of the application to which the process is associated.</description>
+                </field>
+                <field type="INTEGER" length="255" name="autoCancellationDays" nullable="true" collection="false">
+                    <description>The number of days after which an inactive process instance will be automatically cancelled or abandoned. A value of 0 means no automatic cancellation.</description>
+                </field>
+                <field type="STRING" length="255" name="documentsFolderPath" nullable="true" collection="false">
+                    <description>The system path or identifier for the root folder where all documents attached to instances of this process will be stored.</description>
+                </field>
+                <field type="INTEGER" length="255" name="numberOfSteps" nullable="true" collection="false">
+                    <description>The total number of steps or stages defined within the workflow of this process.</description>
+                </field>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refStatus" nullable="true" collection="false">
+                    <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).</description>
+                </relationField>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refContext" nullable="false" collection="false">
+                    <description>Unique identifier linking this process to a specific operational context, defined in the MstGenericEntry master table - type Context</description>
+                </relationField>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refDomain" nullable="false" collection="false">
+                    <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Domain</description>
+                </relationField>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessForm" fetchType="EAGER" name="refProcessForm" nullable="true" collection="true">
+                    <description>A collection of references to ProcessForm objects, representing the forms linked to this process.</description>
+                </relationField>
+                <field type="LONG" length="255" name="bpmProcessDefinitionId" nullable="true" collection="false">
+                    <description>Unique identifier provided by the BPM engine (e.g., Bonita) corresponding to a specific process definition.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
+                    <description>Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.</description>
+                </field>
+            </fields>
+            <uniqueConstraints>
+                <uniqueConstraint name="uqProcessProcName">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </uniqueConstraint>
+                <uniqueConstraint name="uqProcessToken">
+                    <fieldNames>
+                        <fieldName>token</fieldName>
+                    </fieldNames>
+                </uniqueConstraint>
+                <uniqueConstraint name="uqProcessProcDefId">
+                    <fieldNames>
+                        <fieldName>bpmProcessDefinitionId</fieldName>
+                    </fieldNames>
+                </uniqueConstraint>
+            </uniqueConstraints>
+            <queries/>
+            <indexes>
+                <index name="idxProcessProcName">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </index>
+                <index name="idxProcessProcDefId">
+                    <fieldNames>
+                        <fieldName>bpmProcessDefinitionId</fieldName>
+                    </fieldNames>
+                </index>
+                <index name="idxProcessToken">
+                    <fieldNames>
+                        <fieldName>token</fieldName>
+                    </fieldNames>
+                </index>
+            </indexes>
+        </businessObject>
+    </businessObjects>
+</businessObjectModel>
