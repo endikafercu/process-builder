@@ -7,17 +7,14 @@
     <artifactId>process-builder-extensions</artifactId>
     <version>0.0.1</version>
   </parent>
-  <artifactId>processBuilderRestAPI</artifactId>
-  <name>ProcessBuilder REST API</name>
-  <description>This project consists of a suite of custom REST services, implemented in Java, designed to extend and manage the core functionalities of the Process Builder within Bonita. The purpose of this API is to provide a robust and centralized backend layer for all operations related to the dynamic configuration and management of process components.
-
-By exposing a consistent set of REST endpoints, the service enables a clear separation of concerns, allowing the Process Builder's front-end to interact with a reliable business logic layer. This approach ensures data integrity, facilitates reusability of components, and allows for flexible, on-the-fly customization of forms and other process elements.</description>
+  <artifactId>resourceNameRestAPI</artifactId>
+  <name>ResourceName REST API</name>
+  <description>REST API to manage resourceName</description>
   <properties>
     <assertj-core.version>3.24.2</assertj-core.version>
     <junit-jupiter-engine.version>5.10.1</junit-jupiter-engine.version>
     <logback-classic.version>1.2.13</logback-classic.version>
     <mockito-core.version>5.8.0</mockito-core.version>
-    <lombok.version>1.18.22</lombok.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -91,18 +88,6 @@ By exposing a consistent set of REST endpoints, the service enables a clear sepa
       <version>${logback-classic.version}</version>
       <scope>test</scope>
     </dependency>
-    <!-- Lombok java 17 -22 last 38 01-08-2025-->
-	<dependency>
-	    <groupId>org.projectlombok</groupId>
-	    <artifactId>lombok</artifactId>
-	    <version>${lombok.version}</version> 
-	    <scope>provided</scope>
-	</dependency>
-    <dependency>
-	    <groupId>com.fasterxml.jackson.dataformat</groupId>
-	    <artifactId>jackson-dataformat-yaml</artifactId>
-	    <version>2.17.1</version> 
-	</dependency>
   </dependencies>
   <build>
     <defaultGoal>verify</defaultGoal>
@@ -122,31 +107,6 @@ By exposing a consistent set of REST endpoints, the service enables a clear sepa
           </execution>
         </executions>
       </plugin>
-      <plugin>
-		    <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-resources-plugin</artifactId>
-		    <executions>
-		        <execution>
-		            <id>copy-swagger-docs</id>
-		            <phase>process-resources</phase>
-		            <goals>
-		                <goal>copy-resources</goal>
-		            </goals>
-		            <configuration>
-		                <outputDirectory>${project.build.outputDirectory}/swagger-doc</outputDirectory>
-		                <resources>
-		                    <resource>
-		                        <directory>${basedir}/doc/api</directory>
-		                        <includes>
-		                            <include>openapi.yml</include>
-		                            <include>index.html</include>
-		                        </includes>
-		                    </resource>
-		                </resources>
-		            </configuration>
-		        </execution>
-		    </executions>
-		</plugin>
     </plugins>
   </build>
 </project>

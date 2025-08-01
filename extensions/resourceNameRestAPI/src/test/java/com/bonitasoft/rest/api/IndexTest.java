@@ -1,9 +1,9 @@
-package com.bonitasoft.processbuilder.rest.api;
+package com.bonitasoft.rest.api;
 
 import org.bonitasoft.web.extension.rest.RestAPIContext;
-import com.bonitasoft.processbuilder.rest.api.dto.Error;
-import com.bonitasoft.processbuilder.rest.api.dto.Result;
-import com.bonitasoft.processbuilder.rest.api.exception.ValidationException;
+import com.bonitasoft.rest.api.dto.Error;
+import com.bonitasoft.rest.api.dto.Result;
+import com.bonitasoft.rest.api.exception.ValidationException;
 import org.bonitasoft.web.extension.ResourceProvider;
 import org.bonitasoft.web.extension.rest.RestApiResponse;
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;

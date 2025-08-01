@@ -1,7 +1,8 @@
-package com.bonitasoft.processbuilder.rest.api;
+package com.bonitasoft.processbuilder.rest.api.processparameter;
 
 import com.bonitasoft.processbuilder.rest.api.dto.Result;
 import com.bonitasoft.processbuilder.rest.api.exception.ValidationException;
+import com.bonitasoft.processbuilder.rest.api.utils.Utils;
 
 import org.bonitasoft.web.extension.rest.RestAPIContext;
 import java.util.Properties;
@@ -14,9 +15,9 @@ import static java.lang.String.format;
 /**
  * Controller class
  */
-public class Index extends AbstractIndex {
+public class GetProcessParameter extends AbstractGetProcessParameter {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger(Index.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(GetProcessParameter.class.getName());
 
     /**
      * Ensure request is valid
@@ -50,11 +51,11 @@ public class Index extends AbstractIndex {
      * @return Result
      */
     @Override
-    protected Result execute(RestAPIContext context, String p, String c) {
+	public Result execute(RestAPIContext context, String p, String c) {
 
         // Here is an example of how you can retrieve configuration parameters from a properties file
         // It is safe to remove this if no configuration is required
-        Properties props = loadProperties("configuration.properties", context.getResourceProvider());
+        Properties props = Utils.loadProperties("configuration.properties", context.getResourceProvider());
         String paramValue = props.getProperty(MY_PARAMETER_KEY);
 
         LOGGER.debug(format("Execute rest api call with params:  %s, %s, %s",  p,  c,  paramValue));

@@ -29,15 +29,6 @@
                 <include>pom.properties</include>
             </includes>
         </fileSet>
-        
-        <fileSet>
-            <directory>${project.build.directory}/classes</directory>
-            <outputDirectory>/</outputDirectory>
-            <includes>
-                <include>swagger-doc/**</include>
-            </includes>
-        </fileSet>
-        
     </fileSets>
     <dependencySets>
         <dependencySet>

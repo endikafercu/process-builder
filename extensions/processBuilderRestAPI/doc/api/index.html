@@ -16,7 +16,9 @@
     <script>
         window.onload = function() {
             const ui = SwaggerUIBundle({
-                url: "openapi.yml", // Esta URL es relativa a la ubicación del index.html
+                // Ahora usamos `spec` en lugar de `url`
+                // El placeholder '{{OPENAPI_SPEC_PLACEHOLDER}}' será reemplazado por el servidor
+                spec: '{{OPENAPI_SPEC_PLACEHOLDER}}',
                 dom_id: '#swagger-ui',
                 presets: [
                     SwaggerUIBundle.presets.apis,
