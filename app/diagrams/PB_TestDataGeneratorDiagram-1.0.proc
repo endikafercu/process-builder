@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:connectorconfiguration="http://www.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/bpm/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/bpm/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/bpm/process">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:actormapping="http://www.bonitasoft.org/ns/actormapping/6.0" xmlns:configuration="http://www.bonitasoft.org/ns/bpm/configuration" xmlns:connectorconfiguration="http://www.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/bpm/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/bpm/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/bpm/process">
   <process:MainProcess xmi:id="_vGDzAHEJEfCzXNzD7sOrXA" documentation="A visual map showing the structure of the master data. It illustrates the relationships between master tables and how they connect to other data models in the system." name="PB_TestDataGeneratorDiagram" bonitaModelVersion="8">
     <elements xmi:type="process:Pool" xmi:id="_vGDzAXEJEfCzXNzD7sOrXA" documentation="Stores and manages information in master tables. These tables contain static or reference data crucial for the application's operation, like lists of countries, currencies, or user roles." name="PB_TestDataGenerator">
       <elements xmi:type="process:Lane" xmi:id="_vGDzAnEJEfCzXNzD7sOrXA" name="Employee lane" actor="_vGDzG3EJEfCzXNzD7sOrXA">
@@ -66,10 +66,10 @@
           <referencedElements xmi:type="expression:Expression" xmi:id="_3siEUHEvEfCzXNzD7sOrXA" name="mstGenericEntryDAO" content="mstGenericEntryDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.bonitasoftprocessbuilder.model.master.MstGenericEntryDAO" returnTypeFixed="true"/>
         </defaultValue>
       </data>
-      <formMapping xmi:type="process:FormMapping" xmi:id="_vGDzFHEJEfCzXNzD7sOrXA">
+      <formMapping xmi:type="process:FormMapping" xmi:id="_vGDzFHEJEfCzXNzD7sOrXA" type="NONE">
         <targetForm xmi:type="expression:Expression" xmi:id="_LT9IIHE2EfCzXNzD7sOrXA" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
       </formMapping>
-      <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_vGDzFnEJEfCzXNzD7sOrXA">
+      <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_vGDzFnEJEfCzXNzD7sOrXA" type="NONE">
         <targetForm xmi:type="expression:Expression" xmi:id="_vGDzF3EJEfCzXNzD7sOrXA" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
       </overviewFormMapping>
       <connections xmi:type="process:SequenceFlow" xmi:id="_vGDzGHEJEfCzXNzD7sOrXA" target="_6wyZIHEnEfCzXNzD7sOrXA" source="_vGDzA3EJEfCzXNzD7sOrXA">
@@ -81,6 +81,30 @@
         <condition xmi:type="expression:Expression" xmi:id="_1d-tonElEfCzXNzD7sOrXA" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <actors xmi:type="process:Actor" xmi:id="_vGDzG3EJEfCzXNzD7sOrXA" documentation="This is an example of actor that is mapped to any ACME users" name="Employee actor" initiator="true"/>
+      <configurations xmi:type="configuration:Configuration" xmi:id="_KX8zAHIfEfC_4I1JwXjZJQ" name="presales" version="8">
+        <actorMappings xmi:type="actormapping:ActorMappingsType" xmi:id="_KX8zAXIfEfC_4I1JwXjZJQ">
+          <actorMapping xmi:type="actormapping:ActorMapping" xmi:id="_KX8zAnIfEfC_4I1JwXjZJQ" name="Employee actor">
+            <groups xmi:type="actormapping:Groups" xmi:id="_KX8zA3IfEfC_4I1JwXjZJQ">
+              <group>/acme</group>
+            </groups>
+            <memberships xmi:type="actormapping:Membership" xmi:id="_KX8zBHIfEfC_4I1JwXjZJQ"/>
+            <roles xmi:type="actormapping:Roles" xmi:id="_KX8zBXIfEfC_4I1JwXjZJQ"/>
+            <users xmi:type="actormapping:Users" xmi:id="_KX8zBnIfEfC_4I1JwXjZJQ"/>
+          </actorMapping>
+        </actorMappings>
+      </configurations>
+      <configurations xmi:type="configuration:Configuration" xmi:id="_XxFXUHIfEfC_4I1JwXjZJQ" name="ProfessionalServices" version="8">
+        <actorMappings xmi:type="actormapping:ActorMappingsType" xmi:id="_XxFXUXIfEfC_4I1JwXjZJQ">
+          <actorMapping xmi:type="actormapping:ActorMapping" xmi:id="_XxFXUnIfEfC_4I1JwXjZJQ" name="Employee actor">
+            <groups xmi:type="actormapping:Groups" xmi:id="_XxFXU3IfEfC_4I1JwXjZJQ">
+              <group>/acme</group>
+            </groups>
+            <memberships xmi:type="actormapping:Membership" xmi:id="_XxFXVHIfEfC_4I1JwXjZJQ"/>
+            <roles xmi:type="actormapping:Roles" xmi:id="_XxFXVXIfEfC_4I1JwXjZJQ"/>
+            <users xmi:type="actormapping:Users" xmi:id="_XxFXVnIfEfC_4I1JwXjZJQ"/>
+          </actorMapping>
+        </actorMappings>
+      </configurations>
       <contract xmi:type="process:Contract" xmi:id="_vGDzHHEJEfCzXNzD7sOrXA"/>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_vGDzHXEJEfCzXNzD7sOrXA">
         <name xmi:type="expression:Expression" xmi:id="_vGDzHnEJEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
