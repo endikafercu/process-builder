@@ -140,7 +140,7 @@
             <mapping xmi:type="process:ContractInputMapping" xmi:id="_rIMzyXFPEfC_4I1JwXjZJQ"/>
           </inputs>
         </inputs>
-        <inputs xmi:type="process:ContractInput" xmi:id="_rIMzynFPEfC_4I1JwXjZJQ" name="objectType" description="ProcessParameter,etc.">
+        <inputs xmi:type="process:ContractInput" xmi:id="_rIMzynFPEfC_4I1JwXjZJQ" name="objectType" description="MstGenericEntry,MstEntityType">
           <mapping xmi:type="process:ContractInputMapping" xmi:id="_rIMzy3FPEfC_4I1JwXjZJQ"/>
         </inputs>
         <inputs xmi:type="process:ContractInput" xmi:id="_rIMzzHFPEfC_4I1JwXjZJQ" name="actionType" description="INSERT, UPDATE, DELETE">

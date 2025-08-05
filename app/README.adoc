@@ -16,55 +16,107 @@ v0.0.1, {docdate}
 
 image::bdm.svg[link=images/bdm.svg]
 
+=== Package com.bonitasoftprocessbuilder.model.audit
+
+==== AuditAction
+
+_No description available_
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                         |Type          |Description                                                                                  
+|[[AuditAction.persistenceId]]persistenceId*  |Long          |                                                                                             
+|[[AuditAction.processName]]processName       |String        |The name of the process from which the action was initiated.                                 
+|[[AuditAction.actionType]]actionType         |String        |The type of action performed on the business object, such as 'insert', 'update', or 'delete'.
+|[[AuditAction.processVersion]]processVersion |String        |The specific version of the process.                                                         
+|[[AuditAction.objectType]]objectType         |String        |The type of the Business Data Model (BDM) object that was affected by the action.            
+|[[AuditAction.inputContent]]inputContent     |String        |The input data or parameters used for the executed action.                                   
+|[[AuditAction.auCreationDate]]auCreationDate*|OffsetDateTime|Date and time this record was created                                                        
+|[[AuditAction.auCreationUser]]auCreationUser*|String        |User who created this record                                                                 
+|===
+
 === Package com.bonitasoftprocessbuilder.model.master
 
-==== MstContext
+==== MstEntityType
 
-Represents a specific operational environment or instance where a process is executed. This master table defines the available contexts, allowing processes to be categorized by their specific operational scope or related entity (e.g., a particular building, project, or operational unit)
-
-===== icon:list[] Attributes
-
-[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
-|===
-|Name                                               |Type          |Description                                    
-|[[MstContext.persistenceId]]persistenceId*         |Long          |                                               
-|[[MstContext.fullName]]fullName                    |String        |The complete, official name of an entity       
-|[[MstContext.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item
-|[[MstContext.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created          
-|[[MstContext.auCreationUser]]auCreationUser*       |String        |User who created this record                   
-|[[MstContext.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified    
-|[[MstContext.auModificationUser]]auModificationUser|String        |User who last modified this record             
-|===
-
-===== icon:link[] Unique constraints
-
-====== uqMContextName [<<MstContext.fullName,fullName>>]
-
-_No description available_
-
-==== MstDomain
-
-Defines the high-level business or functional area to which a process belongs. This master table provides a classification of processes into broader categories, facilitating organization, reporting, and access control based on the primary business function.
+This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Status'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.
 
 ===== icon:list[] Attributes
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                              |Type          |Description                                     
-|[[MstDomain.persistenceId]]persistenceId*         |Long          |                                                
-|[[MstDomain.fullName]]fullName*                   |String        |The complete, official name of an entity.       
-|[[MstDomain.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item.
-|[[MstDomain.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created           
-|[[MstDomain.auCreationUser]]auCreationUser*       |String        |User who created this record                    
-|[[MstDomain.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified     
-|[[MstDomain.auModificationUser]]auModificationUser|String        |User who last modified this record              
+|Name                                                  |Type          |Description                                                                                                                                                                                    
+|[[MstEntityType.persistenceId]]persistenceId*         |Long          |                                                                                                                                                                                               
+|[[MstEntityType.fullName]]fullName*                   |String        |The complete, official name of an entity.                                                                                                                                                      
+|[[MstEntityType.displayName]]displayName              |String        |The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
+|[[MstEntityType.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item.                                                                                                                                               
+|[[MstEntityType.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created                                                                                                                                                          
+|[[MstEntityType.auCreationUser]]auCreationUser*       |String        |User who created this record                                                                                                                                                                   
+|[[MstEntityType.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified                                                                                                                                                    
+|[[MstEntityType.auModificationUser]]auModificationUser|String        |User who last modified this record                                                                                                                                                             
 |===
 
 ===== icon:link[] Unique constraints
 
-====== uqMDomaintName [<<MstDomain.fullName,fullName>>]
+====== uqMDomaintName [<<MstEntityType.fullName,fullName>>]
 
 _No description available_
+
+==== MstGenericEntry
+
+This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Domain, a Context, a Currency), allowing for standardized management and common auditing across different lookup lists.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                         |Type             |Description                                                                                                                                                                                    
+|[[MstGenericEntry.persistenceId]]persistenceId*              |Long             |                                                                                                                                                                                               
+|[[MstGenericEntry.fullName]]fullName                         |String           |The complete, official name of an entity                                                                                                                                                       
+|[[MstGenericEntry.displayName]]displayName                   |String           |The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
+|[[MstGenericEntry.shortDescription]]shortDescription         |String           |A concise summary or brief overview of the item                                                                                                                                                
+|[[MstGenericEntry.auCreationDate]]auCreationDate*            |OffsetDateTime   |Date and time this record was created                                                                                                                                                          
+|[[MstGenericEntry.auCreationUser]]auCreationUser*            |String           |User who created this record                                                                                                                                                                   
+|[[MstGenericEntry.auModificationDate]]auModificationDate     |OffsetDateTime   |Date and time this record was last modified                                                                                                                                                    
+|[[MstGenericEntry.auModificationUser]]auModificationUser     |String           |User who last modified this record                                                                                                                                                             
+|[[MstGenericEntry.refMstEntityType]]&#x25c7; refMstEntityType|<<MstEntityType>>|Reference to the type of master entity (e.g., Domain, Context).                                                                                                                                
+|===
+
+===== icon:link[] Unique constraints
+
+====== uqMContextName [<<MstGenericEntry.fullName,fullName>>, <<MstGenericEntry.refMstEntityType,refMstEntityType>>]
+
+_No description available_
+
+===== icon:search[] Queries
+
+====== findByFullNameAndRefMstEntityTypeId
+
+Return type: _MstGenericEntry_
+_No description available_
+
+.Query parameters
+[caption=,grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name              |Type  |Description
+|fullName          |String|           
+|refMstEntityTypeId|Long  |           
+|===
+
+====== countForFindByFullNameAndRefMstEntityTypeId
+
+Return type: _MstGenericEntry_
+_No description available_
+
+.Query parameters
+[caption=,grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name              |Type  |Description
+|fullName          |String|           
+|refMstEntityTypeId|Long  |           
+|===
 
 ==== MstTypeFormField
 
@@ -100,19 +152,20 @@ The FormField object defines the properties and configuration of an individual i
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                              |Type                |Description                                                                                                                                                    
-|[[FormField.persistenceId]]persistenceId*         |Long                |                                                                                                                                                               
-|[[FormField.identifier]]identifier                |String              |A unique, internal, programmatic identifier for the field, used for backend processing and data mapping.                                                       
-|[[FormField.label]]label                          |String              |The user-friendly display name or title for the field, visible to the user.                                                                                    
-|[[FormField.placeholder]]placeholder              |String              |Optional instructional text displayed inside an empty input field as a hint.                                                                                   
-|[[FormField.regularExpression]]regularExpression  |String              |An optional pattern for validating the format of the field's input.                                                                                            
-|[[FormField.errorMessage]]errorMessage            |String              |The custom message shown to the user if the field's input fails validation.                                                                                    
-|[[FormField.encrypted]]encrypted                  |String              |A boolean flag indicating whether the data entered into this field should be encrypted.                                                                        
-|[[FormField.auCreationDate]]auCreationDate*       |OffsetDateTime      |Date and time this record was created                                                                                                                          
-|[[FormField.auCreationUser]]auCreationUser*       |String              |User who created this record                                                                                                                                   
-|[[FormField.auModificationDate]]auModificationDate|OffsetDateTime      |Date and time this record was last modified                                                                                                                    
-|[[FormField.auModificationUser]]auModificationUser|String              |User who last modified this record                                                                                                                             
-|[[FormField.typeFormField]]&#x25c6; typeFormField |<<MstTypeFormField>>|A reference to the predefined input control type for this field, sourced from the MstTypeField master table. This dictates its appearance and validation rules.
+|Name                                                   |Type                |Description                                                                                                                                                                                                              
+|[[FormField.persistenceId]]persistenceId*              |Long                |                                                                                                                                                                                                                         
+|[[FormField.identifier]]identifier                     |String              |A unique, internal, programmatic identifier for the field, used for backend processing and data mapping.                                                                                                                 
+|[[FormField.label]]label                               |String              |The user-friendly display name or title for the field, visible to the user.                                                                                                                                              
+|[[FormField.displayOrder]]displayOrder                 |Integer             |The attribute stores the numerical position of a field within a section. This value determines the visual order in which the field appears on the screen, allowing users to reorder fields and persist their arrangement.
+|[[FormField.placeholder]]placeholder                   |String              |Optional instructional text displayed inside an empty input field as a hint.                                                                                                                                             
+|[[FormField.regularExpression]]regularExpression       |String              |An optional pattern for validating the format of the field's input.                                                                                                                                                      
+|[[FormField.errorMessage]]errorMessage                 |String              |The custom message shown to the user if the field's input fails validation.                                                                                                                                              
+|[[FormField.encrypted]]encrypted                       |String              |A boolean flag indicating whether the data entered into this field should be encrypted.                                                                                                                                  
+|[[FormField.auCreationDate]]auCreationDate*            |OffsetDateTime      |Date and time this record was created                                                                                                                                                                                    
+|[[FormField.auCreationUser]]auCreationUser*            |String              |User who created this record                                                                                                                                                                                             
+|[[FormField.auModificationDate]]auModificationDate     |OffsetDateTime      |Date and time this record was last modified                                                                                                                                                                              
+|[[FormField.auModificationUser]]auModificationUser     |String              |User who last modified this record                                                                                                                                                                                       
+|[[FormField.refTypeFormField]]&#x25c6; refTypeFormField|<<MstTypeFormField>>|A reference to the predefined input control type for this field, sourced from the MstTypeField master table. This dictates its appearance and validation rules.                                                          
 |===
 
 ==== FormSection
@@ -123,54 +176,17 @@ FormSection represents a logical division within a form, grouping related fields
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                |Type          |Description                                                                                                                                                                                                                                        
-|[[FormSection.persistenceId]]persistenceId*         |Long          |                                                                                                                                                                                                                                                   
-|[[FormSection.label]]label                          |String        |The label attribute stores a concise, human-readable name or title for the FormSection. It's used to display the section's heading or identifier in the user interface, aiding quick understanding of the form's structure.                        
-|[[FormSection.fullDescription]]fullDescription      |String        |The fullDescription attribute holds a more detailed explanation or introductory text for the FormSection. It provides additional context, instructions, or a summary of the section's purpose, enhancing user comprehension during form completion.
-|[[FormSection.displayOrder]]displayOrder            |Integer       |The attribute stores the numerical position of a section within a form. This value determines the visual order in which the section appears on the screen, allowing users to reorder sections and persist their arrangement.                       
-|[[FormSection.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created                                                                                                                                                                                                              
-|[[FormSection.auCreationUser]]auCreationUser*       |String        |User who created this record                                                                                                                                                                                                                       
-|[[FormSection.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified                                                                                                                                                                                                        
-|[[FormSection.auModificationUser]]auModificationUser|String        |User who last modified this record                                                                                                                                                                                                                 
+|Name                                                |Type               |Description                                                                                                                                                                                                                                        
+|[[FormSection.persistenceId]]persistenceId*         |Long               |                                                                                                                                                                                                                                                   
+|[[FormSection.label]]label                          |String             |The label attribute stores a concise, human-readable name or title for the FormSection. It's used to display the section's heading or identifier in the user interface, aiding quick understanding of the form's structure.                        
+|[[FormSection.fullDescription]]fullDescription      |String             |The fullDescription attribute holds a more detailed explanation or introductory text for the FormSection. It provides additional context, instructions, or a summary of the section's purpose, enhancing user comprehension during form completion.
+|[[FormSection.displayOrder]]displayOrder            |Integer            |The attribute stores the numerical position of a section within a form. This value determines the visual order in which the section appears on the screen, allowing users to reorder sections and persist their arrangement.                       
+|[[FormSection.auCreationDate]]auCreationDate*       |OffsetDateTime     |Date and time this record was created                                                                                                                                                                                                              
+|[[FormSection.auCreationUser]]auCreationUser*       |String             |User who created this record                                                                                                                                                                                                                       
+|[[FormSection.auModificationDate]]auModificationDate|OffsetDateTime     |Date and time this record was last modified                                                                                                                                                                                                        
+|[[FormSection.auModificationUser]]auModificationUser|String             |User who last modified this record                                                                                                                                                                                                                 
+|[[FormSection.refField]]&#x25c7; refField           |List<<<FormField>>>|                                                                                                                                                                                                                                                   
 |===
-
-==== ProcessData
-
-Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.
-
-===== icon:list[] Attributes
-
-[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
-|===
-|Name                                                        |Type                 |Description                                                                                                                 
-|[[ProcessData.persistenceId]]persistenceId*                 |Long                 |                                                                                                                            
-|[[ProcessData.fullName]]fullName*                           |String               |The complete, official name of an entity                                                                                    
-|[[ProcessData.appName]]appName                              |String               |Name of the application to which the process is associated.                                                                 
-|[[ProcessData.token]]token*                                 |String               |                                                                                                                            
-|[[ProcessData.bpmProcessDefinitionId]]bpmProcessDefinitionId|Long                 |Unique identifier provided by the BPM engine (e.g., Bonita) corresponding to a specific process definition.                 
-|[[ProcessData.auCreationDate]]auCreationDate*               |OffsetDateTime       |Date and time this record was created                                                                                       
-|[[ProcessData.auCreationUser]]auCreationUser*               |String               |User who created this record                                                                                                
-|[[ProcessData.auModificationDate]]auModificationDate        |OffsetDateTime       |Date and time this record was last modified                                                                                 
-|[[ProcessData.auModificationUser]]auModificationUser        |String               |User who last modified this record                                                                                          
-|[[ProcessData.auActive]]auActive                            |Boolean              |Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.           
-|[[ProcessData.refContext]]&#x25c7; refContext*              |<<MstContext>>       |Unique identifier linking this process to a specific operational context, defined in the MstContext master table            
-|[[ProcessData.refDomain]]&#x25c7; refDomain*                |<<MstDomain>>        |Unique identifier linking this process to a high-level business or functional domain, defined in the MstDomain master table.
-|[[ProcessData.refProcessForm]]&#x25c6; refProcessForm       |List<<<ProcessForm>>>|A collection of references to ProcessForm objects, representing the forms linked to this process.                           
-|===
-
-===== icon:link[] Unique constraints
-
-====== uqProcessProcName [<<ProcessData.fullName,fullName>>]
-
-_No description available_
-
-====== uqProcessToken [<<ProcessData.token,token>>]
-
-_No description available_
-
-====== uqProcessProcDefId [<<ProcessData.bpmProcessDefinitionId,bpmProcessDefinitionId>>]
-
-_No description available_
 
 ==== ProcessForm
 
@@ -190,6 +206,494 @@ The ProcessForm object defines the structure and content of a particular form us
 |[[ProcessForm.auModificationUser]]auModificationUser  |String         |User who last modified this record                                                                          
 |[[ProcessForm.refFormSection]]&#x25c6; refFormSection*|<<FormSection>>|A collection of references to FormSection objects, representing the various sections that compose this form.
 |===
+
+==== ProcessParameter
+
+Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                             |Type                 |Description                                                                                                                                                                                                                                          
+|[[ProcessParameter.persistenceId]]persistenceId*                 |Long                 |                                                                                                                                                                                                                                                     
+|[[ProcessParameter.fullName]]fullName*                           |String               |The complete, official name of an entity                                                                                                                                                                                                             
+|[[ProcessParameter.version]]version                              |String               |The version identifier for this specific process definition. Used to track changes and distinguish between different iterations.                                                                                                                     
+|[[ProcessParameter.shortDescription]]shortDescription            |String               |A detailed description providing comprehensive information about the purpose and scope of this process.                                                                                                                                              
+|[[ProcessParameter.token]]token*                                 |String               |                                                                                                                                                                                                                                                     
+|[[ProcessParameter.displayName]]displayName                      |String               |A user-friendly name for the process, optimized for display in user interfaces. It may be a shorter or more localized version of the process name.                                                                                                   
+|[[ProcessParameter.appName]]appName                              |String               |Name of the application to which the process is associated.                                                                                                                                                                                          
+|[[ProcessParameter.autoCancellationDays]]autoCancellationDays    |Integer              |The number of days after which an inactive process instance will be automatically cancelled or abandoned. A value of 0 means no automatic cancellation.                                                                                              
+|[[ProcessParameter.documentsFolderPath]]documentsFolderPath      |String               |The system path or identifier for the root folder where all documents attached to instances of this process will be stored.                                                                                                                          
+|[[ProcessParameter.numberOfSteps]]numberOfSteps                  |Integer              |The total number of steps or stages defined within the workflow of this process.                                                                                                                                                                     
+|[[ProcessParameter.bpmProcessDefinitionId]]bpmProcessDefinitionId|Long                 |Unique identifier provided by the BPM engine (e.g., Bonita) corresponding to a specific process definition.                                                                                                                                          
+|[[ProcessParameter.auCreationDate]]auCreationDate*               |OffsetDateTime       |Date and time this record was created                                                                                                                                                                                                                
+|[[ProcessParameter.auCreationUser]]auCreationUser*               |String               |User who created this record                                                                                                                                                                                                                         
+|[[ProcessParameter.auModificationDate]]auModificationDate        |OffsetDateTime       |Date and time this record was last modified                                                                                                                                                                                                          
+|[[ProcessParameter.auModificationUser]]auModificationUser        |String               |User who last modified this record                                                                                                                                                                                                                   
+|[[ProcessParameter.auActive]]auActive                            |Boolean              |Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.                                                                                                                                    
+|[[ProcessParameter.refStatus]]&#x25c7; refStatus                 |<<MstGenericEntry>>  |Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).
+|[[ProcessParameter.refContext]]&#x25c7; refContext               |<<MstGenericEntry>>  |Unique identifier linking this process to a specific operational context, defined in the MstGenericEntry master table - type Context                                                                                                                 
+|[[ProcessParameter.refDomain]]&#x25c7; refDomain                 |<<MstGenericEntry>>  |Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Domain                                                                                                      
+|[[ProcessParameter.refProcessForm]]&#x25c6; refProcessForm       |List<<<ProcessForm>>>|A collection of references to ProcessForm objects, representing the forms linked to this process.                                                                                                                                                    
+|===
+
+===== icon:link[] Unique constraints
+
+====== upProcParamFullName [<<ProcessParameter.fullName,fullName>>]
+
+_No description available_
+
+====== upProcParamToken [<<ProcessParameter.token,token>>]
+
+_No description available_
+
+== Processes
+
+=== image:icons/Pool.png[title="Process"] [[_f2093d63-35a3-32d7-97fc-f0e1795b23ec]]PB_InstanceGenerator (1.0)
+
+Creates actual process instances from a defined blueprint. Each instance is a unique execution of a process, such as a specific loan application or customer order.
+
+image::processes/PB_InstanceGenerator-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_f40da737-1a5d-31f6-9e6d-84077af98ffd]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== Instantiation form
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_f40da737-1a5d-31f6-9e6d-84077af98ffd,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_93bfc34d-7305-3a87-a74b-f2e5eda00ece]]image:icons/StartEvent.png[title="StartEvent"] Start1
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_ba17c436-4e5c-39f7-9c90-ed13145009c3,Step1>>*
+
+==== [[_ba17c436-4e5c-39f7-9c90-ed13145009c3]]image:icons/Task.png[title="Task"] Step1
+
+_No description available_
+
+*Previous flow element(s)*: <<_93bfc34d-7305-3a87-a74b-f2e5eda00ece,Start1>>
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+=== image:icons/Pool.png[title="Process"] [[_344d03ff-3e2b-386d-9994-39742d16c68b]]PB_MasterDataStore (1.0)
+
+The process in Bonita is designed to manage the complete lifecycle of master data, ensuring that the reference data is consistent and accurate.
+
+image::processes/PB_MasterDataStore-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                              |Description                                                                                         
+|[[_4dbd4fa8-93cd-3279-9fa4-5de10e3dea03]]Administrator icon:play-circle[title="Process initiator"]|An actor that maps to users who are administrators and are authorized to execute this admin process.
+
+
+|===
+
+==== Instantiation form
+
+===== [[_34fa56dc-d384-3ce6-b96f-764c1550ff0b]]image:icons/page.png[] FormInstMasteDataStore
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type          |Label                                              |Description
+|Title         |                                                   |           
+|Text          |FormInput                                          |           
+|Text          |formOutput                                         |           
+|Title         |                                                   |           
+|Text          |Id                                                 |           
+|Text          |Full Name                                          |           
+|Text          |Display Name                                       |           
+|Text          |Description                                        |           
+|Text          |Entity Type                                        |           
+|Text          |Creation Date                                      |           
+|Text          |Creation User                                      |           
+|Text          |Modification Date                                  |           
+|Text          |Modification User                                  |           
+|Button        |<span class="glyphicon glyphicon-edit"></span> Edit|           
+|TabsContainer |                                                   |           
+|Text          |                                                   |           
+|ModalContainer|                                                   |           
+|===
+
+==== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    input ([teal]_Input_),
+    objectType ([olive]_Text_) [green]_//MstGenericEntry,MstEntityType_,
+    actionType ([olive]_Text_) [green]_//INSERT, UPDATE, DELETE_
+}
+
+[verse]
+[teal]#Input# {
+    persistenceId_string ([olive]_Text_)
+}
+
+==== icon:check-circle[] Contract constraints
+
+mandatory_actionType:: _No description available_
++
+.Expression
+[source,groovy]
+----
+actionType != null
+----
++
+.Technical error message
+----
+actionType is mandatory
+----
+mandatory_objectType:: _No description available_
++
+.Expression
+[source,groovy]
+----
+objectType != null
+----
++
+.Technical error message
+----
+objectType is mandatory
+----
+updateRequiredForExistingRecord:: The operation was initially set as an INSERT, but a persistence ID was provided. This indicates that the record already exists and the intended action should be an UPDATE instead of an INSERT. The action type has been automatically corrected to UPDATE to reflect the actual state of the data.
++
+.Expression
+[source,groovy]
+----
+return !("INSERT".equals(actionType) && input.persistenceId_string != null);
+----
++
+.Technical error message
+----
+ActionType 'INSERT' is invalid for records with a non-null persistenceId. Action has been updated to 'UPDATE'.
+----
+
+==== image:icons/Lane.png[title="Lane"] Administrator (<<_4dbd4fa8-93cd-3279-9fa4-5de10e3dea03,icon:user[title="Actor"] Administrator>>)
+
+_No description available_
+
+==== [[_bdb4bb31-e2a6-34c1-837d-7ff50fb36f56]]image:icons/StartEvent.png[title="StartEvent"] Start MasterDataStore
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_9ef346bd-a07d-353e-a7a4-178f5f17a667,What business object do you want to delete?>>*
+
+==== [[_9ef346bd-a07d-353e-a7a4-178f5f17a667]]image:icons/XORGateway.png[title="XORGateway"] What business object do you want to delete?
+
+_No description available_
+
+*Previous flow element(s)*: <<_bdb4bb31-e2a6-34c1-837d-7ff50fb36f56,Start MasterDataStore>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+Delete MstGenericEntry: To <<_60f7f856-b5e0-3f65-933a-afde481b9ae7,Delete MstGenericEntry>>::
++
+.When:
+[source,groovy]
+----
+return (auditAction.objectType.equals("MstGenericEntry")) && (auditAction.actionType.equals('DELETE'));
+----
+
+*It is not deleted.: To <<_62756627-bba7-3d10-af9a-d799ca8e5a74,Merge to finish>> (default)*
+
+Delete MstEntityType: To <<_2f335ce4-4023-3b31-a150-011dbe33ccb4,Delete MstEntityType>>::
++
+.When:
+[source,groovy]
+----
+return (auditAction.objectType.equals("MstEntityType")) && (auditAction.actionType.equals('DELETE'));
+----
+
+==== [[_2f335ce4-4023-3b31-a150-011dbe33ccb4]]image:icons/ScriptTask.png[title="ScriptTask"] Delete MstEntityType
+
+_No description available_
+
+*Previous flow element(s)*: <<_9ef346bd-a07d-353e-a7a4-178f5f17a667,What business object do you want to delete?>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_62756627-bba7-3d10-af9a-d799ca8e5a74,Merge to finish>>*
+
+==== [[_60f7f856-b5e0-3f65-933a-afde481b9ae7]]image:icons/ScriptTask.png[title="ScriptTask"] Delete MstGenericEntry
+
+_No description available_
+
+*Previous flow element(s)*: <<_9ef346bd-a07d-353e-a7a4-178f5f17a667,What business object do you want to delete?>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_62756627-bba7-3d10-af9a-d799ca8e5a74,Merge to finish>>*
+
+==== [[_62756627-bba7-3d10-af9a-d799ca8e5a74]]image:icons/XORGateway.png[title="XORGateway"] Merge to finish
+
+_No description available_
+
+*Previous flow element(s)*: <<_60f7f856-b5e0-3f65-933a-afde481b9ae7,Delete MstGenericEntry>>, <<_9ef346bd-a07d-353e-a7a4-178f5f17a667,What business object do you want to delete?>>, <<_2f335ce4-4023-3b31-a150-011dbe33ccb4,Delete MstEntityType>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_4d6dc778-2bf3-37d0-9d60-2f62084de76b,End MasterDataStore>>*
+
+==== [[_4d6dc778-2bf3-37d0-9d60-2f62084de76b]]image:icons/EndTerminatedEvent.png[title="EndTerminatedEvent"] End MasterDataStore
+
+_No description available_
+
+*Previous flow element(s)*: <<_62756627-bba7-3d10-af9a-d799ca8e5a74,Merge to finish>>
+
+=== image:icons/Pool.png[title="Process"] [[_4ca68921-5fed-3326-bd5b-1b1b3847c655]]PB_ProcessDefinitionEngine (1.0)
+
+Stores and manages the blueprint for each process. It describes the structure, stages, and logic of a process, but does not contain real-time instance data.
+
+image::processes/PB_ProcessDefinitionEngine-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                              |Description                                                                                         
+|[[_dc280987-0208-3ea9-99c1-1ff74094d00e]]Administrator icon:play-circle[title="Process initiator"]|An actor that maps to users who are administrators and are authorized to execute this admin process.
+
+
+|===
+
+==== Instantiation form
+
+===== [[_cd880e8b-54df-341e-84c5-b72892dc96a8]]image:icons/page.png[] FormInstProcessDefinitionEngine
+
+Page generated with Bonita UI designer
+
+.Widgets
+[caption=,grid=cols,options="header",cols="1,2,4a",stripes=even,frame=topbot]
+|===
+|Type  |Label                 |Description
+|Title |                      |           
+|Input |Persistence Id        |           
+|Input |Full Name             |           
+|Input |Display Name          |           
+|Input |Auto Cancellation Days|           
+|Input |Version               |           
+|Input |Description           |           
+|Input |Token                 |           
+|Input |Documents Folder Path |           
+|Select|Action Type           |           
+|Button|Submit                |           
+|Text  |                      |           
+|Text  |Default label         |           
+|===
+
+==== icon:list-alt[] Contract inputs
+
+[verse]
+{
+    input ([teal]_Input_),
+    objectType ([olive]_Text_) [green]_//ProcessParameter,etc._,
+    actionType ([olive]_Text_) [green]_//INSERT, UPDATE, DELETE_
+}
+
+[verse]
+[teal]#Input# {
+    persistenceId_string ([olive]_Text_)
+}
+
+==== icon:check-circle[] Contract constraints
+
+mandatory_actionType:: _No description available_
++
+.Expression
+[source,groovy]
+----
+actionType != null
+----
++
+.Technical error message
+----
+actionType is mandatory
+----
+mandatory_objectType:: _No description available_
++
+.Expression
+[source,groovy]
+----
+objectType != null
+----
++
+.Technical error message
+----
+objectType is mandatory
+----
+updateRequiredForExistingRecord:: The operation was initially set as an INSERT, but a persistence ID was provided. This indicates that the record already exists and the intended action should be an UPDATE instead of an INSERT. The action type has been automatically corrected to UPDATE to reflect the actual state of the data.
++
+.Expression
+[source,groovy]
+----
+return !("INSERT".equals(actionType) && input.persistenceId_string != null && input.persistenceId_string != "");
+----
++
+.Technical error message
+----
+ActionType 'INSERT' is invalid for records with a non-null persistenceId. Action has been updated to 'UPDATE'.
+----
+
+==== image:icons/Lane.png[title="Lane"] Administrator (<<_dc280987-0208-3ea9-99c1-1ff74094d00e,icon:user[title="Actor"] Administrator>>)
+
+_No description available_
+
+==== [[_5de1ff15-c622-3974-a4e2-613ef2d83d54]]image:icons/StartEvent.png[title="StartEvent"] Start ProcessDefinitionEngine
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_e6d6438d-a5e5-39f6-b308-4e265975571f,What business object do you want to delete?>>*
+
+==== [[_e6d6438d-a5e5-39f6-b308-4e265975571f]]image:icons/XORGateway.png[title="XORGateway"] What business object do you want to delete?
+
+_No description available_
+
+*Previous flow element(s)*: <<_5de1ff15-c622-3974-a4e2-613ef2d83d54,Start ProcessDefinitionEngine>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+Delete ProcessParameter: To <<_d88b11f7-fb4d-3dd9-9dbf-116de6249967,Delete ProcessParameter>>::
++
+.When:
+[source,groovy]
+----
+return (auditAction.objectType.equals("ProcessParameter")) && (auditAction.actionType.equals('DELETE'));
+----
+
+*It is not deleted.: To <<_f4d17990-a181-320f-9fb2-142ea541fdd3,Merge to finish>> (default)*
+
+==== [[_d88b11f7-fb4d-3dd9-9dbf-116de6249967]]image:icons/ScriptTask.png[title="ScriptTask"] Delete ProcessParameter
+
+_No description available_
+
+*Previous flow element(s)*: <<_e6d6438d-a5e5-39f6-b308-4e265975571f,What business object do you want to delete?>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_f4d17990-a181-320f-9fb2-142ea541fdd3,Merge to finish>>*
+
+==== [[_f4d17990-a181-320f-9fb2-142ea541fdd3]]image:icons/XORGateway.png[title="XORGateway"] Merge to finish
+
+_No description available_
+
+*Previous flow element(s)*: <<_d88b11f7-fb4d-3dd9-9dbf-116de6249967,Delete ProcessParameter>>, <<_e6d6438d-a5e5-39f6-b308-4e265975571f,What business object do you want to delete?>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_a5ebc2d8-1b02-39dd-bc3d-6233364dc859,End ProcessDefinitionEngine>>*
+
+==== [[_a5ebc2d8-1b02-39dd-bc3d-6233364dc859]]image:icons/EndTerminatedEvent.png[title="EndTerminatedEvent"] End ProcessDefinitionEngine
+
+_No description available_
+
+*Previous flow element(s)*: <<_f4d17990-a181-320f-9fb2-142ea541fdd3,Merge to finish>>
+
+=== image:icons/Pool.png[title="Process"] [[_9e518a35-c4b3-353f-90d1-007b12184fd2]]PB_TestDataGenerator (1.0)
+
+Stores and manages information in master tables. These tables contain static or reference data crucial for the application's operation, like lists of countries, currencies, or user roles.
+
+image::processes/PB_TestDataGenerator-1.0.png[]
+
+==== icon:users[] Actors
+
+[grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                                               |Description                                                 
+|[[_f6089323-e1ef-32d5-bf84-66c12f329651]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
+|===
+
+==== Instantiation form
+
+[CAUTION]
+====
+Invalid form mapping. No form specified.
+====
+
+==== image:icons/Lane.png[title="Lane"] Employee lane (<<_f6089323-e1ef-32d5-bf84-66c12f329651,icon:user[title="Actor"] Employee actor>>)
+
+_No description available_
+
+==== [[_e60b6261-758c-3a78-a338-1feea2fb924a]]image:icons/StartEvent.png[title="StartEvent"] Start MasterDataStore
+
+_No description available_
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_2a41e2df-cad5-372a-8f62-94c9fc119c0b,Load MstGenericEntry>>*
+
+==== [[_2a41e2df-cad5-372a-8f62-94c9fc119c0b]]image:icons/ServiceTask.png[title="ServiceTask"] Load MstGenericEntry
+
+_No description available_
+
+*Previous flow element(s)*: <<_e60b6261-758c-3a78-a338-1feea2fb924a,Start MasterDataStore>>
+
+===== icon:plug[] Connectors in
+
+Groovy: Initialize MstGenericEntry:: Initializes and updates MstGenericEntry business objects using an "upsert" logic. It processes a predefined configuration map to create new entries if they don't exist, or update them if they do, ensuring master data integrity.
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_9711aece-095d-362e-bc3c-61b34dc342c8,End MasterDataStore>>*
+
+==== [[_9711aece-095d-362e-bc3c-61b34dc342c8]]image:icons/EndTerminatedEvent.png[title="EndTerminatedEvent"] End MasterDataStore
+
+_No description available_
+
+*Previous flow element(s)*: <<_2a41e2df-cad5-372a-8f62-94c9fc119c0b,Load MstGenericEntry>>
+
+== Process diagrams
+
+=== PB_InstanceGeneratorDiagram (1.0)
+
+A visual flowchart showing the steps involved in generating a new process instance. It illustrates the data inputs, logic, and outputs for creating an instance from a process definition.
+
+image::diagrams/PB_InstanceGeneratorDiagram-1.0.png[]
+
+=== PB_MasterDataStoreDiagram (1.0)
+
+A visual representation of a process definition. It maps out the stages, decisions, and flows, providing a clear overview of the process's structure and logic.
+
+image::diagrams/PB_MasterDataStoreDiagram-1.0.png[]
+
+=== PB_ProcessDefinitionEngineDiagram (1.0)
+
+A visual representation of a process definition. It maps out the stages, decisions, and flows, providing a clear overview of the process's structure and logic.
+
+image::diagrams/PB_ProcessDefinitionEngineDiagram-1.0.png[]
+
+=== PB_TestDataGeneratorDiagram (1.0)
+
+A visual map showing the structure of the master data. It illustrates the relationships between master tables and how they connect to other data models in the system.
+
+image::diagrams/PB_TestDataGeneratorDiagram-1.0.png[]
 
 == Organization
 

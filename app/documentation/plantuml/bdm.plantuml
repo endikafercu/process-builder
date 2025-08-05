@@ -2,12 +2,28 @@
 sprite $aggregation jar:archimate/aggregation
 sprite $composition jar:archimate/composition
 
+package com.bonitasoftprocessbuilder.model.audit {
+
+    class AuditAction {
+        +persistenceId : Long
+        +processName : String
+        +actionType : String
+        +processVersion : String
+        +objectType : String
+        +inputContent : String
+        +auCreationDate : OffsetDateTime
+        +auCreationUser : String
+    }
+
+}
+
 package com.bonitasoftprocessbuilder.model.master {
 
-    note top of MstContext : Represents a specific operational environment or instance where a process is executed. This master table defines the available contexts, allowing processes to be categorized by their specific operational scope or related entity (e.g., a particular building, project, or operational unit)
-    class MstContext {
+    note top of MstEntityType : This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Status'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.
+    class MstEntityType {
         +persistenceId : Long
         +fullName : String
+        +displayName : String
         +shortDescription : String
         +auCreationDate : OffsetDateTime
         +auCreationUser : String
@@ -15,15 +31,19 @@ package com.bonitasoftprocessbuilder.model.master {
         +auModificationUser : String
     }
 
-    note top of MstDomain : Defines the high-level business or functional area to which a process belongs. This master table provides a classification of processes into broader categories, facilitating organization, reporting, and access control based on the primary business function.
-    class MstDomain {
+    note top of MstGenericEntry : This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Domain, a Context, a Currency), allowing for standardized management and common auditing across different lookup lists.
+    class MstGenericEntry {
         +persistenceId : Long
         +fullName : String
+        +displayName : String
         +shortDescription : String
         +auCreationDate : OffsetDateTime
         +auCreationUser : String
         +auModificationDate : OffsetDateTime
         +auModificationUser : String
+        == Custom queries ==
+        +findByFullNameAndRefMstEntityTypeId(String fullName, Long refMstEntityTypeId) : MstGenericEntry
+        +countForFindByFullNameAndRefMstEntityTypeId(String fullName, Long refMstEntityTypeId) : MstGenericEntry
     }
 
     note top of MstTypeFormField : he MstTypeField master table classifies and defines the available input control types for form fields. It provides a standardized and extensible list of field types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.
@@ -46,6 +66,7 @@ package com.bonitasoftprocessbuilder.model.process {
         +persistenceId : Long
         +identifier : String
         +label : String
+        +displayOrder : Integer
         +placeholder : String
         +regularExpression : String
         +errorMessage : String
@@ -68,20 +89,6 @@ package com.bonitasoftprocessbuilder.model.process {
         +auModificationUser : String
     }
 
-    note top of ProcessData : Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.
-    class ProcessData {
-        +persistenceId : Long
-        +fullName : String
-        +appName : String
-        +token : String
-        +bpmProcessDefinitionId : Long
-        +auCreationDate : OffsetDateTime
-        +auCreationUser : String
-        +auModificationDate : OffsetDateTime
-        +auModificationUser : String
-        +auActive : Boolean
-    }
-
     note top of ProcessForm : \nThe ProcessForm object defines the structure and content of a particular form used within a process.
     class ProcessForm {
         +persistenceId : Long
@@ -92,13 +99,36 @@ package com.bonitasoftprocessbuilder.model.process {
         +auModificationUser : String
     }
 
+    note top of ProcessParameter : Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.
+    class ProcessParameter {
+        +persistenceId : Long
+        +fullName : String
+        +version : String
+        +shortDescription : String
+        +token : String
+        +displayName : String
+        +appName : String
+        +autoCancellationDays : Integer
+        +documentsFolderPath : String
+        +numberOfSteps : Integer
+        +bpmProcessDefinitionId : Long
+        +auCreationDate : OffsetDateTime
+        +auCreationUser : String
+        +auModificationDate : OffsetDateTime
+        +auModificationUser : String
+        +auActive : Boolean
+    }
+
 }
 
-FormField *--  MstTypeFormField : typeFormField
-ProcessData o--  MstContext : refContext
-ProcessData o--  MstDomain : refDomain
-ProcessData *-- "*" ProcessForm : refProcessForm
+MstGenericEntry o--  MstEntityType : refMstEntityType
+FormField *--  MstTypeFormField : refTypeFormField
+FormSection o-- "*" FormField : refField
 ProcessForm *--  FormSection : refFormSection
+ProcessParameter o--  MstGenericEntry : refStatus
+ProcessParameter o--  MstGenericEntry : refContext
+ProcessParameter o--  MstGenericEntry : refDomain
+ProcessParameter *-- "*" ProcessForm : refProcessForm
 
 legend top left
 <$composition> Composition relation  <$aggregation> Aggregation relation  &#42; Multiple relation
