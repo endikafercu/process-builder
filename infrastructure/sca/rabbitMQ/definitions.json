@@ -1,0 +1,87 @@
+{
+    "rabbit_version": "4.0.7",
+    "rabbitmq_version": "4.0.7",
+    "product_name": "RabbitMQ",
+    "product_version": "4.0.7",
+    "rabbitmq_definition_format": "cluster",
+    "original_cluster_name": "rabbit@rmqBonita",
+    "explanation": "Definitions of cluster 'rabbit@rmqBonita'",
+    "users": [
+        {
+            "name": "admin",
+            "password_hash": "ssYWkEEpmWsqMUbL5aEMd0oo/ylyC0GJ+cLVQNDfnQj4eQQF",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": [
+                "administrator"
+            ],
+            "limits": {}
+        }
+    ],
+    "vhosts": [
+        {
+            "name": "/",
+            "description": "Default virtual host",
+            "metadata": {
+                "description": "Default virtual host",
+                "tags": [],
+                "default_queue_type": "classic"
+            },
+            "tags": [],
+            "default_queue_type": "classic"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "admin",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "topic_permissions": [],
+    "parameters": [],
+    "global_parameters": [
+        {
+            "name": "cluster_tags",
+            "value": []
+        },
+        {
+            "name": "internal_cluster_id",
+            "value": "rabbitmq-cluster-id-18oUDHJI8JmgJHNEAn76FQ"
+        }
+    ],
+    "policies": [],
+    "queues": [
+        {
+            "name": "BonitaQueue",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-queue-type": "classic"
+            }
+        }
+    ],
+    "exchanges": [
+        {
+            "name": "BonitaExchange",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        }
+    ],
+    "bindings": [
+        {
+            "source": "BonitaExchange",
+            "vhost": "/",
+            "destination": "BonitaQueue",
+            "destination_type": "queue",
+            "routing_key": "",
+            "arguments": {}
+        }
+    ]
+}

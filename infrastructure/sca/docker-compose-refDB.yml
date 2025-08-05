@@ -1,0 +1,21 @@
+name: bonita-sca
+services:
+  refdb:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: siritDB
+    restart: always
+    ports: 
+      - 5438:5432
+    volumes:
+      - ./refDb/dump/init.sql:/docker-entrypoint-initdb.d/init.sql
+  pgadmin:
+    # use server "db", login "postgres" pwd "example"
+    image: dpage/pgadmin4:9.1.0
+    ports: 
+      - 8086:80
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=user@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=SuperSecret          
+
