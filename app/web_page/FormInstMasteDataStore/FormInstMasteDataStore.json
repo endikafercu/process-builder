@@ -4,7 +4,7 @@
   "type" : "form",
   "uuid" : "781a8277-43a0-454a-82b0-d18c2e3cf47e",
   "modelVersion" : "2.6",
-  "lastUpdate" : 1754398279597,
+  "lastUpdate" : 1754399270082,
   "description" : "Page generated with Bonita UI designer",
   "rows" : [
     [
@@ -1500,7 +1500,8 @@
                     "value" : "alert alert-danger col-lg-6 col-lg-offset-3"
                   },
                   "label" : {
-                    "type" : "interpolation"
+                    "type" : "interpolation",
+                    "value" : "Debug message"
                   },
                   "text" : {
                     "type" : "interpolation",
@@ -1513,6 +1514,14 @@
                   "dimension" : {
                     "type" : "constant",
                     "value" : 12
+                  },
+                  "labelPosition" : {
+                    "type" : "constant",
+                    "value" : "top"
+                  },
+                  "labelWidth" : {
+                    "type" : "constant",
+                    "value" : 4
                   }
                 },
                 "reference" : "ce11527c-3dca-4a80-acda-2b1b8ab70ec5",

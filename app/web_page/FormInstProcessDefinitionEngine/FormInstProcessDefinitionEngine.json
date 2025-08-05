@@ -4,7 +4,7 @@
   "type" : "form",
   "uuid" : "e08d2952-2736-4d1f-a2ac-e9f0c2ff515e",
   "modelVersion" : "2.6",
-  "lastUpdate" : 1754389301009,
+  "lastUpdate" : 1754399258603,
   "description" : "Page generated with Bonita UI designer",
   "rows" : [
     [
@@ -1030,7 +1030,8 @@
                     "value" : "alert alert-danger col-lg-6 col-lg-offset-3"
                   },
                   "label" : {
-                    "type" : "interpolation"
+                    "type" : "interpolation",
+                    "value" : "Debug message"
                   },
                   "text" : {
                     "type" : "interpolation",
@@ -1043,6 +1044,14 @@
                   "dimension" : {
                     "type" : "constant",
                     "value" : 12
+                  },
+                  "labelPosition" : {
+                    "type" : "constant",
+                    "value" : "top"
+                  },
+                  "labelWidth" : {
+                    "type" : "constant",
+                    "value" : 4
                   }
                 },
                 "reference" : "74ae7e29-2822-4a14-a754-b47de6fe1bff",
@@ -1079,11 +1088,11 @@
           },
           "labelHidden" : {
             "type" : "constant",
-            "value" : true
+            "value" : false
           },
           "label" : {
             "type" : "interpolation",
-            "value" : "Default label"
+            "value" : "Show Log"
           },
           "labelPosition" : {
             "type" : "constant",
