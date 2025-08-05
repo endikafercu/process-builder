@@ -4,6 +4,7 @@ import org.bonitasoft.web.extension.rest.RestAPIContext;
 import org.bonitasoft.web.extension.rest.RestApiController;
 import com.bonitasoft.processbuilder.rest.api.dto.Error;
 import com.bonitasoft.processbuilder.rest.api.dto.Result;
+import com.bonitasoft.processbuilder.rest.api.dto.ResultGetProcessParameter;
 import com.bonitasoft.processbuilder.rest.api.exception.ValidationException;
 import com.bonitasoft.processbuilder.rest.api.utils.Utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,9 +27,7 @@ public abstract class AbstractGetProcessParameter implements RestApiController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGetProcessParameter.class.getName());
 
-    public static final String MY_PARAMETER_KEY = "myParameterKey";
-    public static final String PARAM_P = "p";
-    public static final String PARAM_C = "c";
+    public static final String PARAM_PERSISTENCE_ID = "id";
 
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
@@ -48,18 +47,17 @@ public abstract class AbstractGetProcessParameter implements RestApiController {
             LOGGER.error("Request for this REST API extension is not valid", e);
             return Utils.jsonResponse(responseBuilder, mapper, SC_BAD_REQUEST, Error.builder().message(e.getMessage()).build());
         }
-        String p = request.getParameter(PARAM_P);
-        String c = request.getParameter(PARAM_C);
+        String persistenceId = request.getParameter(PARAM_PERSISTENCE_ID);
 
         // Execute business logic
-        Result result = execute(context, p, c);
+        ResultGetProcessParameter resultGetProcessParameter = execute(context, persistenceId);
 
         // Send the result as a JSON representation
         // You may use pagedJsonResponse if your result is multiple
-        return Utils.jsonResponse(responseBuilder,mapper, SC_OK, result);
+        return Utils.jsonResponse(responseBuilder,mapper, SC_OK, resultGetProcessParameter);
     }
 
-    protected abstract Result execute(RestAPIContext context, String p, String c);
+    protected abstract ResultGetProcessParameter execute(RestAPIContext context, String persistenceId);
 
     protected abstract void validateInputParameters(HttpServletRequest request);
 

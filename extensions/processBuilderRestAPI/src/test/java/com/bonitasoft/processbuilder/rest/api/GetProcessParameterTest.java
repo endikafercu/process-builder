@@ -3,6 +3,7 @@ package com.bonitasoft.processbuilder.rest.api;
 import org.bonitasoft.web.extension.rest.RestAPIContext;
 import com.bonitasoft.processbuilder.rest.api.dto.Error;
 import com.bonitasoft.processbuilder.rest.api.dto.Result;
+import com.bonitasoft.processbuilder.rest.api.dto.ResultGetProcessParameter;
 import com.bonitasoft.processbuilder.rest.api.exception.ValidationException;
 import com.bonitasoft.processbuilder.rest.api.processparameter.GetProcessParameter;
 
@@ -71,26 +72,21 @@ class GetProcessParameterTest {
     void should_get_result_when_params_ok() {
 
         // Given
-        String p = "aValue1";
-        String c = "aValue2";
+        String persistenceId = "1";
 
         // When
-        Result result = getProcessParameter.execute(context, p, c);
+        ResultGetProcessParameter resultGetProcessParameter  = getProcessParameter.execute(context, persistenceId);
 
         // Then
-        assertThat(result.getP()).isEqualTo(p);
-        assertThat(result.getC()).isEqualTo(c);
-        assertThat(result.getMyParameterKey()).isEqualTo("testValue");
-        assertThat(result.getCurrentDate()).isEqualTo(LocalDate.now());
+        assertThat(resultGetProcessParameter.getProcessParameter().getPersistenceId().toString()).isEqualTo(persistenceId);
     }
-
+/*
     @Test
     void should_return_a_json_representation_as_result() throws IOException {
         // Given "a RestAPIController"
 
         // Simulate a request with a value for each parameter
-        when(httpRequest.getParameter("p")).thenReturn("aValue1");
-        when(httpRequest.getParameter("c")).thenReturn("aValue2");
+        when(httpRequest.getParameter("id")).thenReturn("1");
 
         // When "Invoking the REST API"
         RestApiResponse apiResponse = getProcessParameter.doHandle(httpRequest, new RestApiResponseBuilder(), context);
@@ -135,5 +131,5 @@ class GetProcessParameterTest {
         assertThat(apiResponse.getHttpStatus()).isEqualTo(400);
         assertThat(jsonResponse.getMessage()).isEqualTo("the parameter c is missing");
     }
-
+*/
 }

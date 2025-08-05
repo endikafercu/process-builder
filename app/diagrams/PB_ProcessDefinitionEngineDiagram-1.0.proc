@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:decision="http://www.bonitasoft.org/ns/bpm/process/decision" xmlns:expression="http://www.bonitasoft.org/ns/bpm/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/bpm/process">
+  <process:MainProcess xmi:id="_dO2ZgHEMEfCzXNzD7sOrXA" documentation="A visual representation of a process definition. It maps out the stages, decisions, and flows, providing a clear overview of the process's structure and logic." name="PB_ProcessDefinitionEngineDiagram" bonitaModelVersion="8">
+    <elements xmi:type="process:Pool" xmi:id="_dO2ZgXEMEfCzXNzD7sOrXA" documentation="Stores and manages the blueprint for each process. It describes the structure, stages, and logic of a process, but does not contain real-time instance data." name="PB_ProcessDefinitionEngine">
+      <elements xmi:type="process:Lane" xmi:id="_dO2ZgnEMEfCzXNzD7sOrXA" name="Administrator" actor="_dO2Zm3EMEfCzXNzD7sOrXA">
+        <elements xmi:type="process:StartEvent" xmi:id="_dO2Zg3EMEfCzXNzD7sOrXA" name="Start ProcessDefinitionEngine" outgoing="_dO2ZmHEMEfCzXNzD7sOrXA">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_dO2ZhHEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_dO2ZhXEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_dO2ZhnEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:XORGateway" xmi:id="_4l6swHEWEfCzXNzD7sOrXA" name="What business object do you want to delete?" outgoing="_4mMZkHEWEfCzXNzD7sOrXA __6kmIHEWEfCzXNzD7sOrXA" incoming="_dO2ZmHEMEfCzXNzD7sOrXA">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_4l7T0XEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_4l7T0HEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_4l7T0nEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ScriptTask" xmi:id="_7H46QHEWEfCzXNzD7sOrXA" name="Delete ProcessParameter" outgoing="_89oT4HEWEfCzXNzD7sOrXA" incoming="_4mMZkHEWEfCzXNzD7sOrXA">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_dO2ZiHEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_dO2ZiXEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_dO2ZinEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <operations xmi:type="expression:Operation" xmi:id="_jtCEcHE5EfCzXNzD7sOrXA">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_jtCEcXE5EfCzXNzD7sOrXA" name="boProcessParameter" content="boProcessParameter" type="TYPE_VARIABLE" returnType="com.bonitasoftprocessbuilder.model.process.ProcessParameter">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_kGvk8HE5EfCzXNzD7sOrXA" name="boProcessParameter" dataType="_dO2ZtHEMEfCzXNzD7sOrXA" className="com.bonitasoftprocessbuilder.model.process.ProcessParameter"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_jtCEcnE5EfCzXNzD7sOrXA" content=""/>
+            <operator xmi:type="expression:Operator" xmi:id="_jtCEc3E5EfCzXNzD7sOrXA" type="DELETION"/>
+          </operations>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_dO2Zi3EMEfCzXNzD7sOrXA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_dO2ZjHEMEfCzXNzD7sOrXA" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_dO2ZjXEMEfCzXNzD7sOrXA" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_dO2ZjnEMEfCzXNzD7sOrXA" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_dO2Zj3EMEfCzXNzD7sOrXA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:XORGateway" xmi:id="_9_4bEHEWEfCzXNzD7sOrXA" name="Merge to finish" outgoing="_-02UMHEWEfCzXNzD7sOrXA" incoming="_89oT4HEWEfCzXNzD7sOrXA __6kmIHEWEfCzXNzD7sOrXA">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_89nFwXEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_89nFwHEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_89nFwnEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:EndTerminatedEvent" xmi:id="_-01GEHEWEfCzXNzD7sOrXA" name="End ProcessDefinitionEngine" incoming="_-02UMHEWEfCzXNzD7sOrXA">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_-01tIXEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_-01tIHEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_-01tInEWEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
+        </elements>
+      </elements>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_nBAkMHEZEfCzXNzD7sOrXA" name="boProcessParameter" dataType="_dO2ZtHEMEfCzXNzD7sOrXA" className="com.bonitasoftprocessbuilder.model.process.ProcessParameter">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_TZLMiHEaEfCzXNzD7sOrXA" name="initBoProcessParameter()" content="import java.time.OffsetDateTime&#xD;&#xA;&#xD;&#xA;import com.bonitasoftprocessbuilder.model.process.ProcessParameter&#xD;&#xA;import com.bonitasoftprocessbuilder.model.process.ProcessParameterDAO&#xD;&#xA;&#xD;&#xA;import org.bonitasoft.engine.bpm.process.ProcessInstance&#xD;&#xA;import org.bonitasoft.engine.identity.User&#xD;&#xA;import org.bonitasoft.engine.identity.UserNotFoundException&#xD;&#xA;import org.slf4j.Logger;&#xD;&#xA;import org.slf4j.LoggerFactory;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Logger logger = LoggerFactory.getLogger(&quot;org.bonitasoft.groovy.script.initBoProcessParameter&quot;);&#xD;&#xA;logger.info(&quot;Starting initialization of ProcessParameter business object.&quot;);&#xD;&#xA;&#xD;&#xA;ProcessParameter processParameterVar = null;&#xD;&#xA;&#xD;&#xA;// Proceed only if the 'input' object is not null.&#xD;&#xA;if (input != null) {&#xD;&#xA;&#x9;// Determine the user who started the process. This logic is placed once.&#xD;&#xA;&#x9;String creationUser = &quot;unknown_user&quot;;&#xD;&#xA;&#x9;try {&#xD;&#xA;&#x9;&#x9;logger.info(&quot;Attempting to retrieve the user who started the process instance ID: {}&quot;, processInstanceId);&#xD;&#xA;&#x9;&#x9;ProcessInstance processInstance = apiAccessor.getProcessAPI().getProcessInstance(processInstanceId);&#xD;&#xA;&#x9;&#x9;Long startedByUserId = processInstance.getStartedBy();&#xD;&#xA;&#x9;&#x9;User processInitiator = apiAccessor.getIdentityAPI().getUser(startedByUserId);&#xD;&#xA;&#x9;&#x9;creationUser = processInitiator.getUserName();&#xD;&#xA;&#x9;&#x9;logger.debug(&quot;Successfully retrieved initiator user: {}&quot;, creationUser);&#xD;&#xA;&#x9;} catch (UserNotFoundException e) {&#xD;&#xA;&#x9;&#x9;logger.warn(&quot;The user who started process instance ID {} was not found. Using 'system_user'.&quot;, processInstanceId, e);&#xD;&#xA;&#x9;&#x9;creationUser = &quot;system_user&quot;;&#xD;&#xA;&#x9;} catch (Exception e) {&#xD;&#xA;&#x9;&#x9;logger.error(&quot;An unexpected error occurred while retrieving the process initiator for process instance ID {}: {}&quot;, processInstanceId, e.getMessage(), e);&#xD;&#xA;&#x9;&#x9;creationUser = &quot;unknown_user&quot;;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;Long persistenceId = null;&#xD;&#xA;&#x9;try {&#xD;&#xA;&#x9;&#x9;if (input.persistenceId_string != null &amp;&amp; !input.persistenceId_string.isEmpty()) {&#xD;&#xA;&#x9;&#x9;&#x9;persistenceId = input.persistenceId_string.toLong();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} catch (NumberFormatException e) {&#xD;&#xA;&#x9;&#x9;logger.error(&quot;Failed to convert input.persistenceId_string to a Long: '{}'&quot;, input.persistenceId_string, e);&#xD;&#xA;&#x9;&#x9;// persistenceId remains null, so a new object will be created.&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;logger.info(&quot; ---- persistenceId -- {},{},{} &quot;, persistenceId );&#xD;&#xA;&#x9;if (persistenceId == null) {&#xD;&#xA;&#x9;&#x9;processParameterVar = processParameterDAO.findByFullName((input?.fullName != null)? input?.fullName: &quot;&quot;);&#xD;&#xA;&#x9;&#x9;if (processParameterVar != null &amp;&amp; processParameterVar.persistenceId != null) {&#xD;&#xA;&#x9;&#x9;&#x9;logger.info(&quot;processParameterVar.findByFullName -- {},{},{} &quot;, processParameterVar.fullName, processParameterVar.token, processParameterVar.persistenceId );&#xD;&#xA;&#x9;&#x9;&#x9;String errorMessage = &quot;A ProcessParameter with the fullName '&quot; + input?.fullName + &quot;' already exists. Cannot create a new object.&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;logger.error(errorMessage);&#xD;&#xA;&#x9;&#x9;&#x9;throw new IllegalArgumentException(errorMessage);&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;processParameterVar = processParameterDAO.findByToken((input?.token != null)? input?.token: &quot;&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;if (processParameterVar != null &amp;&amp; processParameterVar.persistenceId != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.info(&quot;processParameterVar.findByToken -- {},{},{} &quot;, processParameterVar.fullName, processParameterVar.token, processParameterVar.persistenceId );&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;String errorMessage = &quot;A ProcessParameter with the token '&quot; + input?.token + &quot;' already exists. Cannot create a new object.&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.error(errorMessage);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new IllegalArgumentException(errorMessage);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;// If persistenceId is null, create a new object.&#xD;&#xA;&#x9;&#x9;logger.info(&quot;No persistenceId found in input. Creating a new ProcessParameter object.&quot;);&#xD;&#xA;&#x9;&#x9;processParameterVar = new ProcessParameter();&#xD;&#xA;&#x9;&#x9;processParameterVar.auCreationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;processParameterVar.auCreationUser = creationUser;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;// If persistenceId is found, search for an existing object to update.&#xD;&#xA;&#x9;&#x9;logger.info(&quot;PersistenceId found. Searching for existing ProcessParameter with ID: {}&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;processParameterVar = processParameterDAO.findByPersistenceId(persistenceId);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;if (processParameterVar != null) {&#xD;&#xA;&#x9;&#x9;&#x9;logger.info(&quot;processParameterVar -- {},{},{} &quot;, processParameterVar.fullName, processParameterVar.token, processParameterVar.persistenceId );&#xD;&#xA;&#x9;&#x9;&#x9;logger.info(&quot;Found existing ProcessParameter with ID {}. Updating record.&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;&#x9;processParameterVar.auModificationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;&#x9;processParameterVar.auModificationUser = creationUser;&#xD;&#xA;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.info(&quot;No existing ProcessParameter found for ID {}. Creating a new record instead.&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;processParameterVar = new ProcessParameter();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;processParameterVar.auCreationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;processParameterVar.auCreationUser = creationUser;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;// Assign properties from the input object, using the safe navigation operator ?.&#xD;&#xA;&#x9;if (processParameterVar != null) {&#xD;&#xA;&#x9;&#x9;processParameterVar.fullName = input?.fullName;&#xD;&#xA;&#x9;&#x9;processParameterVar.token = input?.token;&#xD;&#xA;&#x9;&#x9;processParameterVar.version = input?.version;&#xD;&#xA;&#x9;&#x9;processParameterVar.shortDescription = input?.shortDescription;&#xD;&#xA;&#x9;&#x9;processParameterVar.displayName = input?.displayName;&#xD;&#xA;&#x9;&#x9;processParameterVar.autoCancellationDays = input?.autoCancellationDays;&#xD;&#xA;&#x9;&#x9;processParameterVar.documentsFolderPath = input?.documentsFolderPath;&#xD;&#xA;&#x9;}&#xD;&#xA;} else {&#xD;&#xA;&#x9;logger.info(&quot;Input object is null. No ProcessParameter object will be created or updated.&quot;);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;logger.info(&quot;ProcessParameterVar fields: [persistenceId = '{}', fullName = '{}', version = '{}', shortDescription = '{}', token = '{}', displayName = '{}', autoCancellationDays = '{}', documentsFolderPath = '{}', auCreationDate = '{}', auCreationUser = '{}', auModificationDate = '{}', auModificationUser = '{}']&quot;,&#xD;&#xA;&#x9;processParameterVar?.persistenceId ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.fullName ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.version ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.shortDescription ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.token ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.displayName ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.autoCancellationDays ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.documentsFolderPath ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.auCreationDate ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.auCreationUser ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.auModificationDate ?: &quot;null&quot;,&#xD;&#xA;&#x9;processParameterVar?.auModificationUser ?: &quot;null&quot;&#xD;&#xA;);&#xD;&#xA;logger.info(&quot;Finished initialization of ProcessParameter business object.&quot;);&#xD;&#xA;return processParameterVar;&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA;processParameterVar.refProcessForm = {&#xD;&#xA;&#x9;def processFormList = []&#xD;&#xA;&#x9;//For each item collected in multiple input&#xD;&#xA;&#x9;input?.refProcessForm.each{&#xD;&#xA;&#x9;&#x9;//Add a new composed ProcessForm instance&#xD;&#xA;&#x9;&#x9;processFormList.add({ currentProcessFormInput ->&#xD;&#xA;&#x9;&#x9;&#x9;def processFormVar = new com.bonitasoftprocessbuilder.model.process.ProcessForm()&#xD;&#xA;&#x9;&#x9;&#x9;processFormVar.fullName = currentProcessFormInput.fullName&#xD;&#xA;&#x9;&#x9;&#x9;processFormVar.auCreationDate = currentProcessFormInput.auCreationDate&#xD;&#xA;&#x9;&#x9;&#x9;processFormVar.auCreationUser = currentProcessFormInput.auCreationUser&#xD;&#xA;&#x9;&#x9;&#x9;processFormVar.auModificationDate = currentProcessFormInput.auModificationDate&#xD;&#xA;&#x9;&#x9;&#x9;processFormVar.auModificationUser = currentProcessFormInput.auModificationUser&#xD;&#xA;&#x9;&#x9;&#x9;processFormVar.refFormSection = {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (!currentProcessFormInput.refFormSection) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return null&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;def formSectionVar = new com.bonitasoftprocessbuilder.model.process.FormSection()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;formSectionVar.label = currentProcessFormInput.refFormSection?.label&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;formSectionVar.fullDescription = currentProcessFormInput.refFormSection?.fullDescription&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;formSectionVar.displayOrder = currentProcessFormInput.refFormSection?.displayOrder&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;formSectionVar.refField = {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;def formFieldList = []&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;//For each item collected in multiple input&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;currentProcessFormInput.refFormSection.refField.each{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;//Add FormField instance&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;formFieldList.add({ currentFormFieldInput ->&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;def formFieldVar = formFieldDAO.findByPersistenceId(currentFormFieldInput.persistenceId_string?.trim() ? currentFormFieldInput.persistenceId_string.toLong() : null)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(!formFieldVar) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;throw new IllegalArgumentException(&quot;The aggregated reference of type `FormField` with the persistence id &quot; + currentFormFieldInput.persistenceId_string?.trim() ? currentFormFieldInput.persistenceId_string.toLong() : null + &quot; has not been found.&quot;)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return formFieldVar&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}(it))&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return formFieldList}()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;formSectionVar.auCreationDate = currentProcessFormInput.refFormSection?.auCreationDate&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;formSectionVar.auCreationUser = currentProcessFormInput.refFormSection?.auCreationUser&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;formSectionVar.auModificationDate = currentProcessFormInput.refFormSection?.auModificationDate&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;formSectionVar.auModificationUser = currentProcessFormInput.refFormSection?.auModificationUser&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;return formSectionVar}()&#xD;&#xA;&#x9;&#x9;&#x9;return processFormVar&#xD;&#xA;&#x9;&#x9;}(it))&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return processFormList}()&#xD;&#xA;return processParameterVar*/" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.bonitasoftprocessbuilder.model.process.ProcessParameter">
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_Y2NeEHH4EfC_4I1JwXjZJQ" name="input" type="COMPLEX"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_Y2NeEXH4EfC_4I1JwXjZJQ" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_Y2NeEnH4EfC_4I1JwXjZJQ" name="processParameterDAO" content="processParameterDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.bonitasoftprocessbuilder.model.process.ProcessParameterDAO" returnTypeFixed="true"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_Y2NeE3H4EfC_4I1JwXjZJQ" name="apiAccessor" content="apiAccessor" type="TYPE_ENGINE_CONSTANT" returnType="com.bonitasoft.engine.api.APIAccessor"/>
+        </defaultValue>
+      </data>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_xmG_AHE3EfCzXNzD7sOrXA" name="auditAction" dataType="_dO2ZtHEMEfCzXNzD7sOrXA" className="com.bonitasoftprocessbuilder.model.audit.AuditAction">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_xmG_AXE3EfCzXNzD7sOrXA" name="init_auditAction()" content="import java.time.OffsetDateTime&#xD;&#xA;&#xD;&#xA;import org.bonitasoft.engine.bpm.process.ProcessDefinition&#xD;&#xA;import org.bonitasoft.engine.bpm.process.ProcessInstance&#xD;&#xA;import org.bonitasoft.engine.identity.User&#xD;&#xA;import org.bonitasoft.engine.identity.UserNotFoundException&#xD;&#xA;import org.slf4j.Logger;&#xD;&#xA;import org.slf4j.LoggerFactory;&#xD;&#xA;&#xD;&#xA;import com.bonitasoftprocessbuilder.model.audit.AuditAction&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Logger logger = LoggerFactory.getLogger(&quot;org.bonitasoft.groovy.script.init_auditAction&quot;);&#xD;&#xA;logger.info(&quot;Starting ...&quot;);&#xD;&#xA;&#xD;&#xA;AuditAction auditAction = new AuditAction();&#xD;&#xA;&#xD;&#xA;auditAction.actionType = actionType;&#xD;&#xA;auditAction.objectType = objectType;&#xD;&#xA;ProcessDefinition processDefinition = apiAccessor.getProcessAPI().getProcessDefinition(processDefinitionId);&#xD;&#xA;auditAction.processName = processDefinition.getName();&#xD;&#xA;auditAction.processVersion = processDefinition.getVersion();&#xD;&#xA;auditAction.inputContent = input;&#xD;&#xA;&#xD;&#xA;String creationUser = &quot;unknown_user&quot;;&#xD;&#xA;try {&#xD;&#xA;&#x9;logger.info(&quot;Attempting to retrieve the user who started the process instance ID: {}&quot;, processInstanceId);&#xD;&#xA;&#x9;ProcessInstance processInstance = apiAccessor.getProcessAPI().getProcessInstance(processInstanceId);&#xD;&#xA;&#x9;Long startedByUserId = processInstance.getStartedBy();&#xD;&#xA;&#x9;User processInitiator = apiAccessor.getIdentityAPI().getUser(startedByUserId);&#xD;&#xA;&#x9;creationUser = processInitiator.getUserName();&#xD;&#xA;&#x9;logger.debug(&quot;Successfully retrieved initiator user: {}&quot;, creationUser);&#xD;&#xA;} catch (UserNotFoundException e) {&#xD;&#xA;&#x9;logger.warn(&quot;The user who started process instance ID {} was not found. Using 'system_user'.&quot;, processInstanceId, e);&#xD;&#xA;&#x9;creationUser = &quot;system_user&quot;;&#xD;&#xA;} catch (Exception e) {&#xD;&#xA;&#x9;logger.error(&quot;An unexpected error occurred while retrieving the process initiator for process instance ID {}: {}&quot;, processInstanceId, e.getMessage(), e);&#xD;&#xA;&#x9;creationUser = &quot;unknown_user&quot;;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;auditAction.auCreationDate = OffsetDateTime.now();&#xD;&#xA;auditAction.auCreationUser = creationUser;&#xD;&#xA;&#x9;&#xD;&#xA;logger.info(&quot;Completed upsert operation for all MstEntityType business objects.&quot;);&#xD;&#xA;&#xD;&#xA;return auditAction;" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.bonitasoftprocessbuilder.model.audit.AuditAction">
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_kaGIEHHkEfC_4I1JwXjZJQ" name="actionType" description="INSERT, UPDATE, DELETE">
+            <mapping xmi:type="process:ContractInputMapping" xmi:id="_kaGIEXHkEfC_4I1JwXjZJQ"/>
+          </referencedElements>
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_kaGIEnHkEfC_4I1JwXjZJQ" name="objectType" description="ProcessParameter,etc.">
+            <mapping xmi:type="process:ContractInputMapping" xmi:id="_kaGIE3HkEfC_4I1JwXjZJQ"/>
+          </referencedElements>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_kaGIFHHkEfC_4I1JwXjZJQ" name="processDefinitionId" content="processDefinitionId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_kaGIFXHkEfC_4I1JwXjZJQ" name="input" type="COMPLEX"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_kaGIFnHkEfC_4I1JwXjZJQ" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_kaGIF3HkEfC_4I1JwXjZJQ" name="apiAccessor" content="apiAccessor" type="TYPE_ENGINE_CONSTANT" returnType="com.bonitasoft.engine.api.APIAccessor"/>
+        </defaultValue>
+      </data>
+      <formMapping xmi:type="process:FormMapping" xmi:id="_dO2ZlHEMEfCzXNzD7sOrXA">
+        <targetForm xmi:type="expression:Expression" xmi:id="_1Hp2UHE7EfCzXNzD7sOrXA" name="FormInstProcessDefinitionEngine" content="e08d2952-2736-4d1f-a2ac-e9f0c2ff515e" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+      </formMapping>
+      <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_dO2ZlnEMEfCzXNzD7sOrXA">
+        <targetForm xmi:type="expression:Expression" xmi:id="_dO2Zl3EMEfCzXNzD7sOrXA" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+      </overviewFormMapping>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_dO2ZmHEMEfCzXNzD7sOrXA" target="_4l6swHEWEfCzXNzD7sOrXA" source="_dO2Zg3EMEfCzXNzD7sOrXA">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_dO2ZmXEMEfCzXNzD7sOrXA"/>
+        <condition xmi:type="expression:Expression" xmi:id="_dO2ZmnEMEfCzXNzD7sOrXA" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_4mMZkHEWEfCzXNzD7sOrXA" name="Delete ProcessParameter" target="_7H46QHEWEfCzXNzD7sOrXA" source="_4l6swHEWEfCzXNzD7sOrXA">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_4mMZkXEWEfCzXNzD7sOrXA"/>
+        <condition xmi:type="expression:Expression" xmi:id="_4mMZknEWEfCzXNzD7sOrXA" name="isProcessParameterAndDelete()" content="return (auditAction.objectType.equals(&quot;ProcessParameter&quot;)) &amp;&amp; (auditAction.actionType.equals('DELETE'));" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Boolean" returnTypeFixed="true">
+          <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_pmfY4HE-EfCzXNzD7sOrXA" name="auditAction" dataType="_dO2ZtHEMEfCzXNzD7sOrXA" className="com.bonitasoftprocessbuilder.model.audit.AuditAction"/>
+        </condition>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_89oT4HEWEfCzXNzD7sOrXA" target="_9_4bEHEWEfCzXNzD7sOrXA" source="_7H46QHEWEfCzXNzD7sOrXA">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_89o68HEWEfCzXNzD7sOrXA"/>
+        <condition xmi:type="expression:Expression" xmi:id="_89o68XEWEfCzXNzD7sOrXA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_-02UMHEWEfCzXNzD7sOrXA" target="_-01GEHEWEfCzXNzD7sOrXA" source="_9_4bEHEWEfCzXNzD7sOrXA">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_-02UMXEWEfCzXNzD7sOrXA"/>
+        <condition xmi:type="expression:Expression" xmi:id="_-02UMnEWEfCzXNzD7sOrXA" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="__6kmIHEWEfCzXNzD7sOrXA" name="It is not deleted." target="_9_4bEHEWEfCzXNzD7sOrXA" source="_4l6swHEWEfCzXNzD7sOrXA" isDefault="true">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="__6lNMHEWEfCzXNzD7sOrXA"/>
+        <condition xmi:type="expression:Expression" xmi:id="__6lNMXEWEfCzXNzD7sOrXA" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <actors xmi:type="process:Actor" xmi:id="_dO2Zm3EMEfCzXNzD7sOrXA" documentation="An actor that maps to users who are administrators and are authorized to execute this admin process.&#xA;&#xA;" name="Administrator" initiator="true"/>
+      <contract xmi:type="process:Contract" xmi:id="_dO2ZnHEMEfCzXNzD7sOrXA">
+        <inputs xmi:type="process:ContractInput" xmi:id="_TZKlcHEaEfCzXNzD7sOrXA" name="input" type="COMPLEX" dataReference="boProcessParameter">
+          <inputs xmi:type="process:ContractInput" xmi:id="_flp_YHE5EfCzXNzD7sOrXA" name="persistenceId_string">
+            <mapping xmi:type="process:ContractInputMapping" xmi:id="_flp_YXE5EfCzXNzD7sOrXA"/>
+          </inputs>
+        </inputs>
+        <inputs xmi:type="process:ContractInput" xmi:id="_6pij0HE2EfCzXNzD7sOrXA" name="objectType" description="ProcessParameter,etc.">
+          <mapping xmi:type="process:ContractInputMapping" xmi:id="_6pij0XE2EfCzXNzD7sOrXA"/>
+        </inputs>
+        <inputs xmi:type="process:ContractInput" xmi:id="_TRctsHE3EfCzXNzD7sOrXA" name="actionType" description="INSERT, UPDATE, DELETE">
+          <mapping xmi:type="process:ContractInputMapping" xmi:id="_TRctsXE3EfCzXNzD7sOrXA"/>
+        </inputs>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_TZLMhnEaEfCzXNzD7sOrXA" expression="actionType != null" errorMessage="actionType is mandatory" name="mandatory_actionType">
+          <inputNames>actionType</inputNames>
+        </constraints>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_TZLMh3EaEfCzXNzD7sOrXA" expression="objectType != null" errorMessage="objectType is mandatory" name="mandatory_objectType">
+          <inputNames>objectType</inputNames>
+        </constraints>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_wqo90HFOEfC_4I1JwXjZJQ" expression="return !(&quot;INSERT&quot;.equals(actionType) &amp;&amp; input.persistenceId_string != null &amp;&amp; input.persistenceId_string != &quot;&quot;);" errorMessage="ActionType 'INSERT' is invalid for records with a non-null persistenceId. Action has been updated to 'UPDATE'." name="updateRequiredForExistingRecord" description="The operation was initially set as an INSERT, but a persistence ID was provided. This indicates that the record already exists and the intended action should be an UPDATE instead of an INSERT. The action type has been automatically corrected to UPDATE to reflect the actual state of the data.">
+          <inputNames>actionType</inputNames>
+          <inputNames>input</inputNames>
+        </constraints>
+      </contract>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_dO2ZnXEMEfCzXNzD7sOrXA">
+        <name xmi:type="expression:Expression" xmi:id="_dO2ZnnEMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_dO2Zn3EMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_dO2ZoHEMEfCzXNzD7sOrXA">
+        <name xmi:type="expression:Expression" xmi:id="_dO2ZoXEMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_dO2ZonEMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_dO2Zo3EMEfCzXNzD7sOrXA">
+        <name xmi:type="expression:Expression" xmi:id="_dO2ZpHEMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_dO2ZpXEMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_dO2ZpnEMEfCzXNzD7sOrXA">
+        <name xmi:type="expression:Expression" xmi:id="_dO2Zp3EMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_dO2ZqHEMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_dO2ZqXEMEfCzXNzD7sOrXA">
+        <name xmi:type="expression:Expression" xmi:id="_dO2ZqnEMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_dO2Zq3EMEfCzXNzD7sOrXA" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+    </elements>
+    <datatypes xmi:type="process:BooleanType" xmi:id="_dO2ZrHEMEfCzXNzD7sOrXA" name="Boolean"/>
+    <datatypes xmi:type="process:DateType" xmi:id="_dO2ZrXEMEfCzXNzD7sOrXA" name="Date"/>
+    <datatypes xmi:type="process:IntegerType" xmi:id="_dO2ZrnEMEfCzXNzD7sOrXA" name="Integer"/>
+    <datatypes xmi:type="process:LongType" xmi:id="_dO2Zr3EMEfCzXNzD7sOrXA" name="Long"/>
+    <datatypes xmi:type="process:DoubleType" xmi:id="_dO2ZsHEMEfCzXNzD7sOrXA" name="Double"/>
+    <datatypes xmi:type="process:StringType" xmi:id="_dO2ZsXEMEfCzXNzD7sOrXA" name="Text"/>
+    <datatypes xmi:type="process:JavaType" xmi:id="_dO2ZsnEMEfCzXNzD7sOrXA" name="Java_object"/>
+    <datatypes xmi:type="process:XMLType" xmi:id="_dO2Zs3EMEfCzXNzD7sOrXA" name="XML"/>
+    <datatypes xmi:type="process:BusinessObjectType" xmi:id="_dO2ZtHEMEfCzXNzD7sOrXA" name="Business_Object"/>
+  </process:MainProcess>
+  <notation:Diagram xmi:id="_dO2ZtXEMEfCzXNzD7sOrXA" type="Process" element="_dO2ZgHEMEfCzXNzD7sOrXA" name="MyDiagram3" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_dO2ZtnEMEfCzXNzD7sOrXA" type="2007" element="_dO2ZgXEMEfCzXNzD7sOrXA">
+      <children xmi:type="notation:DecorationNode" xmi:id="_dO2Zt3EMEfCzXNzD7sOrXA" type="5008"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_dO2ZuHEMEfCzXNzD7sOrXA" type="7001">
+        <children xmi:type="notation:Node" xmi:id="_dO2ZuXEMEfCzXNzD7sOrXA" type="3007" element="_dO2ZgnEMEfCzXNzD7sOrXA">
+          <children xmi:type="notation:DecorationNode" xmi:id="_dO2ZunEMEfCzXNzD7sOrXA" type="5007"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_dO2Zu3EMEfCzXNzD7sOrXA" type="7002">
+            <children xmi:type="notation:Shape" xmi:id="_dO2Zv3EMEfCzXNzD7sOrXA" type="3002" element="_dO2Zg3EMEfCzXNzD7sOrXA" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_dO2ZwHEMEfCzXNzD7sOrXA" type="5024">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_dO2ZwXEMEfCzXNzD7sOrXA" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dO2ZwnEMEfCzXNzD7sOrXA" x="99" y="98"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_4l8h8HEWEfCzXNzD7sOrXA" type="3008" element="_4l6swHEWEfCzXNzD7sOrXA" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_4l8h8nEWEfCzXNzD7sOrXA" type="5026">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_4l8h83EWEfCzXNzD7sOrXA" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4l8h8XEWEfCzXNzD7sOrXA" x="329" y="93"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_7H5hWHEWEfCzXNzD7sOrXA" type="3028" element="_7H46QHEWEfCzXNzD7sOrXA" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_7H5hWnEWEfCzXNzD7sOrXA" type="5018"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7H5hWXEWEfCzXNzD7sOrXA" x="437" y="10" width="136" height="68"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_9_5CI3EWEfCzXNzD7sOrXA" type="3008" element="_9_4bEHEWEfCzXNzD7sOrXA" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_9_5pMHEWEfCzXNzD7sOrXA" type="5026">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_9_5pMXEWEfCzXNzD7sOrXA" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9_5CJHEWEfCzXNzD7sOrXA" x="593" y="91" width="43" height="43"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_-01tI3EWEfCzXNzD7sOrXA" type="3062" element="_-01GEHEWEfCzXNzD7sOrXA" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_-01tJXEWEfCzXNzD7sOrXA" type="5090">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_-01tJnEWEfCzXNzD7sOrXA" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-01tJHEWEfCzXNzD7sOrXA" x="859" y="98"/>
+            </children>
+          </children>
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_dO2Zw3EMEfCzXNzD7sOrXA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_dO2ZxHEMEfCzXNzD7sOrXA" fontName="Segoe UI"/>
+          <styles xmi:type="notation:LineStyle" xmi:id="_dO2ZxXEMEfCzXNzD7sOrXA"/>
+          <styles xmi:type="notation:FillStyle" xmi:id="_dO2ZxnEMEfCzXNzD7sOrXA"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dO2Zx3EMEfCzXNzD7sOrXA"/>
+        </children>
+      </children>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_dO2ZyHEMEfCzXNzD7sOrXA"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_dO2ZyXEMEfCzXNzD7sOrXA" fontName="Segoe UI"/>
+      <styles xmi:type="notation:LineStyle" xmi:id="_dO2ZynEMEfCzXNzD7sOrXA"/>
+      <styles xmi:type="notation:FillStyle" xmi:id="_dO2Zy3EMEfCzXNzD7sOrXA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dO2ZzHEMEfCzXNzD7sOrXA" width="1320" height="250"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_dO2ZzXEMEfCzXNzD7sOrXA"/>
+    <edges xmi:type="notation:Connector" xmi:id="_dO2ZznEMEfCzXNzD7sOrXA" type="4001" element="_dO2ZmHEMEfCzXNzD7sOrXA" source="_dO2Zv3EMEfCzXNzD7sOrXA" target="_4l8h8HEWEfCzXNzD7sOrXA" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_dO2Zz3EMEfCzXNzD7sOrXA" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_dO2Z0HEMEfCzXNzD7sOrXA" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_dO2Z0XEMEfCzXNzD7sOrXA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_dO2Z0nEMEfCzXNzD7sOrXA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4mNnsHEWEfCzXNzD7sOrXA" type="4001" element="_4mMZkHEWEfCzXNzD7sOrXA" source="_4l8h8HEWEfCzXNzD7sOrXA" target="_7H5hWHEWEfCzXNzD7sOrXA" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4mNns3EWEfCzXNzD7sOrXA" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4mNntHEWEfCzXNzD7sOrXA" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_4mNnsXEWEfCzXNzD7sOrXA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4mNnsnEWEfCzXNzD7sOrXA" points="[0, -21, -155, 49]$[0, -68, -155, 2]$[87, -68, -68, 2]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_89o68nEWEfCzXNzD7sOrXA" type="4001" element="_89oT4HEWEfCzXNzD7sOrXA" source="_7H5hWHEWEfCzXNzD7sOrXA" target="_9_5CI3EWEfCzXNzD7sOrXA" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_89o69XEWEfCzXNzD7sOrXA" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_89o69nEWEfCzXNzD7sOrXA" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_89o683EWEfCzXNzD7sOrXA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_89o69HEWEfCzXNzD7sOrXA" points="[68, -1, -41, -69]$[107, -1, -2, -69]$[107, 49, -2, -19]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_-02UM3EWEfCzXNzD7sOrXA" type="4001" element="_-02UMHEWEfCzXNzD7sOrXA" source="_9_5CI3EWEfCzXNzD7sOrXA" target="_-01tI3EWEfCzXNzD7sOrXA" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_-02UNnEWEfCzXNzD7sOrXA" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_-02UN3EWEfCzXNzD7sOrXA" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_-02UNHEWEfCzXNzD7sOrXA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_-02UNXEWEfCzXNzD7sOrXA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="__6z2sHEWEfCzXNzD7sOrXA" type="4001" element="__6kmIHEWEfCzXNzD7sOrXA" source="_4l8h8HEWEfCzXNzD7sOrXA" target="_9_5CI3EWEfCzXNzD7sOrXA" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="__6z2s3EWEfCzXNzD7sOrXA" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="__6z2tHEWEfCzXNzD7sOrXA" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="__6z2sXEWEfCzXNzD7sOrXA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__6z2snEWEfCzXNzD7sOrXA" points="[0, -7, -306, 0]$[285, -7, -21, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="__60dwHEWEfCzXNzD7sOrXA" id="(1.0,0.6511627906976745)"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>

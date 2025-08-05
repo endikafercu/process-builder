@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <businessObjectModel xmlns="http://documentation.bonitasoft.com/bdm-xml-schema/1.0" modelVersion="1.0">
     <businessObjects>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.audit.AuditAction">
+            <fields>
+                <field type="STRING" length="255" name="processName" nullable="true" collection="false">
+                    <description>The name of the process from which the action was initiated.</description>
+                </field>
+                <field type="STRING" length="255" name="actionType" nullable="true" collection="false">
+                    <description>The type of action performed on the business object, such as 'insert', 'update', or 'delete'.</description>
+                </field>
+                <field type="STRING" length="255" name="processVersion" nullable="true" collection="false">
+                    <description>The specific version of the process.</description>
+                </field>
+                <field type="STRING" length="255" name="objectType" nullable="true" collection="false">
+                    <description>The type of the Business Data Model (BDM) object that was affected by the action.</description>
+                </field>
+                <field type="TEXT" length="255" name="inputContent" nullable="true" collection="false">
+                    <description>The input data or parameters used for the executed action.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes>
+                <index name="idxAuObjType">
+                    <fieldNames>
+                        <fieldName>objectType</fieldName>
+                    </fieldNames>
+                </index>
+                <index name="idxAuActObjType">
+                    <fieldNames>
+                        <fieldName>actionType</fieldName>
+                        <fieldName>objectType</fieldName>
+                    </fieldNames>
+                </index>
+                <index name="idxAuProcName">
+                    <fieldNames>
+                        <fieldName>processName</fieldName>
+                    </fieldNames>
+                </index>
+            </indexes>
+        </businessObject>
         <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstEntityType">
-            <description>This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Currency'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.</description>
+            <description>This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Status'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.</description>
             <fields>
                 <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
                     <description>The complete, official name of an entity.</description>
+                </field>
+                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                    <description>The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
                 </field>
                 <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
                     <description>A concise summary or brief overview of the item.</description>
@@ -32,7 +80,7 @@
             </uniqueConstraints>
             <queries/>
             <indexes>
-                <index name="idxMDomainName">
+                <index name="idxMEntityFullName">
                     <fieldNames>
                         <fieldName>fullName</fieldName>
                     </fieldNames>
@@ -51,7 +99,7 @@
                 <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
                     <description>A concise summary or brief overview of the item</description>
                 </field>
-                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.master.MstEntityType" fetchType="EAGER" name="refMstEntityTypeId" nullable="true" collection="false">
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstEntityType" fetchType="EAGER" name="refMstEntityType" nullable="true" collection="false">
                     <description>Reference to the type of master entity (e.g., Domain, Context).</description>
                 </relationField>
                 <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
@@ -71,14 +119,34 @@
                 <uniqueConstraint name="uqMContextName">
                     <fieldNames>
                         <fieldName>fullName</fieldName>
+                        <fieldName>refMstEntityType</fieldName>
                     </fieldNames>
                 </uniqueConstraint>
             </uniqueConstraints>
-            <queries/>
+            <queries>
+                <query name="findByFullNameAndRefMstEntityTypeId" content="SELECT m &#13;&#10;FROM MstGenericEntry m &#13;&#10;WHERE LOWER(m.fullName) = LOWER(:fullName)&#13;&#10;AND m.refMstEntityType.persistenceId = :refMstEntityTypeId&#13;&#10;ORDER BY m.fullName ASC" returnType="com.bonitasoftprocessbuilder.model.master.MstGenericEntry">
+                    <queryParameters>
+                        <queryParameter name="fullName" className="java.lang.String"/>
+                        <queryParameter name="refMstEntityTypeId" className="java.lang.Long"/>
+                    </queryParameters>
+                </query>
+                <query name="countForFindByFullNameAndRefMstEntityTypeId" content="SELECT COUNT(m) &#13;&#10;FROM MstGenericEntry m &#13;&#10;WHERE LOWER(m.fullName) = LOWER(:fullName)&#13;&#10;AND m.refMstEntityType.persistenceId = :refMstEntityTypeId" returnType="com.bonitasoftprocessbuilder.model.master.MstGenericEntry">
+                    <queryParameters>
+                        <queryParameter name="fullName" className="java.lang.String"/>
+                        <queryParameter name="refMstEntityTypeId" className="java.lang.Long"/>
+                    </queryParameters>
+                </query>
+            </queries>
             <indexes>
-                <index name="idxMContextName">
+                <index name="idxMGenFullName">
                     <fieldNames>
                         <fieldName>fullName</fieldName>
+                    </fieldNames>
+                </index>
+                <index name="idxMGenNameRef">
+                    <fieldNames>
+                        <fieldName>fullName</fieldName>
+                        <fieldName>refMstEntityType</fieldName>
                     </fieldNames>
                 </index>
             </indexes>
@@ -253,10 +321,10 @@ The ProcessForm object defines the structure and content of a particular form us
                 <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refStatus" nullable="true" collection="false">
                     <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).</description>
                 </relationField>
-                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refContext" nullable="false" collection="false">
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refContext" nullable="true" collection="false">
                     <description>Unique identifier linking this process to a specific operational context, defined in the MstGenericEntry master table - type Context</description>
                 </relationField>
-                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refDomain" nullable="false" collection="false">
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refDomain" nullable="true" collection="false">
                     <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Domain</description>
                 </relationField>
                 <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessForm" fetchType="EAGER" name="refProcessForm" nullable="true" collection="true">
@@ -282,19 +350,14 @@ The ProcessForm object defines the structure and content of a particular form us
                 </field>
             </fields>
             <uniqueConstraints>
-                <uniqueConstraint name="uqProcessProcName">
+                <uniqueConstraint name="upProcParamFullName">
                     <fieldNames>
                         <fieldName>fullName</fieldName>
                     </fieldNames>
                 </uniqueConstraint>
-                <uniqueConstraint name="uqProcessToken">
+                <uniqueConstraint name="upProcParamToken">
                     <fieldNames>
                         <fieldName>token</fieldName>
-                    </fieldNames>
-                </uniqueConstraint>
-                <uniqueConstraint name="uqProcessProcDefId">
-                    <fieldNames>
-                        <fieldName>bpmProcessDefinitionId</fieldName>
                     </fieldNames>
                 </uniqueConstraint>
             </uniqueConstraints>

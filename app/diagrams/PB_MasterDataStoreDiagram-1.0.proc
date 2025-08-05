@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:decision="http://www.bonitasoft.org/ns/bpm/process/decision" xmlns:expression="http://www.bonitasoft.org/ns/bpm/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/bpm/process">
+  <process:MainProcess xmi:id="_rIMzgHFPEfC_4I1JwXjZJQ" documentation="A visual representation of a process definition. It maps out the stages, decisions, and flows, providing a clear overview of the process's structure and logic." name="PB_MasterDataStoreDiagram" bonitaModelVersion="8">
+    <elements xmi:type="process:Pool" xmi:id="_rIMzgXFPEfC_4I1JwXjZJQ" documentation="The process in Bonita is designed to manage the complete lifecycle of master data, ensuring that the reference data is consistent and accurate." name="PB_MasterDataStore">
+      <elements xmi:type="process:Lane" xmi:id="_rIMzgnFPEfC_4I1JwXjZJQ" name="Administrator" actor="_rIMzxXFPEfC_4I1JwXjZJQ">
+        <elements xmi:type="process:StartEvent" xmi:id="_rIMzg3FPEfC_4I1JwXjZJQ" name="Start MasterDataStore" outgoing="_rIMztXFPEfC_4I1JwXjZJQ">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_rIMzhHFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_rIMzhXFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_rIMzhnFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:XORGateway" xmi:id="_rIMzh3FPEfC_4I1JwXjZJQ" name="What business object do you want to delete?" outgoing="_rIMzuHFPEfC_4I1JwXjZJQ _rIMzwnFPEfC_4I1JwXjZJQ _U-MCcHHeEfC_4I1JwXjZJQ" incoming="_rIMztXFPEfC_4I1JwXjZJQ">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_rIMziHFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_rIMziXFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_rIMzinFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ScriptTask" xmi:id="_rIMzi3FPEfC_4I1JwXjZJQ" name="Delete MstGenericEntry" outgoing="_rIMzvHFPEfC_4I1JwXjZJQ" incoming="_rIMzuHFPEfC_4I1JwXjZJQ">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_rIMzjHFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_rIMzjXFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_rIMzjnFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <operations xmi:type="expression:Operation" xmi:id="_rIMzj3FPEfC_4I1JwXjZJQ">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_rIMzkHFPEfC_4I1JwXjZJQ" name="boMstGenericEntry" content="boMstGenericEntry" type="TYPE_VARIABLE" returnType="com.bonitasoftprocessbuilder.model.master.MstGenericEntry">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_rIMzkXFPEfC_4I1JwXjZJQ" name="boMstGenericEntry" dataType="_rIMz6HFPEfC_4I1JwXjZJQ" className="com.bonitasoftprocessbuilder.model.master.MstGenericEntry"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_rIMzknFPEfC_4I1JwXjZJQ" content=""/>
+            <operator xmi:type="expression:Operator" xmi:id="_rIMzk3FPEfC_4I1JwXjZJQ" type="DELETION"/>
+          </operations>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_rIMzlHFPEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_rIMzlXFPEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_rIMzlnFPEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_rIMzl3FPEfC_4I1JwXjZJQ" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_rIMzmHFPEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:XORGateway" xmi:id="_rIMzmXFPEfC_4I1JwXjZJQ" name="Merge to finish" outgoing="_rIMzv3FPEfC_4I1JwXjZJQ" incoming="_rIMzvHFPEfC_4I1JwXjZJQ _rIMzwnFPEfC_4I1JwXjZJQ _VsQpYHHeEfC_4I1JwXjZJQ">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_rIMzmnFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_rIMzm3FPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_rIMznHFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:EndTerminatedEvent" xmi:id="_rIMznXFPEfC_4I1JwXjZJQ" name="End MasterDataStore" incoming="_rIMzv3FPEfC_4I1JwXjZJQ">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_rIMznnFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_rIMzn3FPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_rIMzoHFPEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ScriptTask" xmi:id="_QDZjcHHeEfC_4I1JwXjZJQ" name="Delete MstEntityType" outgoing="_VsQpYHHeEfC_4I1JwXjZJQ" incoming="_U-MCcHHeEfC_4I1JwXjZJQ">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_QDZjcXHeEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_QDZjcnHeEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_QDZjc3HeEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <operations xmi:type="expression:Operation" xmi:id="_QDZjdHHeEfC_4I1JwXjZJQ">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_QDZjdXHeEfC_4I1JwXjZJQ" name="boMstEntityType" content="boMstEntityType" type="TYPE_VARIABLE" returnType="com.bonitasoftprocessbuilder.model.master.MstEntityType">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_Tma-QHHeEfC_4I1JwXjZJQ" name="boMstEntityType" dataType="_rIMz6HFPEfC_4I1JwXjZJQ" className="com.bonitasoftprocessbuilder.model.master.MstEntityType"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_QDZjd3HeEfC_4I1JwXjZJQ" content=""/>
+            <operator xmi:type="expression:Operator" xmi:id="_QDZjeHHeEfC_4I1JwXjZJQ" type="DELETION"/>
+          </operations>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_QDZjeXHeEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_QDZjenHeEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_QDZje3HeEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_QDZjfHHeEfC_4I1JwXjZJQ" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_QDZjfXHeEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+      </elements>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_rIMzoXFPEfC_4I1JwXjZJQ" name="boMstGenericEntry" dataType="_rIMz6HFPEfC_4I1JwXjZJQ" className="com.bonitasoftprocessbuilder.model.master.MstGenericEntry">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_rIMzonFPEfC_4I1JwXjZJQ" name="init_boMstGenericEntry()" content="import java.time.OffsetDateTime&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;import org.bonitasoft.engine.bpm.process.ProcessInstance&#xD;&#xA;import org.bonitasoft.engine.identity.User&#xD;&#xA;import org.bonitasoft.engine.identity.UserNotFoundException&#xD;&#xA;import org.slf4j.Logger;&#xD;&#xA;import org.slf4j.LoggerFactory;&#xD;&#xA;&#xD;&#xA;import com.bonitasoftprocessbuilder.model.master.MstGenericEntry&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Logger logger = LoggerFactory.getLogger(&quot;org.bonitasoft.groovy.script.init_boMstGenericEntry&quot;);&#xD;&#xA;logger.info(&quot;Starting initialization of MstGenericEntry business object.&quot;);&#xD;&#xA;&#xD;&#xA;MstGenericEntry mstGenericEntryVar = null;&#xD;&#xA;&#xD;&#xA;logger.info(&quot;Data: - input: {} , - objectType: {}&quot;, input, objectType);&#xD;&#xA;&#xD;&#xA;// Proceed only if the 'input' object is not null.&#xD;&#xA;if (input != null &amp;&amp; objectType == 'MstGenericEntry') {&#xD;&#xA;&#x9;// Determine the user who started the process. This logic is placed once.&#xD;&#xA;&#x9;String creationUser = &quot;unknown_user&quot;;&#xD;&#xA;&#x9;try {&#xD;&#xA;&#x9;&#x9;logger.info(&quot;Attempting to retrieve the user who started the process instance ID: {}&quot;, processInstanceId);&#xD;&#xA;&#x9;&#x9;ProcessInstance processInstance = apiAccessor.getProcessAPI().getProcessInstance(processInstanceId);&#xD;&#xA;&#x9;&#x9;Long startedByUserId = processInstance.getStartedBy();&#xD;&#xA;&#x9;&#x9;User processInitiator = apiAccessor.getIdentityAPI().getUser(startedByUserId);&#xD;&#xA;&#x9;&#x9;creationUser = processInitiator.getUserName();&#xD;&#xA;&#x9;&#x9;logger.debug(&quot;Successfully retrieved initiator user: {}&quot;, creationUser);&#xD;&#xA;&#x9;} catch (UserNotFoundException e) {&#xD;&#xA;&#x9;&#x9;logger.warn(&quot;The user who started process instance ID {} was not found. Using 'system_user'.&quot;, processInstanceId, e);&#xD;&#xA;&#x9;&#x9;creationUser = &quot;system_user&quot;;&#xD;&#xA;&#x9;} catch (Exception e) {&#xD;&#xA;&#x9;&#x9;logger.error(&quot;An unexpected error occurred while retrieving the process initiator for process instance ID {}: {}&quot;, processInstanceId, e.getMessage(), e);&#xD;&#xA;&#x9;&#x9;creationUser = &quot;unknown_user&quot;;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;Long persistenceId = null;&#xD;&#xA;&#x9;try {&#xD;&#xA;&#x9;&#x9;if (input.persistenceId_string != null &amp;&amp; !input.persistenceId_string.isEmpty()) {&#xD;&#xA;&#x9;&#x9;&#x9;persistenceId = input.persistenceId_string.toLong();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} catch (NumberFormatException e) {&#xD;&#xA;&#x9;&#x9;logger.error(&quot;Failed to convert input.persistenceId_string to a Long: '{}'&quot;, input.persistenceId_string, e);&#xD;&#xA;&#x9;&#x9;// persistenceId remains null, so a new object will be created.&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;logger.info(&quot; ---- persistenceId -- {},{},{} &quot;, persistenceId );&#xD;&#xA;&#x9;if (persistenceId == null) {&#xD;&#xA;&#x9;&#x9;if (input?.refMstEntityType != null &amp;&amp; input?.refMstEntityType.persistenceId_string != null) {&#xD;&#xA;&#x9;&#x9;&#x9;mstGenericEntryVar = mstGenericEntryDAO.findByFullNameAndRefMstEntityTypeId(input?.fullName, Long.valueOf(input?.refMstEntityType.persistenceId_string));&#xD;&#xA;&#x9;&#x9;&#x9;if (mstGenericEntryVar != null &amp;&amp; mstGenericEntryVar.persistenceId != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.info(&quot;mstGenericEntryVar.findByFullName -- {},{},{} &quot;, mstGenericEntryVar.fullName, mstGenericEntryVar.token, mstGenericEntryVar.persistenceId );&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;String errorMessage = &quot;A MstGenericEntry with the name '&quot; + input?.token + &quot;' already exists. Cannot create a new object.&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.error(errorMessage);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new IllegalArgumentException(errorMessage);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;// If persistenceId is null, create a new object.&#xD;&#xA;&#x9;&#x9;logger.info(&quot;No persistenceId found in input. Creating a new MstGenericEntry object.&quot;);&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar = new MstGenericEntry();&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar.auCreationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar.auCreationUser = creationUser;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;// If persistenceId is found, search for an existing object to update.&#xD;&#xA;&#x9;&#x9;logger.info(&quot;PersistenceId found. Searching for existing MstGenericEntry with ID: {}&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar = mstGenericEntryDAO.findByPersistenceId(persistenceId);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;if (mstGenericEntryVar != null) {&#xD;&#xA;&#x9;&#x9;&#x9;logger.info(&quot;mstGenericEntryVar -- {},{},{} &quot;, mstGenericEntryVar.fullName, mstGenericEntryVar.displayName, mstGenericEntryVar.persistenceId );&#xD;&#xA;&#x9;&#x9;&#x9;logger.info(&quot;Found existing mstGenericEntryVar with ID {}. Updating record.&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;&#x9;mstGenericEntryVar.auModificationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;&#x9;mstGenericEntryVar.auModificationUser = creationUser;&#xD;&#xA;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.info(&quot;No existing mstGenericEntryVar found for ID {}. Creating a new record instead.&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;mstGenericEntryVar = new MstGenericEntry();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;mstGenericEntryVar.auCreationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;mstGenericEntryVar.auCreationUser = creationUser;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;// Assign properties from the input object, using the safe navigation operator ?.&#xD;&#xA;&#x9;if (mstGenericEntryVar != null) {&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar.fullName = input?.fullName;&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar.shortDescription = input?.shortDescription;&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar.displayName = input?.displayName;&#xD;&#xA;&#x9;&#x9;if (input?.refMstEntityType != null &amp;&amp; input?.refMstEntityType.persistenceId_string != null) {&#xD;&#xA;&#x9;&#x9;&#x9;mstGenericEntryVar.setRefMstEntityType(mstEntityTypeDAO.findByPersistenceId(Long.valueOf(input?.refMstEntityType.persistenceId_string)));&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;logger.info(&quot;MstGenericEntryVar fields: [persistenceId = '{}', fullName = '{}', version = '{}', shortDescription = '{}', token = '{}', displayName = '{}', refMstEntityType.displayName = '{}', autoCancellationDays = '{}', documentsFolderPath = '{}', auCreationDate = '{}', auCreationUser = '{}', auModificationDate = '{}', auModificationUser = '{}']&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.persistenceId ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.fullName ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.shortDescription ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.displayName ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.refMstEntityType?.displayName ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.auCreationDate ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.auCreationUser ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.auModificationDate ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstGenericEntryVar?.auModificationUser ?: &quot;null&quot;&#xD;&#xA;&#x9;);&#xD;&#xA;} else {&#xD;&#xA;&#x9;logger.info(&quot;Input object is null. No MstGenericEntry object will be created or updated.&quot;);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;logger.info(&quot;Finished initialization of MstGenericEntry business object.&quot;);&#xD;&#xA;return mstGenericEntryVar;&#xD;&#xA;&#xD;&#xA;" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.bonitasoftprocessbuilder.model.master.MstGenericEntry">
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_fwdMAHH7EfC_4I1JwXjZJQ" name="input" type="COMPLEX"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_fwdMAXH7EfC_4I1JwXjZJQ" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_fwdMAnH7EfC_4I1JwXjZJQ" name="apiAccessor" content="apiAccessor" type="TYPE_ENGINE_CONSTANT" returnType="com.bonitasoft.engine.api.APIAccessor"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_fwdMA3H7EfC_4I1JwXjZJQ" name="mstGenericEntryDAO" content="mstGenericEntryDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.bonitasoftprocessbuilder.model.master.MstGenericEntryDAO" returnTypeFixed="true"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_fwdMBHH7EfC_4I1JwXjZJQ" name="mstEntityTypeDAO" content="mstEntityTypeDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.bonitasoftprocessbuilder.model.master.MstEntityTypeDAO" returnTypeFixed="true"/>
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_fwdMBXH7EfC_4I1JwXjZJQ" name="objectType" description="ProcessParameter,etc.">
+            <mapping xmi:type="process:ContractInputMapping" xmi:id="_fwdMBnH7EfC_4I1JwXjZJQ"/>
+          </referencedElements>
+        </defaultValue>
+      </data>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_rIMzp3FPEfC_4I1JwXjZJQ" name="auditAction" dataType="_rIMz6HFPEfC_4I1JwXjZJQ" className="com.bonitasoftprocessbuilder.model.audit.AuditAction">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_rIMzqHFPEfC_4I1JwXjZJQ" name="init_auditAction()" content="import java.time.OffsetDateTime&#xD;&#xA;&#xD;&#xA;import org.bonitasoft.engine.bpm.process.ProcessDefinition&#xD;&#xA;import org.bonitasoft.engine.bpm.process.ProcessInstance&#xD;&#xA;import org.bonitasoft.engine.identity.User&#xD;&#xA;import org.bonitasoft.engine.identity.UserNotFoundException&#xD;&#xA;import org.slf4j.Logger;&#xD;&#xA;import org.slf4j.LoggerFactory;&#xD;&#xA;&#xD;&#xA;import com.bonitasoftprocessbuilder.model.audit.AuditAction&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Logger logger = LoggerFactory.getLogger(&quot;org.bonitasoft.groovy.script.init_auditAction&quot;);&#xD;&#xA;logger.info(&quot;Starting ...&quot;);&#xD;&#xA;&#xD;&#xA;AuditAction auditAction = new AuditAction();&#xD;&#xA;&#xD;&#xA;auditAction.actionType = actionType;&#xD;&#xA;auditAction.objectType = objectType;&#xD;&#xA;ProcessDefinition processDefinition = apiAccessor.getProcessAPI().getProcessDefinition(processDefinitionId);&#xD;&#xA;auditAction.processName = processDefinition.getName();&#xD;&#xA;auditAction.processVersion = processDefinition.getVersion();&#xD;&#xA;auditAction.inputContent = input;&#xD;&#xA;&#xD;&#xA;String creationUser = &quot;unknown_user&quot;;&#xD;&#xA;try {&#xD;&#xA;&#x9;logger.info(&quot;Attempting to retrieve the user who started the process instance ID: {}&quot;, processInstanceId);&#xD;&#xA;&#x9;ProcessInstance processInstance = apiAccessor.getProcessAPI().getProcessInstance(processInstanceId);&#xD;&#xA;&#x9;Long startedByUserId = processInstance.getStartedBy();&#xD;&#xA;&#x9;User processInitiator = apiAccessor.getIdentityAPI().getUser(startedByUserId);&#xD;&#xA;&#x9;creationUser = processInitiator.getUserName();&#xD;&#xA;&#x9;logger.debug(&quot;Successfully retrieved initiator user: {}&quot;, creationUser);&#xD;&#xA;} catch (UserNotFoundException e) {&#xD;&#xA;&#x9;logger.warn(&quot;The user who started process instance ID {} was not found. Using 'system_user'.&quot;, processInstanceId, e);&#xD;&#xA;&#x9;creationUser = &quot;system_user&quot;;&#xD;&#xA;} catch (Exception e) {&#xD;&#xA;&#x9;logger.error(&quot;An unexpected error occurred while retrieving the process initiator for process instance ID {}: {}&quot;, processInstanceId, e.getMessage(), e);&#xD;&#xA;&#x9;creationUser = &quot;unknown_user&quot;;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;auditAction.auCreationDate = OffsetDateTime.now();&#xD;&#xA;auditAction.auCreationUser = creationUser;&#xD;&#xA;&#x9;&#xD;&#xA;logger.info(&quot;Completed upsert operation for all MstEntityType business objects.&quot;);&#xD;&#xA;&#xD;&#xA;return auditAction;" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.bonitasoftprocessbuilder.model.audit.AuditAction">
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_uD4s0HHkEfC_4I1JwXjZJQ" name="actionType" description="INSERT, UPDATE, DELETE">
+            <mapping xmi:type="process:ContractInputMapping" xmi:id="_uD4s0XHkEfC_4I1JwXjZJQ"/>
+          </referencedElements>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_uD4s0nHkEfC_4I1JwXjZJQ" name="apiAccessor" content="apiAccessor" type="TYPE_ENGINE_CONSTANT" returnType="com.bonitasoft.engine.api.APIAccessor"/>
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_uD4s03HkEfC_4I1JwXjZJQ" name="objectType" description="ProcessParameter,etc.">
+            <mapping xmi:type="process:ContractInputMapping" xmi:id="_uD4s1HHkEfC_4I1JwXjZJQ"/>
+          </referencedElements>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_uD4s1XHkEfC_4I1JwXjZJQ" name="processDefinitionId" content="processDefinitionId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_uD4s1nHkEfC_4I1JwXjZJQ" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_uD4s13HkEfC_4I1JwXjZJQ" name="input" type="COMPLEX"/>
+        </defaultValue>
+      </data>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_F-_aUHFREfC_4I1JwXjZJQ" name="boMstEntityType" dataType="_rIMz6HFPEfC_4I1JwXjZJQ" className="com.bonitasoftprocessbuilder.model.master.MstEntityType">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_F-_aUXFREfC_4I1JwXjZJQ" name="init_boMstEntityType()" content="import java.time.OffsetDateTime&#xD;&#xA;&#xD;&#xA;import org.bonitasoft.engine.bpm.process.ProcessInstance&#xD;&#xA;import org.bonitasoft.engine.identity.User&#xD;&#xA;import org.bonitasoft.engine.identity.UserNotFoundException&#xD;&#xA;import org.slf4j.Logger;&#xD;&#xA;import org.slf4j.LoggerFactory;&#xD;&#xA;&#xD;&#xA;import com.bonitasoftprocessbuilder.model.master.MstEntityType&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Logger logger = LoggerFactory.getLogger(&quot;org.bonitasoft.groovy.script.init_boMstEntityType&quot;);&#xD;&#xA;logger.info(&quot;Starting initialization of MstEntityType business object.&quot;);&#xD;&#xA;&#xD;&#xA;MstEntityType mstEntityTypeVar = null;&#xD;&#xA;&#xD;&#xA;logger.info(&quot;Data: - input: {} , - objectType: {}&quot;, input, objectType);&#xD;&#xA;&#xD;&#xA;// Proceed only if the 'input' object is not null.&#xD;&#xA;if (input != null &amp;&amp; objectType == 'MstEntityType') {&#xD;&#xA;&#x9;// Determine the user who started the process. This logic is placed once.&#xD;&#xA;&#x9;String creationUser = &quot;unknown_user&quot;;&#xD;&#xA;&#x9;try {&#xD;&#xA;&#x9;&#x9;logger.info(&quot;Attempting to retrieve the user who started the process instance ID: {}&quot;, processInstanceId);&#xD;&#xA;&#x9;&#x9;ProcessInstance processInstance = apiAccessor.getProcessAPI().getProcessInstance(processInstanceId);&#xD;&#xA;&#x9;&#x9;Long startedByUserId = processInstance.getStartedBy();&#xD;&#xA;&#x9;&#x9;User processInitiator = apiAccessor.getIdentityAPI().getUser(startedByUserId);&#xD;&#xA;&#x9;&#x9;creationUser = processInitiator.getUserName();&#xD;&#xA;&#x9;&#x9;logger.debug(&quot;Successfully retrieved initiator user: {}&quot;, creationUser);&#xD;&#xA;&#x9;} catch (UserNotFoundException e) {&#xD;&#xA;&#x9;&#x9;logger.warn(&quot;The user who started process instance ID {} was not found. Using 'system_user'.&quot;, processInstanceId, e);&#xD;&#xA;&#x9;&#x9;creationUser = &quot;system_user&quot;;&#xD;&#xA;&#x9;} catch (Exception e) {&#xD;&#xA;&#x9;&#x9;logger.error(&quot;An unexpected error occurred while retrieving the process initiator for process instance ID {}: {}&quot;, processInstanceId, e.getMessage(), e);&#xD;&#xA;&#x9;&#x9;creationUser = &quot;unknown_user&quot;;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;Long persistenceId = null;&#xD;&#xA;&#x9;try {&#xD;&#xA;&#x9;&#x9;if (input.persistenceId_string != null &amp;&amp; !input.persistenceId_string.isEmpty()) {&#xD;&#xA;&#x9;&#x9;&#x9;persistenceId = input.persistenceId_string.toLong();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} catch (NumberFormatException e) {&#xD;&#xA;&#x9;&#x9;logger.error(&quot;Failed to convert input.persistenceId_string to a Long: '{}'&quot;, input.persistenceId_string, e);&#xD;&#xA;&#x9;&#x9;// persistenceId remains null, so a new object will be created.&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;logger.info(&quot; ---- persistenceId -- {},{},{} &quot;, persistenceId );&#xD;&#xA;&#x9;if (persistenceId == null) {&#xD;&#xA;&#x9;&#x9;if (input?.fullName != null) {&#xD;&#xA;&#x9;&#x9;&#x9;mstEntityTypeVar = mstEntityTypeDAO.findByFullName(input?.fullName);&#xD;&#xA;&#x9;&#x9;&#x9;if (mstEntityTypeVar != null &amp;&amp; mstEntityTypeVar.persistenceId != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.info(&quot;mstEntityTypeVar.findByFullName -- {},{},{} &quot;, mstEntityTypeVar.fullName, mstEntityTypeVar.displayName, mstEntityTypeVar.persistenceId );&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;String errorMessage = &quot;A MstEntityType with the name '&quot; + input?.fullName + &quot;' already exists. Cannot create a new object.&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.error(errorMessage);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new IllegalArgumentException(errorMessage);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;// If persistenceId is null, create a new object.&#xD;&#xA;&#x9;&#x9;logger.info(&quot;No persistenceId found in input. Creating a new MstEntityType object.&quot;);&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar = new MstEntityType();&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar.auCreationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar.auCreationUser = creationUser;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;// If persistenceId is found, search for an existing object to update.&#xD;&#xA;&#x9;&#x9;logger.info(&quot;PersistenceId found. Searching for existing MstEntityType with ID: {}&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar = mstEntityTypeDAO.findByPersistenceId(persistenceId);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;if (mstEntityTypeVar != null) {&#xD;&#xA;&#x9;&#x9;&#x9;logger.info(&quot;mstEntityTypeVar -- {},{},{} &quot;, mstEntityTypeVar.fullName, mstEntityTypeVar.displayName, mstEntityTypeVar.persistenceId );&#xD;&#xA;&#x9;&#x9;&#x9;logger.info(&quot;Found existing mstEntityTypeVar with ID {}. Updating record.&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;&#x9;mstEntityTypeVar.auModificationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;&#x9;mstEntityTypeVar.auModificationUser = creationUser;&#xD;&#xA;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;logger.info(&quot;No existing mstEntityTypeVar found for ID {}. Creating a new record instead.&quot;, persistenceId);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;mstEntityTypeVar = new MstEntityType();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;mstEntityTypeVar.auCreationDate = OffsetDateTime.now();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;mstEntityTypeVar.auCreationUser = creationUser;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;// Assign properties from the input object, using the safe navigation operator ?.&#xD;&#xA;&#x9;if (mstEntityTypeVar != null) {&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar.fullName = input?.fullName;&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar.shortDescription = input?.shortDescription;&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar.displayName = input?.displayName;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;logger.info(&quot;mstEntityTypeVar fields: [persistenceId = '{}', fullName = '{}', version = '{}', shortDescription = '{}', token = '{}', displayName = '{}', autoCancellationDays = '{}', documentsFolderPath = '{}', auCreationDate = '{}', auCreationUser = '{}', auModificationDate = '{}', auModificationUser = '{}']&quot;,&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar?.persistenceId ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar?.fullName ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar?.shortDescription ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar?.displayName ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar?.auCreationDate ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar?.auCreationUser ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar?.auModificationDate ?: &quot;null&quot;,&#xD;&#xA;&#x9;&#x9;mstEntityTypeVar?.auModificationUser ?: &quot;null&quot;&#xD;&#xA;&#x9;);&#xD;&#xA;} else {&#xD;&#xA;&#x9;logger.info(&quot;Input object is null. No MstEntityType object will be created or updated.&quot;);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;logger.info(&quot;Finished initialization of MstEntityType business object.&quot;);&#xD;&#xA;return mstEntityTypeVar;&#xD;&#xA;&#xD;&#xA;" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.bonitasoftprocessbuilder.model.master.MstEntityType">
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_ufukMHH4EfC_4I1JwXjZJQ" name="input" type="COMPLEX"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_ufukMXH4EfC_4I1JwXjZJQ" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_ufvLQHH4EfC_4I1JwXjZJQ" name="apiAccessor" content="apiAccessor" type="TYPE_ENGINE_CONSTANT" returnType="com.bonitasoft.engine.api.APIAccessor"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_ufvLQXH4EfC_4I1JwXjZJQ" name="mstEntityTypeDAO" content="mstEntityTypeDAO" type="TYPE_BUSINESS_OBJECT_DAO" returnType="com.bonitasoftprocessbuilder.model.master.MstEntityTypeDAO" returnTypeFixed="true"/>
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_ufvLQnH4EfC_4I1JwXjZJQ" name="objectType" description="ProcessParameter,etc.">
+            <mapping xmi:type="process:ContractInputMapping" xmi:id="_ufvLQ3H4EfC_4I1JwXjZJQ"/>
+          </referencedElements>
+        </defaultValue>
+      </data>
+      <formMapping xmi:type="process:FormMapping" xmi:id="_rIMzsXFPEfC_4I1JwXjZJQ">
+        <targetForm xmi:type="expression:Expression" xmi:id="_rIMzsnFPEfC_4I1JwXjZJQ" name="FormInstMasteDataStore" content="781a8277-43a0-454a-82b0-d18c2e3cf47e" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+      </formMapping>
+      <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_rIMzs3FPEfC_4I1JwXjZJQ">
+        <targetForm xmi:type="expression:Expression" xmi:id="_rIMztHFPEfC_4I1JwXjZJQ" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+      </overviewFormMapping>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_rIMztXFPEfC_4I1JwXjZJQ" target="_rIMzh3FPEfC_4I1JwXjZJQ" source="_rIMzg3FPEfC_4I1JwXjZJQ">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_rIMztnFPEfC_4I1JwXjZJQ"/>
+        <condition xmi:type="expression:Expression" xmi:id="_rIMzt3FPEfC_4I1JwXjZJQ" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_rIMzuHFPEfC_4I1JwXjZJQ" name="Delete MstGenericEntry" target="_rIMzi3FPEfC_4I1JwXjZJQ" source="_rIMzh3FPEfC_4I1JwXjZJQ">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_rIMzuXFPEfC_4I1JwXjZJQ"/>
+        <condition xmi:type="expression:Expression" xmi:id="_rIMzunFPEfC_4I1JwXjZJQ" name="isMstGenericEntryAndDelete()" content="return (auditAction.objectType.equals(&quot;MstGenericEntry&quot;)) &amp;&amp; (auditAction.actionType.equals('DELETE'));" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Boolean" returnTypeFixed="true">
+          <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_lYU5oHHeEfC_4I1JwXjZJQ" name="auditAction" dataType="_rIMz6HFPEfC_4I1JwXjZJQ" className="com.bonitasoftprocessbuilder.model.audit.AuditAction"/>
+        </condition>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_rIMzvHFPEfC_4I1JwXjZJQ" target="_rIMzmXFPEfC_4I1JwXjZJQ" source="_rIMzi3FPEfC_4I1JwXjZJQ">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_rIMzvXFPEfC_4I1JwXjZJQ"/>
+        <condition xmi:type="expression:Expression" xmi:id="_rIMzvnFPEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_rIMzv3FPEfC_4I1JwXjZJQ" target="_rIMznXFPEfC_4I1JwXjZJQ" source="_rIMzmXFPEfC_4I1JwXjZJQ">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_rIMzwHFPEfC_4I1JwXjZJQ"/>
+        <condition xmi:type="expression:Expression" xmi:id="_rIMzwXFPEfC_4I1JwXjZJQ" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_rIMzwnFPEfC_4I1JwXjZJQ" name="It is not deleted." target="_rIMzmXFPEfC_4I1JwXjZJQ" source="_rIMzh3FPEfC_4I1JwXjZJQ" isDefault="true">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_rIMzw3FPEfC_4I1JwXjZJQ"/>
+        <condition xmi:type="expression:Expression" xmi:id="_rIMzxHFPEfC_4I1JwXjZJQ" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_U-MCcHHeEfC_4I1JwXjZJQ" name="Delete MstEntityType" target="_QDZjcHHeEfC_4I1JwXjZJQ" source="_rIMzh3FPEfC_4I1JwXjZJQ">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_U-Ps0HHeEfC_4I1JwXjZJQ"/>
+        <condition xmi:type="expression:Expression" xmi:id="_U-Ps0XHeEfC_4I1JwXjZJQ" name="isMstEntityTypeAndDelete()" content="return (auditAction.objectType.equals(&quot;MstEntityType&quot;)) &amp;&amp; (auditAction.actionType.equals('DELETE'));" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Boolean" returnTypeFixed="true">
+          <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_nDMgAHHeEfC_4I1JwXjZJQ" name="auditAction" dataType="_rIMz6HFPEfC_4I1JwXjZJQ" className="com.bonitasoftprocessbuilder.model.audit.AuditAction"/>
+        </condition>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_VsQpYHHeEfC_4I1JwXjZJQ" target="_rIMzmXFPEfC_4I1JwXjZJQ" source="_QDZjcHHeEfC_4I1JwXjZJQ">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_VsQpYXHeEfC_4I1JwXjZJQ"/>
+        <condition xmi:type="expression:Expression" xmi:id="_VsQpYnHeEfC_4I1JwXjZJQ" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <actors xmi:type="process:Actor" xmi:id="_rIMzxXFPEfC_4I1JwXjZJQ" documentation="An actor that maps to users who are administrators and are authorized to execute this admin process.&#xA;&#xA;" name="Administrator" initiator="true"/>
+      <contract xmi:type="process:Contract" xmi:id="_rIMzxnFPEfC_4I1JwXjZJQ">
+        <inputs xmi:type="process:ContractInput" xmi:id="_rIMzx3FPEfC_4I1JwXjZJQ" name="input" type="COMPLEX" dataReference="boMstGenericEntry">
+          <inputs xmi:type="process:ContractInput" xmi:id="_rIMzyHFPEfC_4I1JwXjZJQ" name="persistenceId_string">
+            <mapping xmi:type="process:ContractInputMapping" xmi:id="_rIMzyXFPEfC_4I1JwXjZJQ"/>
+          </inputs>
+        </inputs>
+        <inputs xmi:type="process:ContractInput" xmi:id="_rIMzynFPEfC_4I1JwXjZJQ" name="objectType" description="ProcessParameter,etc.">
+          <mapping xmi:type="process:ContractInputMapping" xmi:id="_rIMzy3FPEfC_4I1JwXjZJQ"/>
+        </inputs>
+        <inputs xmi:type="process:ContractInput" xmi:id="_rIMzzHFPEfC_4I1JwXjZJQ" name="actionType" description="INSERT, UPDATE, DELETE">
+          <mapping xmi:type="process:ContractInputMapping" xmi:id="_rIMzzXFPEfC_4I1JwXjZJQ"/>
+        </inputs>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_rIMzznFPEfC_4I1JwXjZJQ" expression="actionType != null" errorMessage="actionType is mandatory" name="mandatory_actionType">
+          <inputNames>actionType</inputNames>
+        </constraints>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_rIMzz3FPEfC_4I1JwXjZJQ" expression="objectType != null" errorMessage="objectType is mandatory" name="mandatory_objectType">
+          <inputNames>objectType</inputNames>
+        </constraints>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_rIMz0HFPEfC_4I1JwXjZJQ" expression="return !(&quot;INSERT&quot;.equals(actionType) &amp;&amp; input.persistenceId_string != null);" errorMessage="ActionType 'INSERT' is invalid for records with a non-null persistenceId. Action has been updated to 'UPDATE'." name="updateRequiredForExistingRecord" description="The operation was initially set as an INSERT, but a persistence ID was provided. This indicates that the record already exists and the intended action should be an UPDATE instead of an INSERT. The action type has been automatically corrected to UPDATE to reflect the actual state of the data.">
+          <inputNames>actionType</inputNames>
+          <inputNames>input</inputNames>
+        </constraints>
+      </contract>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_rIMz0XFPEfC_4I1JwXjZJQ">
+        <name xmi:type="expression:Expression" xmi:id="_rIMz0nFPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_rIMz03FPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_rIMz1HFPEfC_4I1JwXjZJQ">
+        <name xmi:type="expression:Expression" xmi:id="_rIMz1XFPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_rIMz1nFPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_rIMz13FPEfC_4I1JwXjZJQ">
+        <name xmi:type="expression:Expression" xmi:id="_rIMz2HFPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_rIMz2XFPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_rIMz2nFPEfC_4I1JwXjZJQ">
+        <name xmi:type="expression:Expression" xmi:id="_rIMz23FPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_rIMz3HFPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_rIMz3XFPEfC_4I1JwXjZJQ">
+        <name xmi:type="expression:Expression" xmi:id="_rIMz3nFPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_rIMz33FPEfC_4I1JwXjZJQ" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+    </elements>
+    <datatypes xmi:type="process:BooleanType" xmi:id="_rIMz4HFPEfC_4I1JwXjZJQ" name="Boolean"/>
+    <datatypes xmi:type="process:DateType" xmi:id="_rIMz4XFPEfC_4I1JwXjZJQ" name="Date"/>
+    <datatypes xmi:type="process:IntegerType" xmi:id="_rIMz4nFPEfC_4I1JwXjZJQ" name="Integer"/>
+    <datatypes xmi:type="process:LongType" xmi:id="_rIMz43FPEfC_4I1JwXjZJQ" name="Long"/>
+    <datatypes xmi:type="process:DoubleType" xmi:id="_rIMz5HFPEfC_4I1JwXjZJQ" name="Double"/>
+    <datatypes xmi:type="process:StringType" xmi:id="_rIMz5XFPEfC_4I1JwXjZJQ" name="Text"/>
+    <datatypes xmi:type="process:JavaType" xmi:id="_rIMz5nFPEfC_4I1JwXjZJQ" name="Java_object"/>
+    <datatypes xmi:type="process:XMLType" xmi:id="_rIMz53FPEfC_4I1JwXjZJQ" name="XML"/>
+    <datatypes xmi:type="process:BusinessObjectType" xmi:id="_rIMz6HFPEfC_4I1JwXjZJQ" name="Business_Object"/>
+  </process:MainProcess>
+  <notation:Diagram xmi:id="_rIMz6XFPEfC_4I1JwXjZJQ" type="Process" element="_rIMzgHFPEfC_4I1JwXjZJQ" name="MyDiagram3" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_rIMz6nFPEfC_4I1JwXjZJQ" type="2007" element="_rIMzgXFPEfC_4I1JwXjZJQ">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rIMz63FPEfC_4I1JwXjZJQ" type="5008"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_rIMz7HFPEfC_4I1JwXjZJQ" type="7001">
+        <children xmi:type="notation:Node" xmi:id="_rIMz7XFPEfC_4I1JwXjZJQ" type="3007" element="_rIMzgnFPEfC_4I1JwXjZJQ">
+          <children xmi:type="notation:DecorationNode" xmi:id="_rIMz7nFPEfC_4I1JwXjZJQ" type="5007"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_rIMz73FPEfC_4I1JwXjZJQ" type="7002">
+            <children xmi:type="notation:Shape" xmi:id="_rIMz8HFPEfC_4I1JwXjZJQ" type="3002" element="_rIMzg3FPEfC_4I1JwXjZJQ" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_rIMz8XFPEfC_4I1JwXjZJQ" type="5024">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_rIMz8nFPEfC_4I1JwXjZJQ" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rIMz83FPEfC_4I1JwXjZJQ" x="99" y="98"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_rIMz9HFPEfC_4I1JwXjZJQ" type="3008" element="_rIMzh3FPEfC_4I1JwXjZJQ" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_rIMz9XFPEfC_4I1JwXjZJQ" type="5026">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_rIMz9nFPEfC_4I1JwXjZJQ" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rIMz93FPEfC_4I1JwXjZJQ" x="329" y="93"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_rIMz-HFPEfC_4I1JwXjZJQ" type="3028" element="_rIMzi3FPEfC_4I1JwXjZJQ" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_rIMz-XFPEfC_4I1JwXjZJQ" type="5018"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rIMz-nFPEfC_4I1JwXjZJQ" x="437" y="10" width="136" height="68"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_rIMz-3FPEfC_4I1JwXjZJQ" type="3008" element="_rIMzmXFPEfC_4I1JwXjZJQ" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_rIMz_HFPEfC_4I1JwXjZJQ" type="5026">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_rIMz_XFPEfC_4I1JwXjZJQ" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rIMz_nFPEfC_4I1JwXjZJQ" x="593" y="91" width="43" height="43"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_rIMz_3FPEfC_4I1JwXjZJQ" type="3062" element="_rIMznXFPEfC_4I1JwXjZJQ" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_rIM0AHFPEfC_4I1JwXjZJQ" type="5090">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_rIM0AXFPEfC_4I1JwXjZJQ" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rIM0AnFPEfC_4I1JwXjZJQ" x="859" y="98"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_QDaKgHHeEfC_4I1JwXjZJQ" type="3028" element="_QDZjcHHeEfC_4I1JwXjZJQ" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_QDaKgXHeEfC_4I1JwXjZJQ" type="5018" element="_QDZjcHHeEfC_4I1JwXjZJQ"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QDaKgnHeEfC_4I1JwXjZJQ" x="437" y="179" width="136" height="68"/>
+            </children>
+          </children>
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_rIM0A3FPEfC_4I1JwXjZJQ"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_rIM0BHFPEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+          <styles xmi:type="notation:LineStyle" xmi:id="_rIM0BXFPEfC_4I1JwXjZJQ"/>
+          <styles xmi:type="notation:FillStyle" xmi:id="_rIM0BnFPEfC_4I1JwXjZJQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rIM0B3FPEfC_4I1JwXjZJQ" x="48" y="10" width="1297" height="294"/>
+        </children>
+      </children>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_rIM0CHFPEfC_4I1JwXjZJQ"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_rIM0CXFPEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <styles xmi:type="notation:LineStyle" xmi:id="_rIM0CnFPEfC_4I1JwXjZJQ"/>
+      <styles xmi:type="notation:FillStyle" xmi:id="_rIM0C3FPEfC_4I1JwXjZJQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rIM0DHFPEfC_4I1JwXjZJQ" width="1320" height="250"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_rIM0DXFPEfC_4I1JwXjZJQ"/>
+    <edges xmi:type="notation:Connector" xmi:id="_rIM0DnFPEfC_4I1JwXjZJQ" type="4001" element="_rIMztXFPEfC_4I1JwXjZJQ" source="_rIMz8HFPEfC_4I1JwXjZJQ" target="_rIMz9HFPEfC_4I1JwXjZJQ" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rIM0D3FPEfC_4I1JwXjZJQ" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rIM0EHFPEfC_4I1JwXjZJQ" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_rIM0EXFPEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rIM0EnFPEfC_4I1JwXjZJQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_rIM0E3FPEfC_4I1JwXjZJQ" type="4001" element="_rIMzuHFPEfC_4I1JwXjZJQ" source="_rIMz9HFPEfC_4I1JwXjZJQ" target="_rIMz-HFPEfC_4I1JwXjZJQ" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rIM0FHFPEfC_4I1JwXjZJQ" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rIM0FXFPEfC_4I1JwXjZJQ" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_rIM0FnFPEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rIM0F3FPEfC_4I1JwXjZJQ" points="[0, -21, -155, 49]$[0, -68, -155, 2]$[87, -68, -68, 2]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_rIM0GHFPEfC_4I1JwXjZJQ" type="4001" element="_rIMzvHFPEfC_4I1JwXjZJQ" source="_rIMz-HFPEfC_4I1JwXjZJQ" target="_rIMz-3FPEfC_4I1JwXjZJQ" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rIM0GXFPEfC_4I1JwXjZJQ" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rIM0GnFPEfC_4I1JwXjZJQ" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_rIM0G3FPEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rIM0HHFPEfC_4I1JwXjZJQ" points="[68, -1, -41, -69]$[107, -1, -2, -69]$[107, 49, -2, -19]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_rIM0HXFPEfC_4I1JwXjZJQ" type="4001" element="_rIMzv3FPEfC_4I1JwXjZJQ" source="_rIMz-3FPEfC_4I1JwXjZJQ" target="_rIMz_3FPEfC_4I1JwXjZJQ" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rIM0HnFPEfC_4I1JwXjZJQ" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rIM0H3FPEfC_4I1JwXjZJQ" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_rIM0IHFPEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rIM0IXFPEfC_4I1JwXjZJQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_rIM0InFPEfC_4I1JwXjZJQ" type="4001" element="_rIMzwnFPEfC_4I1JwXjZJQ" source="_rIMz9HFPEfC_4I1JwXjZJQ" target="_rIMz-3FPEfC_4I1JwXjZJQ" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rIM0I3FPEfC_4I1JwXjZJQ" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rIM0JHFPEfC_4I1JwXjZJQ" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_rIM0JXFPEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rIM0JnFPEfC_4I1JwXjZJQ" points="[0, -7, -306, 0]$[285, -7, -21, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rIM0J3FPEfC_4I1JwXjZJQ" id="(1.0,0.6511627906976745)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_U-WagHHeEfC_4I1JwXjZJQ" type="4001" element="_U-MCcHHeEfC_4I1JwXjZJQ" source="_rIMz9HFPEfC_4I1JwXjZJQ" target="_QDaKgHHeEfC_4I1JwXjZJQ" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_U-XBkHHeEfC_4I1JwXjZJQ" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_U-XBkXHeEfC_4I1JwXjZJQ" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_U-WagXHeEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_U-WagnHeEfC_4I1JwXjZJQ" points="[-22, 13, -118, -97]$[-22, 89, -118, -21]$[65, 89, -31, -21]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U-YPsHHeEfC_4I1JwXjZJQ" id="(1.0,0.6976744186046512)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U-YPsXHeEfC_4I1JwXjZJQ" id="(0.22794117647058823,0.7941176470588235)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_VsRQcHHeEfC_4I1JwXjZJQ" type="4001" element="_VsQpYHHeEfC_4I1JwXjZJQ" source="_QDaKgHHeEfC_4I1JwXjZJQ" target="_rIMz-3FPEfC_4I1JwXjZJQ" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_VsRQc3HeEfC_4I1JwXjZJQ" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_VsRQdHHeEfC_4I1JwXjZJQ" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_VsRQcXHeEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_VsRQcnHeEfC_4I1JwXjZJQ" points="[0, 11, -71, 114]$[56, 11, -15, 114]$[56, -72, -15, 31]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VsSekHHeEfC_4I1JwXjZJQ" id="(1.0,0.39705882352941174)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VsSekXHeEfC_4I1JwXjZJQ" id="(0.8372093023255814,0.27906976744186046)"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>

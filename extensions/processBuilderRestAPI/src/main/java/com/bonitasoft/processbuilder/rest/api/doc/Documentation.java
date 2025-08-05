@@ -43,6 +43,10 @@ public class Documentation extends AbstractDocumentation {
      * @param context
      * @return Result
      */
+    /**
+     * Este método se encarga de servir la documentación HTML.
+     * Añadimos las anotaciones @GET y @Path para que el plugin lo reconozca.
+     */
     @Override
     protected ResultDocumentation execute(RestAPIContext context, ObjectMapper mapper) {       
         try {            

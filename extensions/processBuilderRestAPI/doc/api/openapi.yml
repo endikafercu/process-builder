@@ -9,10 +9,43 @@ info:
 servers:
   - url: https://api.yourdomain.com/v1
     description: Production server
+  - url: http://localhost:8080/bonita/API/extension/
+    description: Local server
 tags:
   - name: process-builder
     description: Operations related to the Process Builder
 paths:
+  /doc:
+    get:
+      tags:
+        - process-builder
+      summary: Serves the interactive API documentation page.
+      description: |
+        This endpoint returns an HTML page with Swagger UI, which dynamically loads and
+        renders the full API specification for this service. This endpoint does not
+        accept any query parameters.
+      operationId: getApiDocumentation
+      parameters: []
+      responses:
+        '200':
+          description: Successful operation. The HTML documentation page is returned.
+          content:
+            text/html:
+              schema:
+                type: string
+                description: The complete Swagger UI page.
+        '400':
+          description: No parameters should be provided in this request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error reading the documentation file from the classpath.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /process-builder/paged:
     get:
       tags:

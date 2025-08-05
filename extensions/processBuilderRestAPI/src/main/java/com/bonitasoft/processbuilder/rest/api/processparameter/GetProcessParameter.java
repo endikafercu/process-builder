@@ -1,16 +1,17 @@
 package com.bonitasoft.processbuilder.rest.api.processparameter;
 
-import com.bonitasoft.processbuilder.rest.api.dto.Result;
+import com.bonitasoft.processbuilder.rest.api.dto.ResultGetProcessParameter;
 import com.bonitasoft.processbuilder.rest.api.exception.ValidationException;
-import com.bonitasoft.processbuilder.rest.api.utils.Utils;
+import com.bonitasoftprocessbuilder.model.process.ProcessParameter;
 
 import org.bonitasoft.web.extension.rest.RestAPIContext;
-import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static java.lang.String.format;
+
+import java.time.OffsetDateTime;
 
 /**
  * Controller class
@@ -30,45 +31,42 @@ public class GetProcessParameter extends AbstractGetProcessParameter {
         // Be careful, parameter values are always returned as String values
 
         // Retrieve p parameter
-        String p = request.getParameter(PARAM_P);
-        if (p == null) {
-            throw new ValidationException(format("the parameter %s is missing", PARAM_P));
+        String persistenceId = request.getParameter(PARAM_PERSISTENCE_ID);
+        if (persistenceId == null) {
+            throw new ValidationException(format("the parameter %s is missing", PARAM_PERSISTENCE_ID));
         }
-        // Retrieve c parameter
-        String c = request.getParameter(PARAM_C);
-        if (c == null) {
-            throw new ValidationException(format("the parameter %s is missing", PARAM_C));
-        }
-
     }
 
     /**
      * Execute business logic
      *
      * @param context
-     * @param p
-     * @param c
+     * @param persistenceId
      * @return Result
      */
     @Override
-	public Result execute(RestAPIContext context, String p, String c) {
+	public ResultGetProcessParameter execute(RestAPIContext context, String persistenceId) {
 
-        // Here is an example of how you can retrieve configuration parameters from a properties file
-        // It is safe to remove this if no configuration is required
-        Properties props = Utils.loadProperties("configuration.properties", context.getResourceProvider());
-        String paramValue = props.getProperty(MY_PARAMETER_KEY);
+        LOGGER.info(format("Execute rest api call with params:  %s ",  persistenceId));
 
-        LOGGER.debug(format("Execute rest api call with params:  %s, %s, %s",  p,  c,  paramValue));
-
-        /*
-         * TODO: Execute business logic here, your code goes here
-         */
-
-        // Prepare the result
-        return Result.builder()
-                .p(p)
-                .c(c)
-                .myParameterKey(paramValue)
-                .build();
+        ProcessParameter processParameter = new ProcessParameter();
+        processParameter.setPersistenceId(1L);
+        processParameter.setFullName("My Test Process");
+        processParameter.setVersion("1.0.0");
+        processParameter.setShortDescription("This is a test description.");
+        processParameter.setToken("TEST_TOKEN");
+        processParameter.setDisplayName("Test Display Name");
+        processParameter.setAppName("Test App");
+        processParameter.setAutoCancellationDays(30);
+        processParameter.setDocumentsFolderPath("/docs/test/path");
+        processParameter.setNumberOfSteps(5);
+        processParameter.setBpmProcessDefinitionId(12345L);
+        processParameter.setAuCreationDate(OffsetDateTime.now());
+        processParameter.setAuCreationUser("system");
+        processParameter.setAuModificationDate(OffsetDateTime.now());
+        processParameter.setAuModificationUser("system");
+        processParameter.setAuActive(true);
+        
+        return ResultGetProcessParameter.builder().processParameter(processParameter).build();
     }
 }

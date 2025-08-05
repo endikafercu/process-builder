@@ -102,7 +102,7 @@ By exposing a consistent set of REST endpoints, the service enables a clear sepa
 	    <groupId>com.fasterxml.jackson.dataformat</groupId>
 	    <artifactId>jackson-dataformat-yaml</artifactId>
 	    <version>2.17.1</version> 
-	</dependency>
+	</dependency>	
   </dependencies>
   <build>
     <defaultGoal>verify</defaultGoal>
