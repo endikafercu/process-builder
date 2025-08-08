@@ -1,12 +1,23 @@
 package com.bonitasoft.processbuilder.rest.api.constants;
 
-/**
- * Utility class for common media type constants.
- * This helps to avoid typos and centralizes the definitions.
- */
-public class Constants {
-	
-	
+public final class Constants {
+
+    public static final String HOST = "host";
+    public static final String PASSWORD = "password";
+    public static final String USERNAME = "username";
+    
+    public static final Integer PASSWORD_CHARACTERS_NUMBER  = 20;
+    
+    public static final String TEMPLATE_URL = "templateUrl";
+    public static final String TEMPLATE_LOGIN_DETAILS = "templateLoginDetails";
+    
+    // Properties Files
+    public static final String CONFIGURATION_PROPERTIES = "configuration.properties";
+    public static final String QUERIES_PROPERTIES = "queries.properties";
+    public static final String DATASOURCE_PROPERTIES = "datasource.properties";
+    
+    public static final String DATASOURCE_DOT = "datasource.";
+    
 	public static final String PATH_INDEX_SWAGGER = "swagger-doc/index.html";
 	public static final String PATH_OPENAPI_SWAGGER = "swagger-doc/openapi.yml";
     public static final String PARAM_RESPONSE_TYPE = "responseType";
@@ -32,4 +43,5 @@ public class Constants {
      * Constant for 'text/plain' media type.
      */
     public static final String TEXT_PLAIN = "text/plain";
+
 }

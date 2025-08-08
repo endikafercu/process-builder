@@ -1,15 +1,11 @@
 package com.bonitasoft.processbuilder.rest.api;
 
 import org.bonitasoft.web.extension.rest.RestAPIContext;
-import com.bonitasoft.processbuilder.rest.api.dto.Error;
-import com.bonitasoft.processbuilder.rest.api.dto.Result;
 import com.bonitasoft.processbuilder.rest.api.dto.ResultGetProcessParameter;
 import com.bonitasoft.processbuilder.rest.api.exception.ValidationException;
-import com.bonitasoft.processbuilder.rest.api.processparameter.GetProcessParameter;
+import com.bonitasoft.processbuilder.rest.api.controller.processparameter.GetProcessParameter;
 
 import org.bonitasoft.web.extension.ResourceProvider;
-import org.bonitasoft.web.extension.rest.RestApiResponse;
-import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,8 +18,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -33,7 +27,7 @@ import static org.mockito.Mockito.when;
 @MockitoSettings(strictness = Strictness.LENIENT)
 class GetProcessParameterTest {
 
-	//private static final Logger LOGGER = LoggerFactory.getLogger(GetProcessParameterTest.class.getName());
+	private static final Logger LOGGER = LoggerFactory.getLogger(GetProcessParameterTest.class.getName());
 	
     // Declare mocks here
     // Mocks are used to simulate external dependencies behavior

@@ -1,10 +1,12 @@
-package com.bonitasoft.processbuilder.rest.api.processparameter;
+package com.bonitasoft.processbuilder.rest.api.controller.doc;
 
 import org.bonitasoft.web.extension.rest.RestAPIContext;
 import org.bonitasoft.web.extension.rest.RestApiController;
+
+import com.bonitasoft.processbuilder.rest.api.constants.Constants;
 import com.bonitasoft.processbuilder.rest.api.dto.Error;
-import com.bonitasoft.processbuilder.rest.api.dto.Result;
-import com.bonitasoft.processbuilder.rest.api.dto.ResultGetProcessParameter;
+import com.bonitasoft.processbuilder.rest.api.dto.ResultDocumentation;
+import com.bonitasoft.processbuilder.rest.api.exception.RestApiResourceException;
 import com.bonitasoft.processbuilder.rest.api.exception.ValidationException;
 import com.bonitasoft.processbuilder.rest.api.utils.Utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,15 +21,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
+import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+
 
 /**
  * Parent Controller class to hide technical parts
  */
-public abstract class AbstractGetProcessParameter implements RestApiController {
+public abstract class AbstractDocumentation implements RestApiController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGetProcessParameter.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDocumentation.class.getName());
 
-    public static final String PARAM_PERSISTENCE_ID = "id";
+
 
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
@@ -47,19 +51,17 @@ public abstract class AbstractGetProcessParameter implements RestApiController {
             LOGGER.error("Request for this REST API extension is not valid", e);
             return Utils.jsonResponse(responseBuilder, mapper, SC_BAD_REQUEST, Error.builder().message(e.getMessage()).build());
         }
-        String persistenceId = request.getParameter(PARAM_PERSISTENCE_ID);
-
-        // Execute business logic
-        ResultGetProcessParameter resultGetProcessParameter = execute(context, persistenceId);
-
-        // Send the result as a JSON representation
-        // You may use pagedJsonResponse if your result is multiple
-        return Utils.jsonResponse(responseBuilder,mapper, SC_OK, resultGetProcessParameter);
+        try {
+	        // Execute business logic
+	        ResultDocumentation result = execute(context, mapper);
+	        return Utils.textResponse(responseBuilder, SC_OK, result.getHtmlContent(), Constants.TEXT_HTML);
+        } catch (RestApiResourceException e) {
+            return Utils.jsonResponse(responseBuilder, mapper, SC_INTERNAL_SERVER_ERROR, Error.builder().message(e.getMessage()).build());
+        }
     }
 
-    protected abstract ResultGetProcessParameter execute(RestAPIContext context, String persistenceId);
+    protected abstract ResultDocumentation execute(RestAPIContext context, ObjectMapper mapper);
 
     protected abstract void validateInputParameters(HttpServletRequest request);
 
-   
 }

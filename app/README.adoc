@@ -39,6 +39,48 @@ _No description available_
 
 === Package com.bonitasoftprocessbuilder.model.master
 
+==== MstActionAttribute
+
+This object defines the metadata for an attribute used by a specific action type. Each record describes a unique field with its display name, data type, and a short description. These attributes are aggregated by the MstActionType object to define a complete action.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                       |Type  |Description                                                                           
+|[[MstActionAttribute.persistenceId]]persistenceId*         |Long  |                                                                                      
+|[[MstActionAttribute.fullName]]fullName*                   |String|The unique programmatic name of the attribute (e.g., 'emailTo')                       
+|[[MstActionAttribute.displayName]]displayName*             |String|The name to be displayed in the user interface (e.g., 'Email To').                    
+|[[MstActionAttribute.label]]label                          |String|A more detailed label for the attribute, which can contain HTML for richer formatting.
+|[[MstActionAttribute.shortDescription]]shortDescription    |String|A brief description of the attribute's purpose.                                       
+|[[MstActionAttribute.dataType]]dataType*                   |String|The data type of the attribute, e.g., 'STRING', 'TEXT', 'BOOLEAN'.                    
+|[[MstActionAttribute.auCreationDate]]auCreationDate*       |String|The date and time when the attribute record was created.                              
+|[[MstActionAttribute.auCreationUser]]auCreationUser*       |String|The username of the user who created the attribute record.                            
+|[[MstActionAttribute.auModificationDate]]auModificationDate|String|The date and time of the last modification to the attribute record.                   
+|[[MstActionAttribute.auModificationUser]]auModificationUser|String|The username of the user who performed the last modification.                         
+|===
+
+==== MstActionType
+
+This master data object categorizes different types of actions available in the process builder. Each record defines an action type (e.g., 'Email Notification') and aggregates all the MstActionAttribute records that constitute its fields.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                           |Type                        |Description                                                                                
+|[[MstActionType.persistenceId]]persistenceId*                  |Long                        |                                                                                           
+|[[MstActionType.fullName]]fullName*                            |String                      |The unique programmatic name of the action type (e.g., 'EMAIL_NOTIFICATION').              
+|[[MstActionType.displayName]]displayName*                      |String                      |The user-friendly name of the action type.                                                 
+|[[MstActionType.label]]label                                   |String                      | A more detailed label for the action type, which can contain HTML for richer formatting.   
+|[[MstActionType.shortDescription]]shortDescription             |String                      |A brief description of the action type's purpose.                                          
+|[[MstActionType.auCreationDate]]auCreationDate*                |String                      |The date and time when the record was created.                                             
+|[[MstActionType.auCreationUser]]auCreationUser*                |String                      |The username of the user who created the record.                                           
+|[[MstActionType.auModificationDate]]auModificationDate         |String                      |auModificationDate:                                                                         
+|[[MstActionType.auModificationUser]]auModificationUser         |String                      |The username of the user who performed the last modification.                              
+|[[MstActionType.refActionAttribute]]&#x25c7; refActionAttribute|List<<<MstActionAttribute>>>|A collection of all MstActionAttribute records that define the fields for this action type.
+|===
+
 ==== MstEntityType
 
 This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Status'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.
@@ -50,7 +92,7 @@ This master table defines and categorizes the different types of master entities
 |Name                                                  |Type          |Description                                                                                                                                                                                    
 |[[MstEntityType.persistenceId]]persistenceId*         |Long          |                                                                                                                                                                                               
 |[[MstEntityType.fullName]]fullName*                   |String        |The complete, official name of an entity.                                                                                                                                                      
-|[[MstEntityType.displayName]]displayName              |String        |The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
+|[[MstEntityType.displayName]]displayName*             |String        |The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
 |[[MstEntityType.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item.                                                                                                                                               
 |[[MstEntityType.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created                                                                                                                                                          
 |[[MstEntityType.auCreationUser]]auCreationUser*       |String        |User who created this record                                                                                                                                                                   
@@ -66,7 +108,7 @@ _No description available_
 
 ==== MstGenericEntry
 
-This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Domain, a Context, a Currency), allowing for standardized management and common auditing across different lookup lists.
+This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Status,...), allowing for standardized management and common auditing across different lookup lists.
 
 ===== icon:list[] Attributes
 
@@ -74,8 +116,9 @@ This master table serves as a centralized repository for various types of master
 |===
 |Name                                                         |Type             |Description                                                                                                                                                                                    
 |[[MstGenericEntry.persistenceId]]persistenceId*              |Long             |                                                                                                                                                                                               
-|[[MstGenericEntry.fullName]]fullName                         |String           |The complete, official name of an entity                                                                                                                                                       
-|[[MstGenericEntry.displayName]]displayName                   |String           |The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
+|[[MstGenericEntry.fullName]]fullName*                        |String           |The complete, official name of an entity                                                                                                                                                       
+|[[MstGenericEntry.displayName]]displayName*                  |String           |The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
+|[[MstGenericEntry.label]]label                               |String           |                                                                                                                                                                                               
 |[[MstGenericEntry.shortDescription]]shortDescription         |String           |A concise summary or brief overview of the item                                                                                                                                                
 |[[MstGenericEntry.auCreationDate]]auCreationDate*            |OffsetDateTime   |Date and time this record was created                                                                                                                                                          
 |[[MstGenericEntry.auCreationUser]]auCreationUser*            |String           |User who created this record                                                                                                                                                                   
@@ -188,8 +231,20 @@ FormSection represents a logical division within a form, grouping related fields
 |[[FormSection.refField]]&#x25c7; refField           |List<<<FormField>>>|                                                                                                                                                                                                                                                   
 |===
 
-==== ProcessForm
+==== ProcessCase
 
+_No description available_
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                             |Type                    |Description
+|[[ProcessCase.persistenceId]]persistenceId*                      |Long                    |           
+|[[ProcessCase.processSpecification]]&#x25c7; processSpecification|<<ProcessSpecification>>|           
+|===
+
+==== ProcessForm
 
 The ProcessForm object defines the structure and content of a particular form used within a process.
 
@@ -209,33 +264,26 @@ The ProcessForm object defines the structure and content of a particular form us
 
 ==== ProcessParameter
 
-Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.
+The ProcessParameter object represents an individual configuration parameter for a process. It is used to store specific configuration data. Each ProcessParameter is associated with a parent ProcessSpecification, allowing for flexible and extensible configuration for each process.
 
 ===== icon:list[] Attributes
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                             |Type                 |Description                                                                                                                                                                                                                                          
-|[[ProcessParameter.persistenceId]]persistenceId*                 |Long                 |                                                                                                                                                                                                                                                     
-|[[ProcessParameter.fullName]]fullName*                           |String               |The complete, official name of an entity                                                                                                                                                                                                             
-|[[ProcessParameter.version]]version                              |String               |The version identifier for this specific process definition. Used to track changes and distinguish between different iterations.                                                                                                                     
-|[[ProcessParameter.shortDescription]]shortDescription            |String               |A detailed description providing comprehensive information about the purpose and scope of this process.                                                                                                                                              
-|[[ProcessParameter.token]]token*                                 |String               |                                                                                                                                                                                                                                                     
-|[[ProcessParameter.displayName]]displayName                      |String               |A user-friendly name for the process, optimized for display in user interfaces. It may be a shorter or more localized version of the process name.                                                                                                   
-|[[ProcessParameter.appName]]appName                              |String               |Name of the application to which the process is associated.                                                                                                                                                                                          
-|[[ProcessParameter.autoCancellationDays]]autoCancellationDays    |Integer              |The number of days after which an inactive process instance will be automatically cancelled or abandoned. A value of 0 means no automatic cancellation.                                                                                              
-|[[ProcessParameter.documentsFolderPath]]documentsFolderPath      |String               |The system path or identifier for the root folder where all documents attached to instances of this process will be stored.                                                                                                                          
-|[[ProcessParameter.numberOfSteps]]numberOfSteps                  |Integer              |The total number of steps or stages defined within the workflow of this process.                                                                                                                                                                     
-|[[ProcessParameter.bpmProcessDefinitionId]]bpmProcessDefinitionId|Long                 |Unique identifier provided by the BPM engine (e.g., Bonita) corresponding to a specific process definition.                                                                                                                                          
-|[[ProcessParameter.auCreationDate]]auCreationDate*               |OffsetDateTime       |Date and time this record was created                                                                                                                                                                                                                
-|[[ProcessParameter.auCreationUser]]auCreationUser*               |String               |User who created this record                                                                                                                                                                                                                         
-|[[ProcessParameter.auModificationDate]]auModificationDate        |OffsetDateTime       |Date and time this record was last modified                                                                                                                                                                                                          
-|[[ProcessParameter.auModificationUser]]auModificationUser        |String               |User who last modified this record                                                                                                                                                                                                                   
-|[[ProcessParameter.auActive]]auActive                            |Boolean              |Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.                                                                                                                                    
-|[[ProcessParameter.refStatus]]&#x25c7; refStatus                 |<<MstGenericEntry>>  |Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).
-|[[ProcessParameter.refContext]]&#x25c7; refContext               |<<MstGenericEntry>>  |Unique identifier linking this process to a specific operational context, defined in the MstGenericEntry master table - type Context                                                                                                                 
-|[[ProcessParameter.refDomain]]&#x25c7; refDomain                 |<<MstGenericEntry>>  |Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Domain                                                                                                      
-|[[ProcessParameter.refProcessForm]]&#x25c6; refProcessForm       |List<<<ProcessForm>>>|A collection of references to ProcessForm objects, representing the forms linked to this process.                                                                                                                                                    
+|Name                                                         |Type          |Description                                                                                                                                            
+|[[ProcessParameter.persistenceId]]persistenceId*             |Long          |                                                                                                                                                       
+|[[ProcessParameter.fullName]]fullName*                       |String        |The complete, official name of an entity                                                                                                               
+|[[ProcessParameter.version]]version                          |String        |The version identifier for this specific process definition. Used to track changes and distinguish between different iterations.                       
+|[[ProcessParameter.shortDescription]]shortDescription        |String        |A detailed description providing comprehensive information about the purpose and scope of this process.                                                
+|[[ProcessParameter.token]]token*                             |String        |                                                                                                                                                       
+|[[ProcessParameter.displayName]]displayName                  |String        |A user-friendly name for the process, optimized for display in user interfaces. It may be a shorter or more localized version of the process name.     
+|[[ProcessParameter.appName]]appName                          |String        |Name of the application to which the process is associated.                                                                                            
+|[[ProcessParameter.autoCancellationDays]]autoCancellationDays|Integer       |The number of days after which an inactive process instance will be automatically cancelled or abandoned. A value of 0 means no automatic cancellation.
+|[[ProcessParameter.documentsFolderPath]]documentsFolderPath  |String        |The system path or identifier for the root folder where all documents attached to instances of this process will be stored.                            
+|[[ProcessParameter.auCreationDate]]auCreationDate*           |OffsetDateTime|Date and time this record was created                                                                                                                  
+|[[ProcessParameter.auCreationUser]]auCreationUser*           |String        |User who created this record                                                                                                                           
+|[[ProcessParameter.auModificationDate]]auModificationDate    |OffsetDateTime|Date and time this record was last modified                                                                                                            
+|[[ProcessParameter.auModificationUser]]auModificationUser    |String        |User who last modified this record                                                                                                                     
 |===
 
 ===== icon:link[] Unique constraints
@@ -247,6 +295,68 @@ _No description available_
 ====== upProcParamToken [<<ProcessParameter.token,token>>]
 
 _No description available_
+
+==== ProcessSpecification
+
+Object represents the main configuration and metadata for a complete business process. This object holds global properties of the process, and other essential configuration parameters that define the process's behavior.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                                    |Type                |Description                                                                                                                                                                                                                                          
+|[[ProcessSpecification.persistenceId]]persistenceId*                    |Long                |                                                                                                                                                                                                                                                     
+|[[ProcessSpecification.auCreationDate]]auCreationDate                   |String              |                                                                                                                                                                                                                                                     
+|[[ProcessSpecification.auCreationUser]]auCreationUser                   |String              |                                                                                                                                                                                                                                                     
+|[[ProcessSpecification.auModificationDate]]auModificationDate           |String              |                                                                                                                                                                                                                                                     
+|[[ProcessSpecification.auModificationUser]]auModificationUser           |String              |                                                                                                                                                                                                                                                     
+|[[ProcessSpecification.auActive]]auActive                               |String              |Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.                                                                                                                                    
+|[[ProcessSpecification.refProcessParameter]]&#x25c6; refProcessParameter|<<ProcessParameter>>|                                                                                                                                                                                                                                                     
+|[[ProcessSpecification.refStatus]]&#x25c7; refStatus                    |<<MstGenericEntry>> |Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).
+|[[ProcessSpecification.refProcessStep]]&#x25c6; refProcessStep          |<<ProcessStep>>     |                                                                                                                                                                                                                                                     
+|===
+
+==== ProcessStep
+
+Represents a step or a stage within a business process. Each step can have associated actions, such as sending notifications, filling out forms, adding documents, or conditional redirects.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                |Type                       |Description                                                                                                                                                                                                                          
+|[[ProcessStep.persistenceId]]persistenceId*         |Long                       |                                                                                                                                                                                                                                     
+|[[ProcessStep.title]]title                          |String                     |The title or name of the process step.                                                                                                                                                                                               
+|[[ProcessStep.technicalReference]]technicalReference|String                     |A unique technical identifier for the process step, often used for programmatic access or integration.                                                                                                                               
+|[[ProcessStep.longDescription]]longDescription      |String                     |A detailed description or explanation of the purpose of the process step.                                                                                                                                                            
+|[[ProcessStep.executionOrder]]executionOrder        |Integer                    |The attribute stores the numerical position of a step within a process. This value determines the order in which it is executed and the order in which the step appears on the screen, allowing users to reorder the steps as needed.
+|[[ProcessStep.auCreationDate]]auCreationDate        |OffsetDateTime             |The date and time when the process step record was created.                                                                                                                                                                          
+|[[ProcessStep.auCreationUser]]auCreationUser        |String                     |The username of the user who created the process step record.                                                                                                                                                                        
+|[[ProcessStep.auModificationDate]]auModificationDate|OffsetDateTime             |The date and time of the last modification to the process step record.                                                                                                                                                               
+|[[ProcessStep.auModificationUser]]auModificationUser|String                     |The username of the user who performed the last modification.                                                                                                                                                                        
+|[[ProcessStep.auActive]]auActive                    |Boolean                    |ndicates whether the process step is currently active or not. 'True' for active, 'False' for inactive.                                                                                                                               
+|[[ProcessStep.actionsList]]&#x25c7; actionsList     |List<<<ProcessStepAction>>>|                                                                                                                                                                                                                                     
+|===
+
+==== ProcessStepAction
+
+Represents a single action to be executed within a process step. Each ProcessStep can have a list of these actions, executed in a defined order. This object is designed to hold core configuration fields and references to other objects that are common across multiple action types.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                       |Type             |Description                                                                                                   
+|[[ProcessStepAction.persistenceId]]persistenceId*          |Long             |                                                                                                              
+|[[ProcessStepAction.executionOrder]]executionOrder*        |Integer          |The order in which this action should be executed within the process step.                                    
+|[[ProcessStepAction.auCreationDate]]auCreationDate         |List<String>     |                                                                                                              
+|[[ProcessStepAction.auCreationUser]]auCreationUser         |List<String>     |                                                                                                              
+|[[ProcessStepAction.auModificationDate]]auModificationDate |String           |                                                                                                              
+|[[ProcessStepAction.auModificationUser]]auModificationUser |String           |                                                                                                              
+|[[ProcessStepAction.auActive]]auActive                     |Boolean          |Indicates whether the process step action is currently active or not. 'True' for active, 'False' for inactive.
+|[[ProcessStepAction.refAction]]&#x25c7; refAction          |<<MstActionType>>|This object links a process step to a specific action type                                                    
+|[[ProcessStepAction.refProcessForm]]&#x25c6; refProcessForm|<<ProcessForm>>  |A reference to the form to be completed. This field is used only when actionType is 'FILL_FORM'.              
+|===
 
 == Processes
 
@@ -263,13 +373,6 @@ image::processes/PB_InstanceGenerator-1.0.png[]
 |Name                                                                                               |Description                                                 
 |[[_f40da737-1a5d-31f6-9e6d-84077af98ffd]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
 |===
-
-==== Instantiation form
-
-[CAUTION]
-====
-Invalid form mapping. No form specified.
-====
 
 ==== image:icons/Lane.png[title="Lane"] Employee lane (<<_f40da737-1a5d-31f6-9e6d-84077af98ffd,icon:user[title="Actor"] Employee actor>>)
 
@@ -288,11 +391,6 @@ _No description available_
 _No description available_
 
 *Previous flow element(s)*: <<_93bfc34d-7305-3a87-a74b-f2e5eda00ece,Start1>>
-
-[CAUTION]
-====
-Invalid form mapping. No form specified.
-====
 
 === image:icons/Pool.png[title="Process"] [[_344d03ff-3e2b-386d-9994-39742d16c68b]]PB_MasterDataStore (1.0)
 
@@ -335,7 +433,7 @@ Page generated with Bonita UI designer
 |Text          |Modification User                                  |           
 |Button        |<span class="glyphicon glyphicon-edit"></span> Edit|           
 |TabsContainer |                                                   |           
-|Text          |                                                   |           
+|Text          |Debug message                                      |           
 |ModalContainer|                                                   |           
 |===
 
@@ -503,8 +601,8 @@ Page generated with Bonita UI designer
 |Input |Documents Folder Path |           
 |Select|Action Type           |           
 |Button|Submit                |           
-|Text  |                      |           
-|Text  |Default label         |           
+|Text  |Debug message         |           
+|Text  |Show Log              |           
 |===
 
 ==== icon:list-alt[] Contract inputs
@@ -629,13 +727,6 @@ image::processes/PB_TestDataGenerator-1.0.png[]
 |Name                                                                                               |Description                                                 
 |[[_f6089323-e1ef-32d5-bf84-66c12f329651]]Employee actor icon:play-circle[title="Process initiator"]|This is an example of actor that is mapped to any ACME users
 |===
-
-==== Instantiation form
-
-[CAUTION]
-====
-Invalid form mapping. No form specified.
-====
 
 ==== image:icons/Lane.png[title="Lane"] Employee lane (<<_f6089323-e1ef-32d5-bf84-66c12f329651,icon:user[title="Actor"] Employee actor>>)
 

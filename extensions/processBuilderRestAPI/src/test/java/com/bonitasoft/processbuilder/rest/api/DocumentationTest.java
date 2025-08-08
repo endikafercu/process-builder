@@ -2,7 +2,7 @@ package com.bonitasoft.processbuilder.rest.api;
 
 
 import com.bonitasoft.processbuilder.rest.api.constants.Constants;
-import com.bonitasoft.processbuilder.rest.api.doc.Documentation;
+import com.bonitasoft.processbuilder.rest.api.controller.doc.*;
 import com.bonitasoft.processbuilder.rest.api.dto.Error;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bonitasoft.web.extension.ResourceProvider;
@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;

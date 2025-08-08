@@ -1,4 +1,4 @@
-package com.bonitasoft.processbuilder.rest.api.processparameter;
+package com.bonitasoft.processbuilder.rest.api.controller.processparameter;
 
 import com.bonitasoft.processbuilder.rest.api.dto.ResultGetProcessParameter;
 import com.bonitasoft.processbuilder.rest.api.exception.ValidationException;
@@ -59,13 +59,10 @@ public class GetProcessParameter extends AbstractGetProcessParameter {
         processParameter.setAppName("Test App");
         processParameter.setAutoCancellationDays(30);
         processParameter.setDocumentsFolderPath("/docs/test/path");
-        processParameter.setNumberOfSteps(5);
-        processParameter.setBpmProcessDefinitionId(12345L);
         processParameter.setAuCreationDate(OffsetDateTime.now());
         processParameter.setAuCreationUser("system");
         processParameter.setAuModificationDate(OffsetDateTime.now());
         processParameter.setAuModificationUser("system");
-        processParameter.setAuActive(true);
         
         return ResultGetProcessParameter.builder().processParameter(processParameter).build();
     }

@@ -46,13 +46,83 @@
                 </index>
             </indexes>
         </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstActionAttribute">
+            <description>This object defines the metadata for an attribute used by a specific action type. Each record describes a unique field with its display name, data type, and a short description. These attributes are aggregated by the MstActionType object to define a complete action.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
+                    <description>The unique programmatic name of the attribute (e.g., 'emailTo')</description>
+                </field>
+                <field type="STRING" length="255" name="displayName" nullable="false" collection="false">
+                    <description>The name to be displayed in the user interface (e.g., 'Email To').</description>
+                </field>
+                <field type="STRING" length="255" name="label" nullable="true" collection="false">
+                    <description>A more detailed label for the attribute, which can contain HTML for richer formatting.</description>
+                </field>
+                <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
+                    <description>A brief description of the attribute's purpose.</description>
+                </field>
+                <field type="STRING" length="255" name="dataType" nullable="false" collection="false">
+                    <description>The data type of the attribute, e.g., 'STRING', 'TEXT', 'BOOLEAN'.</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>The date and time when the attribute record was created.</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>The username of the user who created the attribute record.</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>The date and time of the last modification to the attribute record.</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>The username of the user who performed the last modification.</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstActionType">
+            <description>This master data object categorizes different types of actions available in the process builder. Each record defines an action type (e.g., 'Email Notification') and aggregates all the MstActionAttribute records that constitute its fields.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
+                    <description>The unique programmatic name of the action type (e.g., 'EMAIL_NOTIFICATION').</description>
+                </field>
+                <field type="STRING" length="255" name="displayName" nullable="false" collection="false">
+                    <description>The user-friendly name of the action type.</description>
+                </field>
+                <field type="STRING" length="255" name="label" nullable="true" collection="false">
+                    <description> A more detailed label for the action type, which can contain HTML for richer formatting.</description>
+                </field>
+                <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
+                    <description>A brief description of the action type's purpose.</description>
+                </field>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstActionAttribute" fetchType="EAGER" name="refActionAttribute" nullable="true" collection="true">
+                    <description>A collection of all MstActionAttribute records that define the fields for this action type.</description>
+                </relationField>
+                <field type="STRING" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>The date and time when the record was created.</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>The username of the user who created the record.</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>auModificationDate: </description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>The username of the user who performed the last modification.</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
         <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstEntityType">
             <description>This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Status'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.</description>
             <fields>
                 <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
                     <description>The complete, official name of an entity.</description>
                 </field>
-                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                <field type="STRING" length="255" name="displayName" nullable="false" collection="false">
                     <description>The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
                 </field>
                 <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
@@ -88,14 +158,15 @@
             </indexes>
         </businessObject>
         <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstGenericEntry">
-            <description>This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Domain, a Context, a Currency), allowing for standardized management and common auditing across different lookup lists.</description>
+            <description>This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Status,...), allowing for standardized management and common auditing across different lookup lists.</description>
             <fields>
-                <field type="STRING" length="255" name="fullName" nullable="true" collection="false">
+                <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
                     <description>The complete, official name of an entity</description>
                 </field>
-                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                <field type="STRING" length="255" name="displayName" nullable="false" collection="false">
                     <description>The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
                 </field>
+                <field type="STRING" length="255" name="label" nullable="true" collection="false"/>
                 <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
                     <description>A concise summary or brief overview of the item</description>
                 </field>
@@ -263,9 +334,16 @@
             <queries/>
             <indexes/>
         </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessCase">
+            <fields>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.ProcessSpecification" fetchType="LAZY" name="processSpecification" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
         <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessForm">
-            <description>
-The ProcessForm object defines the structure and content of a particular form used within a process.</description>
+            <description>The ProcessForm object defines the structure and content of a particular form used within a process.</description>
             <fields>
                 <field type="STRING" length="255" name="fullName" nullable="true" collection="false">
                     <description>The complete, descriptive name of the form.</description>
@@ -291,7 +369,7 @@ The ProcessForm object defines the structure and content of a particular form us
             <indexes/>
         </businessObject>
         <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessParameter">
-            <description>Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.</description>
+            <description>The ProcessParameter object represents an individual configuration parameter for a process. It is used to store specific configuration data. Each ProcessParameter is associated with a parent ProcessSpecification, allowing for flexible and extensible configuration for each process.</description>
             <fields>
                 <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
                     <description>The complete, official name of an entity</description>
@@ -315,24 +393,6 @@ The ProcessForm object defines the structure and content of a particular form us
                 <field type="STRING" length="255" name="documentsFolderPath" nullable="true" collection="false">
                     <description>The system path or identifier for the root folder where all documents attached to instances of this process will be stored.</description>
                 </field>
-                <field type="INTEGER" length="255" name="numberOfSteps" nullable="true" collection="false">
-                    <description>The total number of steps or stages defined within the workflow of this process.</description>
-                </field>
-                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refStatus" nullable="true" collection="false">
-                    <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).</description>
-                </relationField>
-                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refContext" nullable="true" collection="false">
-                    <description>Unique identifier linking this process to a specific operational context, defined in the MstGenericEntry master table - type Context</description>
-                </relationField>
-                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refDomain" nullable="true" collection="false">
-                    <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Domain</description>
-                </relationField>
-                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessForm" fetchType="EAGER" name="refProcessForm" nullable="true" collection="true">
-                    <description>A collection of references to ProcessForm objects, representing the forms linked to this process.</description>
-                </relationField>
-                <field type="LONG" length="255" name="bpmProcessDefinitionId" nullable="true" collection="false">
-                    <description>Unique identifier provided by the BPM engine (e.g., Bonita) corresponding to a specific process definition.</description>
-                </field>
                 <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
                     <description>Date and time this record was created</description>
                 </field>
@@ -344,9 +404,6 @@ The ProcessForm object defines the structure and content of a particular form us
                 </field>
                 <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
                     <description>User who last modified this record</description>
-                </field>
-                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
-                    <description>Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.</description>
                 </field>
             </fields>
             <uniqueConstraints>
@@ -368,17 +425,92 @@ The ProcessForm object defines the structure and content of a particular form us
                         <fieldName>fullName</fieldName>
                     </fieldNames>
                 </index>
-                <index name="idxProcessProcDefId">
-                    <fieldNames>
-                        <fieldName>bpmProcessDefinitionId</fieldName>
-                    </fieldNames>
-                </index>
                 <index name="idxProcessToken">
                     <fieldNames>
                         <fieldName>token</fieldName>
                     </fieldNames>
                 </index>
             </indexes>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessSpecification">
+            <description>Object represents the main configuration and metadata for a complete business process. This object holds global properties of the process, and other essential configuration parameters that define the process's behavior.</description>
+            <fields>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessParameter" fetchType="LAZY" name="refProcessParameter" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refStatus" nullable="true" collection="false">
+                    <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).</description>
+                </relationField>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessStep" fetchType="EAGER" name="refProcessStep" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="auCreationDate" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="auCreationUser" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="auModificationDate" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="auActive" nullable="true" collection="false">
+                    <description>Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessStep">
+            <description>Represents a step or a stage within a business process. Each step can have associated actions, such as sending notifications, filling out forms, adding documents, or conditional redirects.</description>
+            <fields>
+                <field type="STRING" length="255" name="title" nullable="true" collection="false">
+                    <description>The title or name of the process step.</description>
+                </field>
+                <field type="STRING" length="255" name="technicalReference" nullable="true" collection="false">
+                    <description>A unique technical identifier for the process step, often used for programmatic access or integration.</description>
+                </field>
+                <field type="TEXT" length="255" name="longDescription" nullable="true" collection="false">
+                    <description>A detailed description or explanation of the purpose of the process step.</description>
+                </field>
+                <field type="INTEGER" length="255" name="executionOrder" nullable="true" collection="false">
+                    <description>The attribute stores the numerical position of a step within a process. This value determines the order in which it is executed and the order in which the step appears on the screen, allowing users to reorder the steps as needed.</description>
+                </field>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.ProcessStepAction" fetchType="LAZY" name="actionsList" nullable="true" collection="true"/>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="true" collection="false">
+                    <description>The date and time when the process step record was created.</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="true" collection="false">
+                    <description>The username of the user who created the process step record.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>The date and time of the last modification to the process step record.</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>The username of the user who performed the last modification.</description>
+                </field>
+                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
+                    <description>ndicates whether the process step is currently active or not. 'True' for active, 'False' for inactive.</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessStepAction">
+            <description>Represents a single action to be executed within a process step. Each ProcessStep can have a list of these actions, executed in a defined order. This object is designed to hold core configuration fields and references to other objects that are common across multiple action types.</description>
+            <fields>
+                <field type="INTEGER" length="255" name="executionOrder" nullable="false" collection="false">
+                    <description>The order in which this action should be executed within the process step.</description>
+                </field>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstActionType" fetchType="EAGER" name="refAction" nullable="true" collection="false">
+                    <description>This object links a process step to a specific action type</description>
+                </relationField>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessForm" fetchType="LAZY" name="refProcessForm" nullable="true" collection="false">
+                    <description>A reference to the form to be completed. This field is used only when actionType is 'FILL_FORM'.</description>
+                </relationField>
+                <field type="STRING" length="255" name="auCreationDate" nullable="true" collection="true"/>
+                <field type="STRING" length="255" name="auCreationUser" nullable="true" collection="true"/>
+                <field type="STRING" length="255" name="auModificationDate" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false"/>
+                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
+                    <description>Indicates whether the process step action is currently active or not. 'True' for active, 'False' for inactive.</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
         </businessObject>
     </businessObjects>
 </businessObjectModel>

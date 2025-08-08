@@ -17,7 +17,11 @@ By exposing a consistent set of REST endpoints, the service enables a clear sepa
     <junit-jupiter-engine.version>5.10.1</junit-jupiter-engine.version>
     <logback-classic.version>1.2.13</logback-classic.version>
     <mockito-core.version>5.8.0</mockito-core.version>
-    <lombok.version>1.18.22</lombok.version>
+    <!--<lombok.version>1.18.22</lombok.version>-->
+    <commons-text.version>1.11.0</commons-text.version>
+    <lombok.version>1.18.30</lombok.version>
+    <jackson-datatype.version>2.17.1</jackson-datatype.version>
+    <codehaus-groovy.version>2.4.16</codehaus-groovy.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -91,7 +95,20 @@ By exposing a consistent set of REST endpoints, the service enables a clear sepa
       <version>${logback-classic.version}</version>
       <scope>test</scope>
     </dependency>
-    <!-- Lombok java 17 -22 last 38 01-08-2025-->
+    
+     <!-- Additional libraries -->
+     <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>${commons-text.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.codehaus.groovy</groupId>
+	    <artifactId>groovy-all</artifactId>
+      	<version>${codehaus-groovy.version}</version>
+        <scope>provided</scope>
+	</dependency>	
+		<!-- Lombok java 17 -22 last 38 01-08-2025-->
 	<dependency>
 	    <groupId>org.projectlombok</groupId>
 	    <artifactId>lombok</artifactId>
@@ -101,8 +118,8 @@ By exposing a consistent set of REST endpoints, the service enables a clear sepa
     <dependency>
 	    <groupId>com.fasterxml.jackson.dataformat</groupId>
 	    <artifactId>jackson-dataformat-yaml</artifactId>
-	    <version>2.17.1</version> 
-	</dependency>	
+	    <version>${jackson-datatype.version}</version> 
+	</dependency>
   </dependencies>
   <build>
     <defaultGoal>verify</defaultGoal>

@@ -95,6 +95,79 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /process-builder/execute-sql-datasource:
+    get:
+      tags:
+        - process-builder
+      summary: Executes a SQL query against a configured datasource.
+      description: |
+        Executes a pre-defined SQL query and returns the results. This endpoint
+        can handle both standard and paginated queries. Pagination is activated
+        by providing both 'p' and 'c' parameters. Other query parameters are
+        passed directly as SQL parameters to the query.
+      operationId: executeSqlDatasource
+      parameters:
+        - name: queryId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The unique identifier for the SQL query to be executed.
+          example: "getEmployeeList"
+        - name: datasourceName
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The name of the datasource to use for the query.
+          example: "myCustomDatasource"
+        - name: p
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+          description: The page index for a paginated query (starts from 1). **Required when 'c' is provided.**
+          example: 1
+        - name: c
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+          description: The number of items per page. **Required when 'p' is provided.**
+          example: 25
+        - name: o
+          in: query
+          required: false
+          schema:
+            type: string
+          description: The field to order the results by.
+          example: "creationDate DESC"
+      responses:
+        '200':
+          description: Successful operation, returning the query results.
+          content:
+            application/json:
+              oneOf:
+                - $ref: '#/components/schemas/SqlPagedResult'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/SqlResultItem'
+        '400':
+          description: Invalid input parameters (e.g., missing queryId or datasourceName).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error during query execution or datasource access.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     ResultItem:
@@ -138,3 +211,33 @@ components:
           description: A human-readable description of the error.
           example: "Pagination parameters 'page' and 'count' are required and must be integers."
       description: The response structure for API errors.
+    SqlResultItem:
+      type: object
+      description: An item from a SQL query result, represented as a map of key-value pairs.
+      additionalProperties: true
+      example:
+        userId: "user.name"
+        firstName: "John"
+        lastName: "Doe"
+        hireDate: "2023-01-15"
+    SqlPagedResult:
+      type: object
+      description: The API response for a paginated SQL query.
+      properties:
+        result:
+          type: array
+          description: The list of results for the current page.
+          items:
+            $ref: '#/components/schemas/SqlResultItem'
+        p:
+          type: integer
+          description: The current page number.
+          example: 1
+        c:
+          type: integer
+          description: The number of items per page.
+          example: 25
+        count:
+          type: integer
+          description: The total number of available results.
+          example: 150

@@ -19,6 +19,33 @@ package com.bonitasoftprocessbuilder.model.audit {
 
 package com.bonitasoftprocessbuilder.model.master {
 
+    note top of MstActionAttribute : This object defines the metadata for an attribute used by a specific action type. Each record describes a unique field with its display name, data type, and a short description. These attributes are aggregated by the MstActionType object to define a complete action.
+    class MstActionAttribute {
+        +persistenceId : Long
+        +fullName : String
+        +displayName : String
+        +label : String
+        +shortDescription : String
+        +dataType : String
+        +auCreationDate : String
+        +auCreationUser : String
+        +auModificationDate : String
+        +auModificationUser : String
+    }
+
+    note top of MstActionType : This master data object categorizes different types of actions available in the process builder. Each record defines an action type (e.g., 'Email Notification') and aggregates all the MstActionAttribute records that constitute its fields.
+    class MstActionType {
+        +persistenceId : Long
+        +fullName : String
+        +displayName : String
+        +label : String
+        +shortDescription : String
+        +auCreationDate : String
+        +auCreationUser : String
+        +auModificationDate : String
+        +auModificationUser : String
+    }
+
     note top of MstEntityType : This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Status'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.
     class MstEntityType {
         +persistenceId : Long
@@ -31,11 +58,12 @@ package com.bonitasoftprocessbuilder.model.master {
         +auModificationUser : String
     }
 
-    note top of MstGenericEntry : This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Domain, a Context, a Currency), allowing for standardized management and common auditing across different lookup lists.
+    note top of MstGenericEntry : This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Status,...), allowing for standardized management and common auditing across different lookup lists.
     class MstGenericEntry {
         +persistenceId : Long
         +fullName : String
         +displayName : String
+        +label : String
         +shortDescription : String
         +auCreationDate : OffsetDateTime
         +auCreationUser : String
@@ -89,7 +117,11 @@ package com.bonitasoftprocessbuilder.model.process {
         +auModificationUser : String
     }
 
-    note top of ProcessForm : \nThe ProcessForm object defines the structure and content of a particular form used within a process.
+    class ProcessCase {
+        +persistenceId : Long
+    }
+
+    note top of ProcessForm : The ProcessForm object defines the structure and content of a particular form used within a process.
     class ProcessForm {
         +persistenceId : Long
         +fullName : String
@@ -99,7 +131,7 @@ package com.bonitasoftprocessbuilder.model.process {
         +auModificationUser : String
     }
 
-    note top of ProcessParameter : Represents the core data entity that encapsulates all the configured properties and dynamic runtime information for a specific process instance. It serves as the central container for process-related attributes, including its definition parameters, current state, and associated metadata.
+    note top of ProcessParameter : The ProcessParameter object represents an individual configuration parameter for a process. It is used to store specific configuration data. Each ProcessParameter is associated with a parent ProcessSpecification, allowing for flexible and extensible configuration for each process.
     class ProcessParameter {
         +persistenceId : Long
         +fullName : String
@@ -110,8 +142,29 @@ package com.bonitasoftprocessbuilder.model.process {
         +appName : String
         +autoCancellationDays : Integer
         +documentsFolderPath : String
-        +numberOfSteps : Integer
-        +bpmProcessDefinitionId : Long
+        +auCreationDate : OffsetDateTime
+        +auCreationUser : String
+        +auModificationDate : OffsetDateTime
+        +auModificationUser : String
+    }
+
+    note top of ProcessSpecification : Object represents the main configuration and metadata for a complete business process. This object holds global properties of the process, and other essential configuration parameters that define the process's behavior.
+    class ProcessSpecification {
+        +persistenceId : Long
+        +auCreationDate : String
+        +auCreationUser : String
+        +auModificationDate : String
+        +auModificationUser : String
+        +auActive : String
+    }
+
+    note top of ProcessStep : Represents a step or a stage within a business process. Each step can have associated actions, such as sending notifications, filling out forms, adding documents, or conditional redirects.
+    class ProcessStep {
+        +persistenceId : Long
+        +title : String
+        +technicalReference : String
+        +longDescription : String
+        +executionOrder : Integer
         +auCreationDate : OffsetDateTime
         +auCreationUser : String
         +auModificationDate : OffsetDateTime
@@ -119,16 +172,31 @@ package com.bonitasoftprocessbuilder.model.process {
         +auActive : Boolean
     }
 
+    note top of ProcessStepAction : Represents a single action to be executed within a process step. Each ProcessStep can have a list of these actions, executed in a defined order. This object is designed to hold core configuration fields and references to other objects that are common across multiple action types.
+    class ProcessStepAction {
+        +persistenceId : Long
+        +executionOrder : Integer
+        +auCreationDate : List<String>
+        +auCreationUser : List<String>
+        +auModificationDate : String
+        +auModificationUser : String
+        +auActive : Boolean
+    }
+
 }
 
+MstActionType o-- "*" MstActionAttribute : refActionAttribute
 MstGenericEntry o--  MstEntityType : refMstEntityType
 FormField *--  MstTypeFormField : refTypeFormField
 FormSection o-- "*" FormField : refField
+ProcessCase o--  ProcessSpecification : processSpecification
 ProcessForm *--  FormSection : refFormSection
-ProcessParameter o--  MstGenericEntry : refStatus
-ProcessParameter o--  MstGenericEntry : refContext
-ProcessParameter o--  MstGenericEntry : refDomain
-ProcessParameter *-- "*" ProcessForm : refProcessForm
+ProcessSpecification *--  ProcessParameter : refProcessParameter
+ProcessSpecification o--  MstGenericEntry : refStatus
+ProcessSpecification *--  ProcessStep : refProcessStep
+ProcessStep o-- "*" ProcessStepAction : actionsList
+ProcessStepAction o--  MstActionType : refAction
+ProcessStepAction *--  ProcessForm : refProcessForm
 
 legend top left
 <$composition> Composition relation  <$aggregation> Aggregation relation  &#42; Multiple relation

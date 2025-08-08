@@ -1,4 +1,4 @@
-package com.bonitasoft.processbuilder.rest.api.doc;
+package com.bonitasoft.processbuilder.rest.api.controller.doc;
 
 import com.bonitasoft.processbuilder.rest.api.constants.Constants;
 import com.bonitasoft.processbuilder.rest.api.dto.ResultDocumentation;
