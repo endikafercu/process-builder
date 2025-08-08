@@ -8,7 +8,7 @@
           <dynamicDescription xmi:type="expression:Expression" xmi:id="_coouFXEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
           <stepSummary xmi:type="expression:Expression" xmi:id="_coouFnEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
         </elements>
-        <elements xmi:type="process:Task" xmi:id="_coouF3EMEfCzXNzD7sOrXA" name="Step1" incoming="_coouKHEMEfCzXNzD7sOrXA" overrideActorsOfTheLane="false">
+        <elements xmi:type="process:Task" xmi:id="_coouF3EMEfCzXNzD7sOrXA" name="Step1" outgoing="_i3AQwHRtEfC_4I1JwXjZJQ" incoming="_coouKHEMEfCzXNzD7sOrXA" overrideActorsOfTheLane="false">
           <dynamicLabel xmi:type="expression:Expression" xmi:id="_coouGHEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
           <dynamicDescription xmi:type="expression:Expression" xmi:id="_coouGXEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
           <stepSummary xmi:type="expression:Expression" xmi:id="_coouGnEMEfCzXNzD7sOrXA" name="" content="" returnTypeFixed="true"/>
@@ -23,6 +23,11 @@
           <contract xmi:type="process:Contract" xmi:id="_coouInEMEfCzXNzD7sOrXA"/>
           <expectedDuration xmi:type="expression:Expression" xmi:id="_coouI3EMEfCzXNzD7sOrXA" name="" content="" returnType="java.lang.Long" returnTypeFixed="true"/>
         </elements>
+        <elements xmi:type="process:EndEvent" xmi:id="_i20DgHRtEfC_4I1JwXjZJQ" name="End1" incoming="_i3AQwHRtEfC_4I1JwXjZJQ">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_i26KIXRtEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_i26KIHRtEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_i26KInRtEfC_4I1JwXjZJQ" name="" content="" returnTypeFixed="true"/>
+        </elements>
       </elements>
       <formMapping xmi:type="process:FormMapping" xmi:id="_coouJHEMEfCzXNzD7sOrXA" type="NONE">
         <targetForm xmi:type="expression:Expression" xmi:id="_coouJXEMEfCzXNzD7sOrXA" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
@@ -33,6 +38,10 @@
       <connections xmi:type="process:SequenceFlow" xmi:id="_coouKHEMEfCzXNzD7sOrXA" target="_coouF3EMEfCzXNzD7sOrXA" source="_coouE3EMEfCzXNzD7sOrXA">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_coouKXEMEfCzXNzD7sOrXA"/>
         <condition xmi:type="expression:Expression" xmi:id="_coouKnEMEfCzXNzD7sOrXA" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_i3AQwHRtEfC_4I1JwXjZJQ" target="_i20DgHRtEfC_4I1JwXjZJQ" source="_coouF3EMEfCzXNzD7sOrXA">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_i3AQwXRtEfC_4I1JwXjZJQ"/>
+        <condition xmi:type="expression:Expression" xmi:id="_i3AQwnRtEfC_4I1JwXjZJQ" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <actors xmi:type="process:Actor" xmi:id="_coouK3EMEfCzXNzD7sOrXA" documentation="This is an example of actor that is mapped to any ACME users" name="Employee actor" initiator="true"/>
       <configurations xmi:type="configuration:Configuration" xmi:id="_J-S84HIfEfC_4I1JwXjZJQ" name="presales" version="8">
@@ -108,6 +117,12 @@
               </children>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_coouUnEMEfCzXNzD7sOrXA" x="60" y="68"/>
             </children>
+            <children xmi:type="notation:Shape" xmi:id="_i28mYHRtEfC_4I1JwXjZJQ" type="3003" element="_i20DgHRtEfC_4I1JwXjZJQ" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_i290gHRtEfC_4I1JwXjZJQ" type="5025">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_i290gXRtEfC_4I1JwXjZJQ" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i28mYXRtEfC_4I1JwXjZJQ" x="355" y="73"/>
+            </children>
           </children>
           <styles xmi:type="notation:DescriptionStyle" xmi:id="_coouU3EMEfCzXNzD7sOrXA"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_coouVHEMEfCzXNzD7sOrXA" fontName="Segoe UI"/>
@@ -129,6 +144,13 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_coouYXEMEfCzXNzD7sOrXA" fontName="Segoe UI"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_coouYnEMEfCzXNzD7sOrXA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_i3IzoHRtEfC_4I1JwXjZJQ" type="4001" element="_i3AQwHRtEfC_4I1JwXjZJQ" source="_coouTHEMEfCzXNzD7sOrXA" target="_i28mYHRtEfC_4I1JwXjZJQ" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_i3Izo3RtEfC_4I1JwXjZJQ" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_i3IzpHRtEfC_4I1JwXjZJQ" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_i3IzoXRtEfC_4I1JwXjZJQ" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_i3IzonRtEfC_4I1JwXjZJQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     </edges>
   </notation:Diagram>
 </xmi:XMI>

@@ -64,13 +64,13 @@
                 <field type="STRING" length="255" name="dataType" nullable="false" collection="false">
                     <description>The data type of the attribute, e.g., 'STRING', 'TEXT', 'BOOLEAN'.</description>
                 </field>
-                <field type="STRING" length="255" name="auCreationDate" nullable="false" collection="false">
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
                     <description>The date and time when the attribute record was created.</description>
                 </field>
                 <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
                     <description>The username of the user who created the attribute record.</description>
                 </field>
-                <field type="STRING" length="255" name="auModificationDate" nullable="true" collection="false">
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
                     <description>The date and time of the last modification to the attribute record.</description>
                 </field>
                 <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
@@ -88,7 +88,7 @@
                     <description>The unique programmatic name of the action type (e.g., 'EMAIL_NOTIFICATION').</description>
                 </field>
                 <field type="STRING" length="255" name="displayName" nullable="false" collection="false">
-                    <description>The user-friendly name of the action type.</description>
+                    <description>The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
                 </field>
                 <field type="STRING" length="255" name="label" nullable="true" collection="false">
                     <description> A more detailed label for the action type, which can contain HTML for richer formatting.</description>
@@ -99,13 +99,13 @@
                 <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstActionAttribute" fetchType="EAGER" name="refActionAttribute" nullable="true" collection="true">
                     <description>A collection of all MstActionAttribute records that define the fields for this action type.</description>
                 </relationField>
-                <field type="STRING" length="255" name="auCreationDate" nullable="false" collection="false">
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
                     <description>The date and time when the record was created.</description>
                 </field>
                 <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
                     <description>The username of the user who created the record.</description>
                 </field>
-                <field type="STRING" length="255" name="auModificationDate" nullable="true" collection="false">
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
                     <description>auModificationDate: </description>
                 </field>
                 <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
@@ -120,7 +120,7 @@
             <description>This master table defines and categorizes the different types of master entities stored within the MstGenericEntry table. Each record represents a distinct classification (e.g., 'Domain', 'Context', 'Status'), acting as a lookup for the refMstEntityTypeId in MstGenericEntry to identify the specific nature of a generic entry.</description>
             <fields>
                 <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
-                    <description>The complete, official name of an entity.</description>
+                    <description>A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.</description>
                 </field>
                 <field type="STRING" length="255" name="displayName" nullable="false" collection="false">
                     <description>The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
@@ -161,12 +161,14 @@
             <description>This master table serves as a centralized repository for various types of master data that share a common set of attributes. Each record represents an entry of a specific master entity type (e.g., a Status,...), allowing for standardized management and common auditing across different lookup lists.</description>
             <fields>
                 <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
-                    <description>The complete, official name of an entity</description>
+                    <description>A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.</description>
                 </field>
                 <field type="STRING" length="255" name="displayName" nullable="false" collection="false">
                     <description>The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
                 </field>
-                <field type="STRING" length="255" name="label" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="label" nullable="true" collection="false">
+                    <description> A more detailed label for the row, which can contain HTML for richer formatting.</description>
+                </field>
                 <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
                     <description>A concise summary or brief overview of the item</description>
                 </field>
@@ -222,14 +224,35 @@
                 </index>
             </indexes>
         </businessObject>
-        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstTypeFormField">
-            <description>he MstTypeField master table classifies and defines the available input control types for form fields. It provides a standardized and extensible list of field types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.</description>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.master.MstTypeFormWidget">
+            <description>It classifies and defines the available input control types for form fieldsor widgets. It provides a standardized and extensible list of field widgets types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.</description>
             <fields>
                 <field type="STRING" length="255" name="fullName" nullable="true" collection="false">
-                    <description>The complete, official name of an entity</description>
+                    <description>A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.</description>
+                </field>
+                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                    <description>The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
+                </field>
+                <field type="STRING" length="255" name="label" nullable="true" collection="false">
+                    <description> A more detailed label for the row, which can contain HTML for richer formatting.</description>
                 </field>
                 <field type="STRING" length="255" name="shortDescription" nullable="true" collection="false">
                     <description>A concise summary or brief overview of the item</description>
+                </field>
+                <field type="STRING" length="255" name="regularExpression" nullable="true" collection="false">
+                    <description>An optional pattern for validating the format of the field's input.</description>
+                </field>
+                <field type="STRING" length="255" name="errorMessage" nullable="true" collection="false">
+                    <description>The custom message shown to the user if the field's input fails validation.</description>
+                </field>
+                <field type="BOOLEAN" length="255" name="encrypted" nullable="true" collection="false">
+                    <description>A boolean flag indicating whether the data entered into this field should be encrypted.</description>
+                </field>
+                <field type="INTEGER" length="255" name="maximumValue" nullable="true" collection="false">
+                    <description>Defines the upper limit for a field. For numbers, it's the highest allowed value. For text, it's the maximum number of characters. </description>
+                </field>
+                <field type="INTEGER" length="255" name="minimumValue" nullable="true" collection="false">
+                    <description>Defines the lower limit for a field. For numbers, it's the lowest allowed value. For text, it's the minimum number of characters. </description>
                 </field>
                 <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
                     <description>Date and time this record was created</description>
@@ -260,16 +283,86 @@
                 </index>
             </indexes>
         </businessObject>
-        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.FormField">
-            <description>The FormField object defines the properties and configuration of an individual input field within a FormSection. It specifies how the field behaves, what kind of data it collects, and how it's presented to the user. Each FormField is associated with a specific FormSection and is crucial for capturing user input.</description>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.CaseResponse">
+            <description>A CaseResponse object represents the data entered by a user in a specific form within a process. It captures a single response for a particular form widget.</description>
             <fields>
-                <field type="STRING" length="255" name="identifier" nullable="true" collection="false">
-                    <description>A unique, internal, programmatic identifier for the field, used for backend processing and data mapping.</description>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.FormWidget" fetchType="LAZY" name="formWidget" nullable="true" collection="false">
+                    <description>This attribute is a reference to the FormWidget object. It identifies which specific form element (e.g., a text box, a drop-down menu) the user's response belongs to.</description>
+                </relationField>
+                <field type="TEXT" length="255" name="responseValue" nullable="true" collection="false">
+                    <description>This attribute is a string (STRING) that stores the actual value entered by the user in the corresponding formWidget.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="true" collection="false">
+                    <description>The date and time when the process step record was created.</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="true" collection="false">
+                    <description>The username of the user who created the process step record.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>The date and time of the last modification to the process step record.</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>The username of the user who performed the last modification.</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.FormSection">
+            <description>FormSection represents a logical division within a form, grouping related fields or widgets for improved organization, readability, and user experience. Each section has a title and description, acting as a structural component for complex forms and facilitating structured data collection.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
+                    <description>A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.</description>
+                </field>
+                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                    <description>The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
                 </field>
                 <field type="STRING" length="255" name="label" nullable="true" collection="false">
-                    <description>The user-friendly display name or title for the field, visible to the user.</description>
+                    <description>A more detailed label for the row, which can contain HTML for richer formatting.
+</description>
                 </field>
-                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.master.MstTypeFormField" fetchType="EAGER" name="refTypeFormField" nullable="true" collection="false">
+                <field type="TEXT" length="255" name="fullDescription" nullable="true" collection="false">
+                    <description>The fullDescription attribute holds a more detailed explanation or introductory text for the FormSection. It provides additional context, instructions, or a summary of the section's purpose, enhancing user comprehension during form completion.</description>
+                </field>
+                <field type="INTEGER" length="255" name="displayOrder" nullable="true" collection="false">
+                    <description>The attribute stores the numerical position of a section within a form. This value determines the visual order in which the section appears on the screen, allowing users to reorder sections and persist their arrangement.</description>
+                </field>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.FormWidget" fetchType="LAZY" name="refWidget" nullable="true" collection="true"/>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
+                    <description>Indicates whether the form section is currently active or not. 'True' for active, 'False' for inactive.</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.FormWidget">
+            <description>It defines the properties and configuration of an individual input field or widget within a FormSection. It specifies how the field or widget behaves, what kind of data it collects, and how it's presented to the user. Each FormWidget is associated with a specific FormSection and is crucial for capturing user input.</description>
+            <fields>
+                <field type="STRING" length="255" name="fullName" nullable="true" collection="false">
+                    <description>A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.</description>
+                </field>
+                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                    <description>The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
+                </field>
+                <field type="STRING" length="255" name="label" nullable="true" collection="false">
+                    <description>A more detailed label for the row, which can contain HTML for richer formatting.
+</description>
+                </field>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.master.MstTypeFormWidget" fetchType="EAGER" name="refTypeFormWidget" nullable="true" collection="false">
                     <description>A reference to the predefined input control type for this field, sourced from the MstTypeField master table. This dictates its appearance and validation rules.</description>
                 </relationField>
                 <field type="INTEGER" length="255" name="displayOrder" nullable="true" collection="false">
@@ -278,13 +371,10 @@
                 <field type="STRING" length="255" name="placeholder" nullable="true" collection="false">
                     <description>Optional instructional text displayed inside an empty input field as a hint.</description>
                 </field>
-                <field type="STRING" length="255" name="regularExpression" nullable="true" collection="false">
-                    <description>An optional pattern for validating the format of the field's input.</description>
-                </field>
-                <field type="STRING" length="255" name="errorMessage" nullable="true" collection="false">
+                <field type="BOOLEAN" length="255" name="readOnly" nullable="true" collection="false">
                     <description>The custom message shown to the user if the field's input fails validation.</description>
                 </field>
-                <field type="STRING" length="255" name="encrypted" nullable="true" collection="false">
+                <field type="BOOLEAN" length="255" name="required" nullable="true" collection="false">
                     <description>A boolean flag indicating whether the data entered into this field should be encrypted.</description>
                 </field>
                 <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
@@ -299,35 +389,8 @@
                 <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
                     <description>User who last modified this record</description>
                 </field>
-            </fields>
-            <uniqueConstraints/>
-            <queries/>
-            <indexes/>
-        </businessObject>
-        <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.FormSection">
-            <description>FormSection represents a logical division within a form, grouping related fields for improved organization, readability, and user experience. Each section has a title and description, acting as a structural component for complex forms and facilitating structured data collection.</description>
-            <fields>
-                <field type="STRING" length="255" name="label" nullable="true" collection="false">
-                    <description>The label attribute stores a concise, human-readable name or title for the FormSection. It's used to display the section's heading or identifier in the user interface, aiding quick understanding of the form's structure.</description>
-                </field>
-                <field type="TEXT" length="255" name="fullDescription" nullable="true" collection="false">
-                    <description>The fullDescription attribute holds a more detailed explanation or introductory text for the FormSection. It provides additional context, instructions, or a summary of the section's purpose, enhancing user comprehension during form completion.</description>
-                </field>
-                <field type="INTEGER" length="255" name="displayOrder" nullable="true" collection="false">
-                    <description>The attribute stores the numerical position of a section within a form. This value determines the visual order in which the section appears on the screen, allowing users to reorder sections and persist their arrangement.</description>
-                </field>
-                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.FormField" fetchType="LAZY" name="refField" nullable="true" collection="true"/>
-                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
-                    <description>Date and time this record was created</description>
-                </field>
-                <field type="STRING" length="255" name="auCreationUser" nullable="false" collection="false">
-                    <description>User who created this record</description>
-                </field>
-                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
-                    <description>Date and time this record was last modified</description>
-                </field>
-                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
-                    <description>User who last modified this record</description>
+                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
+                    <description>Indicates whether the form widget is currently active/visible or not.  'True' for active, 'False' for inactive.</description>
                 </field>
             </fields>
             <uniqueConstraints/>
@@ -336,7 +399,31 @@
         </businessObject>
         <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessCase">
             <fields>
-                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.ProcessSpecification" fetchType="LAZY" name="processSpecification" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.ProcessSpecification" fetchType="LAZY" name="refProcessSpecification" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="LAZY" name="refStatus" nullable="true" collection="false">
+                    <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type CaseStatus. Indicates the current operational status of the process (e.g., whether it's open, pending, canceled, closed, etc.).</description>
+                </relationField>
+                <field type="LONG" length="255" name="processInstanceId" nullable="true" collection="false">
+                    <description>This is a unique identifier (LONG) for a running instance of a business process (Bonita BPM Process Id). It is used to track and manage a specific case as it progresses through its various stages.</description>
+                </field>
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.process.CaseResponse" fetchType="EAGER" name="refCaseResponses" nullable="true" collection="true">
+                    <description>This field is a reference to one or more CaseResponse objects. Meaning it can hold a collection of responses associated with a specific process instance. </description>
+                </relationField>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="true" collection="false">
+                    <description>Date and time this record was created</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="true" collection="false">
+                    <description>User who created this record</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>Date and time this record was last modified</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>User who last modified this record</description>
+                </field>
+                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
+                    <description>Indicates whether the form section is currently active or not. 'True' for active, 'False' for inactive.</description>
+                </field>
             </fields>
             <uniqueConstraints/>
             <queries/>
@@ -348,6 +435,12 @@
                 <field type="STRING" length="255" name="fullName" nullable="true" collection="false">
                     <description>The complete, descriptive name of the form.</description>
                 </field>
+                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                    <description>The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.</description>
+                </field>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.FormSection" fetchType="EAGER" name="refFormSection" nullable="true" collection="true">
+                    <description>A collection of references to FormSection objects, representing the various sections that compose this form.</description>
+                </relationField>
                 <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="false" collection="false">
                     <description>Date and time this record was created</description>
                 </field>
@@ -360,9 +453,9 @@
                 <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
                     <description>User who last modified this record</description>
                 </field>
-                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.FormSection" fetchType="EAGER" name="refFormSection" nullable="false" collection="false">
-                    <description>A collection of references to FormSection objects, representing the various sections that compose this form.</description>
-                </relationField>
+                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
+                    <description>Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.</description>
+                </field>
             </fields>
             <uniqueConstraints/>
             <queries/>
@@ -374,6 +467,9 @@
                 <field type="STRING" length="255" name="fullName" nullable="false" collection="false">
                     <description>The complete, official name of an entity</description>
                 </field>
+                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
+                    <description>A user-friendly name for the process, optimized for display in user interfaces. It may be a shorter or more localized version of the process name.</description>
+                </field>
                 <field type="STRING" length="255" name="version" nullable="true" collection="false">
                     <description>The version identifier for this specific process definition. Used to track changes and distinguish between different iterations.</description>
                 </field>
@@ -381,9 +477,6 @@
                     <description>A detailed description providing comprehensive information about the purpose and scope of this process.</description>
                 </field>
                 <field type="STRING" length="255" name="token" nullable="false" collection="false"/>
-                <field type="STRING" length="255" name="displayName" nullable="true" collection="false">
-                    <description>A user-friendly name for the process, optimized for display in user interfaces. It may be a shorter or more localized version of the process name.</description>
-                </field>
                 <field type="STRING" length="255" name="appName" nullable="true" collection="false">
                     <description>Name of the application to which the process is associated.</description>
                 </field>
@@ -435,16 +528,28 @@
         <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.process.ProcessSpecification">
             <description>Object represents the main configuration and metadata for a complete business process. This object holds global properties of the process, and other essential configuration parameters that define the process's behavior.</description>
             <fields>
-                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessParameter" fetchType="LAZY" name="refProcessParameter" nullable="true" collection="false"/>
-                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refStatus" nullable="true" collection="false">
-                    <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).</description>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessParameter" fetchType="LAZY" name="refProcessParameter" nullable="true" collection="false">
+                    <description>This field is a reference to a ProcessParameter object. However, the image shows it within the ProcessSpecification object, and the description for ProcessSpecification states that it "represents the main configuration and metadata for a complete business process." Therefore, refProcessParameter likely refers to a global parameter that is configured for the entire process.</description>
                 </relationField>
-                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessStep" fetchType="EAGER" name="refProcessStep" nullable="true" collection="false"/>
-                <field type="STRING" length="255" name="auCreationDate" nullable="true" collection="false"/>
-                <field type="STRING" length="255" name="auCreationUser" nullable="true" collection="false"/>
-                <field type="STRING" length="255" name="auModificationDate" nullable="true" collection="false"/>
-                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false"/>
-                <field type="STRING" length="255" name="auActive" nullable="true" collection="false">
+                <relationField type="AGGREGATION" reference="com.bonitasoftprocessbuilder.model.master.MstGenericEntry" fetchType="EAGER" name="refStatus" nullable="true" collection="false">
+                    <description>Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type ProcessStatus. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).</description>
+                </relationField>
+                <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessStep" fetchType="EAGER" name="refProcessStep" nullable="true" collection="true">
+                    <description>This is a reference to a ProcessStep object. It likely defines a collection of all the possible steps or tasks that are part of the overall business process. It confirms that a single process specification can have a list of several process steps, not just one.</description>
+                </relationField>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="true" collection="false">
+                    <description>The date and time when the process step record was created.</description>
+                </field>
+                <field type="STRING" length="255" name="auCreationUser" nullable="true" collection="false">
+                    <description>The username of the user who created the process step record.</description>
+                </field>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>The date and time of the last modification to the process step record.</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>The username of the user who performed the last modification.</description>
+                </field>
+                <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
                     <description>Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.</description>
                 </field>
             </fields>
@@ -481,7 +586,7 @@
                     <description>The username of the user who performed the last modification.</description>
                 </field>
                 <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
-                    <description>ndicates whether the process step is currently active or not. 'True' for active, 'False' for inactive.</description>
+                    <description>Indicates whether the process step is currently active or not. 'True' for active, 'False' for inactive.</description>
                 </field>
             </fields>
             <uniqueConstraints/>
@@ -500,10 +605,16 @@
                 <relationField type="COMPOSITION" reference="com.bonitasoftprocessbuilder.model.process.ProcessForm" fetchType="LAZY" name="refProcessForm" nullable="true" collection="false">
                     <description>A reference to the form to be completed. This field is used only when actionType is 'FILL_FORM'.</description>
                 </relationField>
-                <field type="STRING" length="255" name="auCreationDate" nullable="true" collection="true"/>
+                <field type="OFFSETDATETIME" length="255" name="auCreationDate" nullable="true" collection="true">
+                    <description>The date and time when the process step record was created.</description>
+                </field>
                 <field type="STRING" length="255" name="auCreationUser" nullable="true" collection="true"/>
-                <field type="STRING" length="255" name="auModificationDate" nullable="true" collection="false"/>
-                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false"/>
+                <field type="OFFSETDATETIME" length="255" name="auModificationDate" nullable="true" collection="false">
+                    <description>The date and time of the last modification to the process step record.</description>
+                </field>
+                <field type="STRING" length="255" name="auModificationUser" nullable="true" collection="false">
+                    <description>The username of the user who performed the last modification.</description>
+                </field>
                 <field type="BOOLEAN" length="255" name="auActive" nullable="true" collection="false">
                     <description>Indicates whether the process step action is currently active or not. 'True' for active, 'False' for inactive.</description>
                 </field>
