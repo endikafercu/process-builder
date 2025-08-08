@@ -20,7 +20,7 @@ image::bdm.svg[link=images/bdm.svg]
 
 ==== AuditAction
 
-_No description available_
+AuditAction stores all actions performed on various processes. It tracks the process name, action type, version, object type, and content, along with the creation date and the user who performed the action, providing a complete audit trail.
 
 ===== icon:list[] Attributes
 
@@ -47,17 +47,17 @@ This object defines the metadata for an attribute used by a specific action type
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                       |Type  |Description                                                                           
-|[[MstActionAttribute.persistenceId]]persistenceId*         |Long  |                                                                                      
-|[[MstActionAttribute.fullName]]fullName*                   |String|The unique programmatic name of the attribute (e.g., 'emailTo')                       
-|[[MstActionAttribute.displayName]]displayName*             |String|The name to be displayed in the user interface (e.g., 'Email To').                    
-|[[MstActionAttribute.label]]label                          |String|A more detailed label for the attribute, which can contain HTML for richer formatting.
-|[[MstActionAttribute.shortDescription]]shortDescription    |String|A brief description of the attribute's purpose.                                       
-|[[MstActionAttribute.dataType]]dataType*                   |String|The data type of the attribute, e.g., 'STRING', 'TEXT', 'BOOLEAN'.                    
-|[[MstActionAttribute.auCreationDate]]auCreationDate*       |String|The date and time when the attribute record was created.                              
-|[[MstActionAttribute.auCreationUser]]auCreationUser*       |String|The username of the user who created the attribute record.                            
-|[[MstActionAttribute.auModificationDate]]auModificationDate|String|The date and time of the last modification to the attribute record.                   
-|[[MstActionAttribute.auModificationUser]]auModificationUser|String|The username of the user who performed the last modification.                         
+|Name                                                       |Type          |Description                                                                           
+|[[MstActionAttribute.persistenceId]]persistenceId*         |Long          |                                                                                      
+|[[MstActionAttribute.fullName]]fullName*                   |String        |The unique programmatic name of the attribute (e.g., 'emailTo')                       
+|[[MstActionAttribute.displayName]]displayName*             |String        |The name to be displayed in the user interface (e.g., 'Email To').                    
+|[[MstActionAttribute.label]]label                          |String        |A more detailed label for the attribute, which can contain HTML for richer formatting.
+|[[MstActionAttribute.shortDescription]]shortDescription    |String        |A brief description of the attribute's purpose.                                       
+|[[MstActionAttribute.dataType]]dataType*                   |String        |The data type of the attribute, e.g., 'STRING', 'TEXT', 'BOOLEAN'.                    
+|[[MstActionAttribute.auCreationDate]]auCreationDate*       |OffsetDateTime|The date and time when the attribute record was created.                              
+|[[MstActionAttribute.auCreationUser]]auCreationUser*       |String        |The username of the user who created the attribute record.                            
+|[[MstActionAttribute.auModificationDate]]auModificationDate|OffsetDateTime|The date and time of the last modification to the attribute record.                   
+|[[MstActionAttribute.auModificationUser]]auModificationUser|String        |The username of the user who performed the last modification.                         
 |===
 
 ==== MstActionType
@@ -68,17 +68,17 @@ This master data object categorizes different types of actions available in the 
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                           |Type                        |Description                                                                                
-|[[MstActionType.persistenceId]]persistenceId*                  |Long                        |                                                                                           
-|[[MstActionType.fullName]]fullName*                            |String                      |The unique programmatic name of the action type (e.g., 'EMAIL_NOTIFICATION').              
-|[[MstActionType.displayName]]displayName*                      |String                      |The user-friendly name of the action type.                                                 
-|[[MstActionType.label]]label                                   |String                      | A more detailed label for the action type, which can contain HTML for richer formatting.   
-|[[MstActionType.shortDescription]]shortDescription             |String                      |A brief description of the action type's purpose.                                          
-|[[MstActionType.auCreationDate]]auCreationDate*                |String                      |The date and time when the record was created.                                             
-|[[MstActionType.auCreationUser]]auCreationUser*                |String                      |The username of the user who created the record.                                           
-|[[MstActionType.auModificationDate]]auModificationDate         |String                      |auModificationDate:                                                                         
-|[[MstActionType.auModificationUser]]auModificationUser         |String                      |The username of the user who performed the last modification.                              
-|[[MstActionType.refActionAttribute]]&#x25c7; refActionAttribute|List<<<MstActionAttribute>>>|A collection of all MstActionAttribute records that define the fields for this action type.
+|Name                                                           |Type                        |Description                                                                                                                                                                           
+|[[MstActionType.persistenceId]]persistenceId*                  |Long                        |                                                                                                                                                                                      
+|[[MstActionType.fullName]]fullName*                            |String                      |The unique programmatic name of the action type (e.g., 'EMAIL_NOTIFICATION').                                                                                                         
+|[[MstActionType.displayName]]displayName*                      |String                      |The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
+|[[MstActionType.label]]label                                   |String                      | A more detailed label for the action type, which can contain HTML for richer formatting.                                                                                              
+|[[MstActionType.shortDescription]]shortDescription             |String                      |A brief description of the action type's purpose.                                                                                                                                     
+|[[MstActionType.auCreationDate]]auCreationDate*                |OffsetDateTime              |The date and time when the record was created.                                                                                                                                        
+|[[MstActionType.auCreationUser]]auCreationUser*                |String                      |The username of the user who created the record.                                                                                                                                      
+|[[MstActionType.auModificationDate]]auModificationDate         |OffsetDateTime              |auModificationDate:                                                                                                                                                                    
+|[[MstActionType.auModificationUser]]auModificationUser         |String                      |The username of the user who performed the last modification.                                                                                                                         
+|[[MstActionType.refActionAttribute]]&#x25c7; refActionAttribute|List<<<MstActionAttribute>>>|A collection of all MstActionAttribute records that define the fields for this action type.                                                                                           
 |===
 
 ==== MstEntityType
@@ -91,7 +91,7 @@ This master table defines and categorizes the different types of master entities
 |===
 |Name                                                  |Type          |Description                                                                                                                                                                                    
 |[[MstEntityType.persistenceId]]persistenceId*         |Long          |                                                                                                                                                                                               
-|[[MstEntityType.fullName]]fullName*                   |String        |The complete, official name of an entity.                                                                                                                                                      
+|[[MstEntityType.fullName]]fullName*                   |String        |A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.                                                                                         
 |[[MstEntityType.displayName]]displayName*             |String        |The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
 |[[MstEntityType.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item.                                                                                                                                               
 |[[MstEntityType.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created                                                                                                                                                          
@@ -116,9 +116,9 @@ This master table serves as a centralized repository for various types of master
 |===
 |Name                                                         |Type             |Description                                                                                                                                                                                    
 |[[MstGenericEntry.persistenceId]]persistenceId*              |Long             |                                                                                                                                                                                               
-|[[MstGenericEntry.fullName]]fullName*                        |String           |The complete, official name of an entity                                                                                                                                                       
+|[[MstGenericEntry.fullName]]fullName*                        |String           |A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.                                                                                         
 |[[MstGenericEntry.displayName]]displayName*                  |String           |The human-readable name of the master entry, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
-|[[MstGenericEntry.label]]label                               |String           |                                                                                                                                                                                               
+|[[MstGenericEntry.label]]label                               |String           | A more detailed label for the row, which can contain HTML for richer formatting.                                                                                                               
 |[[MstGenericEntry.shortDescription]]shortDescription         |String           |A concise summary or brief overview of the item                                                                                                                                                
 |[[MstGenericEntry.auCreationDate]]auCreationDate*            |OffsetDateTime   |Date and time this record was created                                                                                                                                                          
 |[[MstGenericEntry.auCreationUser]]auCreationUser*            |String           |User who created this record                                                                                                                                                                   
@@ -161,74 +161,105 @@ _No description available_
 |refMstEntityTypeId|Long  |           
 |===
 
-==== MstTypeFormField
+==== MstTypeFormWidget
 
-he MstTypeField master table classifies and defines the available input control types for form fields. It provides a standardized and extensible list of field types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.
+It classifies and defines the available input control types for form fieldsor widgets. It provides a standardized and extensible list of field widgets types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.
 
 ===== icon:list[] Attributes
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                     |Type          |Description                                    
-|[[MstTypeFormField.persistenceId]]persistenceId*         |Long          |                                               
-|[[MstTypeFormField.fullName]]fullName                    |String        |The complete, official name of an entity       
-|[[MstTypeFormField.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item
-|[[MstTypeFormField.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created          
-|[[MstTypeFormField.auCreationUser]]auCreationUser*       |String        |User who created this record                   
-|[[MstTypeFormField.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified    
-|[[MstTypeFormField.auModificationUser]]auModificationUser|String        |User who last modified this record             
+|Name                                                      |Type          |Description                                                                                                                                                                           
+|[[MstTypeFormWidget.persistenceId]]persistenceId*         |Long          |                                                                                                                                                                                      
+|[[MstTypeFormWidget.fullName]]fullName                    |String        |A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.                                                                                
+|[[MstTypeFormWidget.displayName]]displayName              |String        |The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
+|[[MstTypeFormWidget.label]]label                          |String        | A more detailed label for the row, which can contain HTML for richer formatting.                                                                                                      
+|[[MstTypeFormWidget.shortDescription]]shortDescription    |String        |A concise summary or brief overview of the item                                                                                                                                       
+|[[MstTypeFormWidget.regularExpression]]regularExpression  |String        |An optional pattern for validating the format of the field's input.                                                                                                                   
+|[[MstTypeFormWidget.errorMessage]]errorMessage            |String        |The custom message shown to the user if the field's input fails validation.                                                                                                           
+|[[MstTypeFormWidget.encrypted]]encrypted                  |Boolean       |A boolean flag indicating whether the data entered into this field should be encrypted.                                                                                               
+|[[MstTypeFormWidget.maximumValue]]maximumValue            |Integer       |Defines the upper limit for a field. For numbers, it's the highest allowed value. For text, it's the maximum number of characters.                                                     
+|[[MstTypeFormWidget.minimumValue]]minimumValue            |Integer       |Defines the lower limit for a field. For numbers, it's the lowest allowed value. For text, it's the minimum number of characters.                                                      
+|[[MstTypeFormWidget.auCreationDate]]auCreationDate*       |OffsetDateTime|Date and time this record was created                                                                                                                                                 
+|[[MstTypeFormWidget.auCreationUser]]auCreationUser*       |String        |User who created this record                                                                                                                                                          
+|[[MstTypeFormWidget.auModificationDate]]auModificationDate|OffsetDateTime|Date and time this record was last modified                                                                                                                                           
+|[[MstTypeFormWidget.auModificationUser]]auModificationUser|String        |User who last modified this record                                                                                                                                                    
 |===
 
 ===== icon:link[] Unique constraints
 
-====== uqMTypeFieldName [<<MstTypeFormField.fullName,fullName>>]
+====== uqMTypeFieldName [<<MstTypeFormWidget.fullName,fullName>>]
 
 _No description available_
 
 === Package com.bonitasoftprocessbuilder.model.process
 
-==== FormField
+==== CaseResponse
 
-The FormField object defines the properties and configuration of an individual input field within a FormSection. It specifies how the field behaves, what kind of data it collects, and how it's presented to the user. Each FormField is associated with a specific FormSection and is crucial for capturing user input.
+A CaseResponse object represents the data entered by a user in a specific form within a process. It captures a single response for a particular form widget.
 
 ===== icon:list[] Attributes
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                   |Type                |Description                                                                                                                                                                                                              
-|[[FormField.persistenceId]]persistenceId*              |Long                |                                                                                                                                                                                                                         
-|[[FormField.identifier]]identifier                     |String              |A unique, internal, programmatic identifier for the field, used for backend processing and data mapping.                                                                                                                 
-|[[FormField.label]]label                               |String              |The user-friendly display name or title for the field, visible to the user.                                                                                                                                              
-|[[FormField.displayOrder]]displayOrder                 |Integer             |The attribute stores the numerical position of a field within a section. This value determines the visual order in which the field appears on the screen, allowing users to reorder fields and persist their arrangement.
-|[[FormField.placeholder]]placeholder                   |String              |Optional instructional text displayed inside an empty input field as a hint.                                                                                                                                             
-|[[FormField.regularExpression]]regularExpression       |String              |An optional pattern for validating the format of the field's input.                                                                                                                                                      
-|[[FormField.errorMessage]]errorMessage                 |String              |The custom message shown to the user if the field's input fails validation.                                                                                                                                              
-|[[FormField.encrypted]]encrypted                       |String              |A boolean flag indicating whether the data entered into this field should be encrypted.                                                                                                                                  
-|[[FormField.auCreationDate]]auCreationDate*            |OffsetDateTime      |Date and time this record was created                                                                                                                                                                                    
-|[[FormField.auCreationUser]]auCreationUser*            |String              |User who created this record                                                                                                                                                                                             
-|[[FormField.auModificationDate]]auModificationDate     |OffsetDateTime      |Date and time this record was last modified                                                                                                                                                                              
-|[[FormField.auModificationUser]]auModificationUser     |String              |User who last modified this record                                                                                                                                                                                       
-|[[FormField.refTypeFormField]]&#x25c6; refTypeFormField|<<MstTypeFormField>>|A reference to the predefined input control type for this field, sourced from the MstTypeField master table. This dictates its appearance and validation rules.                                                          
+|Name                                                 |Type          |Description                                                                                                                                                           
+|[[CaseResponse.persistenceId]]persistenceId*         |Long          |                                                                                                                                                                      
+|[[CaseResponse.responseValue]]responseValue          |String        |This attribute is a string (STRING) that stores the actual value entered by the user in the corresponding formWidget.                                                 
+|[[CaseResponse.auCreationDate]]auCreationDate        |OffsetDateTime|The date and time when the process step record was created.                                                                                                           
+|[[CaseResponse.auCreationUser]]auCreationUser        |String        |The username of the user who created the process step record.                                                                                                         
+|[[CaseResponse.auModificationDate]]auModificationDate|OffsetDateTime|The date and time of the last modification to the process step record.                                                                                                
+|[[CaseResponse.auModificationUser]]auModificationUser|String        |The username of the user who performed the last modification.                                                                                                         
+|[[CaseResponse.formWidget]]&#x25c7; formWidget       |<<FormWidget>>|This attribute is a reference to the FormWidget object. It identifies which specific form element (e.g., a text box, a drop-down menu) the user's response belongs to.
 |===
 
 ==== FormSection
 
-FormSection represents a logical division within a form, grouping related fields for improved organization, readability, and user experience. Each section has a title and description, acting as a structural component for complex forms and facilitating structured data collection.
+FormSection represents a logical division within a form, grouping related fields or widgets for improved organization, readability, and user experience. Each section has a title and description, acting as a structural component for complex forms and facilitating structured data collection.
 
 ===== icon:list[] Attributes
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                |Type               |Description                                                                                                                                                                                                                                        
-|[[FormSection.persistenceId]]persistenceId*         |Long               |                                                                                                                                                                                                                                                   
-|[[FormSection.label]]label                          |String             |The label attribute stores a concise, human-readable name or title for the FormSection. It's used to display the section's heading or identifier in the user interface, aiding quick understanding of the form's structure.                        
-|[[FormSection.fullDescription]]fullDescription      |String             |The fullDescription attribute holds a more detailed explanation or introductory text for the FormSection. It provides additional context, instructions, or a summary of the section's purpose, enhancing user comprehension during form completion.
-|[[FormSection.displayOrder]]displayOrder            |Integer            |The attribute stores the numerical position of a section within a form. This value determines the visual order in which the section appears on the screen, allowing users to reorder sections and persist their arrangement.                       
-|[[FormSection.auCreationDate]]auCreationDate*       |OffsetDateTime     |Date and time this record was created                                                                                                                                                                                                              
-|[[FormSection.auCreationUser]]auCreationUser*       |String             |User who created this record                                                                                                                                                                                                                       
-|[[FormSection.auModificationDate]]auModificationDate|OffsetDateTime     |Date and time this record was last modified                                                                                                                                                                                                        
-|[[FormSection.auModificationUser]]auModificationUser|String             |User who last modified this record                                                                                                                                                                                                                 
-|[[FormSection.refField]]&#x25c7; refField           |List<<<FormField>>>|                                                                                                                                                                                                                                                   
+|Name                                                |Type                |Description                                                                                                                                                                                                                                        
+|[[FormSection.persistenceId]]persistenceId*         |Long                |                                                                                                                                                                                                                                                   
+|[[FormSection.fullName]]fullName*                   |String              |A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.                                                                                                                                             
+|[[FormSection.displayName]]displayName              |String              |The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.                                                             
+|[[FormSection.label]]label                          |String              |A more detailed label for the row, which can contain HTML for richer formatting.
+                                                                                                                                                                   
+|[[FormSection.fullDescription]]fullDescription      |String              |The fullDescription attribute holds a more detailed explanation or introductory text for the FormSection. It provides additional context, instructions, or a summary of the section's purpose, enhancing user comprehension during form completion.
+|[[FormSection.displayOrder]]displayOrder            |Integer             |The attribute stores the numerical position of a section within a form. This value determines the visual order in which the section appears on the screen, allowing users to reorder sections and persist their arrangement.                       
+|[[FormSection.auCreationDate]]auCreationDate*       |OffsetDateTime      |Date and time this record was created                                                                                                                                                                                                              
+|[[FormSection.auCreationUser]]auCreationUser*       |String              |User who created this record                                                                                                                                                                                                                       
+|[[FormSection.auModificationDate]]auModificationDate|OffsetDateTime      |Date and time this record was last modified                                                                                                                                                                                                        
+|[[FormSection.auModificationUser]]auModificationUser|String              |User who last modified this record                                                                                                                                                                                                                 
+|[[FormSection.auActive]]auActive                    |Boolean             |Indicates whether the form section is currently active or not. 'True' for active, 'False' for inactive.                                                                                                                                            
+|[[FormSection.refWidget]]&#x25c7; refWidget         |List<<<FormWidget>>>|                                                                                                                                                                                                                                                   
+|===
+
+==== FormWidget
+
+It defines the properties and configuration of an individual input field or widget within a FormSection. It specifies how the field or widget behaves, what kind of data it collects, and how it's presented to the user. Each FormWidget is associated with a specific FormSection and is crucial for capturing user input.
+
+===== icon:list[] Attributes
+
+[grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
+|===
+|Name                                                      |Type                 |Description                                                                                                                                                                                                              
+|[[FormWidget.persistenceId]]persistenceId*                |Long                 |                                                                                                                                                                                                                         
+|[[FormWidget.fullName]]fullName                           |String               |A unique, internal, programmatic identifier for the row, used for backend processing and data mapping.                                                                                                                   
+|[[FormWidget.displayName]]displayName                     |String               |The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.                                   
+|[[FormWidget.label]]label                                 |String               |A more detailed label for the row, which can contain HTML for richer formatting.
+                                                                                                                                         
+|[[FormWidget.displayOrder]]displayOrder                   |Integer              |The attribute stores the numerical position of a field within a section. This value determines the visual order in which the field appears on the screen, allowing users to reorder fields and persist their arrangement.
+|[[FormWidget.placeholder]]placeholder                     |String               |Optional instructional text displayed inside an empty input field as a hint.                                                                                                                                             
+|[[FormWidget.readOnly]]readOnly                           |Boolean              |The custom message shown to the user if the field's input fails validation.                                                                                                                                              
+|[[FormWidget.required]]required                           |Boolean              |A boolean flag indicating whether the data entered into this field should be encrypted.                                                                                                                                  
+|[[FormWidget.auCreationDate]]auCreationDate*              |OffsetDateTime       |Date and time this record was created                                                                                                                                                                                    
+|[[FormWidget.auCreationUser]]auCreationUser*              |String               |User who created this record                                                                                                                                                                                             
+|[[FormWidget.auModificationDate]]auModificationDate       |OffsetDateTime       |Date and time this record was last modified                                                                                                                                                                              
+|[[FormWidget.auModificationUser]]auModificationUser       |String               |User who last modified this record                                                                                                                                                                                       
+|[[FormWidget.auActive]]auActive                           |Boolean              |Indicates whether the form widget is currently active/visible or not.  'True' for active, 'False' for inactive.                                                                                                          
+|[[FormWidget.refTypeFormWidget]]&#x25c6; refTypeFormWidget|<<MstTypeFormWidget>>|A reference to the predefined input control type for this field, sourced from the MstTypeField master table. This dictates its appearance and validation rules.                                                          
 |===
 
 ==== ProcessCase
@@ -239,9 +270,17 @@ _No description available_
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                             |Type                    |Description
-|[[ProcessCase.persistenceId]]persistenceId*                      |Long                    |           
-|[[ProcessCase.processSpecification]]&#x25c7; processSpecification|<<ProcessSpecification>>|           
+|Name                                                                   |Type                    |Description                                                                                                                                                                                                                                                             
+|[[ProcessCase.persistenceId]]persistenceId*                            |Long                    |                                                                                                                                                                                                                                                                        
+|[[ProcessCase.processInstanceId]]processInstanceId                     |Long                    |This is a unique identifier (LONG) for a running instance of a business process (Bonita BPM Process Id). It is used to track and manage a specific case as it progresses through its various stages.                                                                    
+|[[ProcessCase.auCreationDate]]auCreationDate                           |OffsetDateTime          |Date and time this record was created                                                                                                                                                                                                                                   
+|[[ProcessCase.auCreationUser]]auCreationUser                           |String                  |User who created this record                                                                                                                                                                                                                                            
+|[[ProcessCase.auModificationDate]]auModificationDate                   |OffsetDateTime          |Date and time this record was last modified                                                                                                                                                                                                                             
+|[[ProcessCase.auModificationUser]]auModificationUser                   |String                  |User who last modified this record                                                                                                                                                                                                                                      
+|[[ProcessCase.auActive]]auActive                                       |Boolean                 |Indicates whether the form section is currently active or not. 'True' for active, 'False' for inactive.                                                                                                                                                                 
+|[[ProcessCase.refProcessSpecification]]&#x25c7; refProcessSpecification|<<ProcessSpecification>>|                                                                                                                                                                                                                                                                        
+|[[ProcessCase.refStatus]]&#x25c7; refStatus                            |<<MstGenericEntry>>     |Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type CaseStatus. Indicates the current operational status of the process (e.g., whether it's open, pending, canceled, closed, etc.).
+|[[ProcessCase.refCaseResponses]]&#x25c7; refCaseResponses              |List<<<CaseResponse>>>  |This field is a reference to one or more CaseResponse objects. Meaning it can hold a collection of responses associated with a specific process instance.                                                                                                                
 |===
 
 ==== ProcessForm
@@ -252,14 +291,16 @@ The ProcessForm object defines the structure and content of a particular form us
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                  |Type           |Description                                                                                                 
-|[[ProcessForm.persistenceId]]persistenceId*           |Long           |                                                                                                            
-|[[ProcessForm.fullName]]fullName                      |String         |The complete, descriptive name of the form.                                                                 
-|[[ProcessForm.auCreationDate]]auCreationDate*         |OffsetDateTime |Date and time this record was created                                                                       
-|[[ProcessForm.auCreationUser]]auCreationUser*         |String         |User who created this record                                                                                
-|[[ProcessForm.auModificationDate]]auModificationDate  |OffsetDateTime |Date and time this record was last modified                                                                 
-|[[ProcessForm.auModificationUser]]auModificationUser  |String         |User who last modified this record                                                                          
-|[[ProcessForm.refFormSection]]&#x25c6; refFormSection*|<<FormSection>>|A collection of references to FormSection objects, representing the various sections that compose this form.
+|Name                                                 |Type                 |Description                                                                                                                                                                           
+|[[ProcessForm.persistenceId]]persistenceId*          |Long                 |                                                                                                                                                                                      
+|[[ProcessForm.fullName]]fullName                     |String               |The complete, descriptive name of the form.                                                                                                                                           
+|[[ProcessForm.displayName]]displayName               |String               |The human-readable name of the row, primarily used for display in user interfaces. This may differ from fullName if a shorter or more localized version is preferred for presentation.
+|[[ProcessForm.auCreationDate]]auCreationDate*        |OffsetDateTime       |Date and time this record was created                                                                                                                                                 
+|[[ProcessForm.auCreationUser]]auCreationUser*        |String               |User who created this record                                                                                                                                                          
+|[[ProcessForm.auModificationDate]]auModificationDate |OffsetDateTime       |Date and time this record was last modified                                                                                                                                           
+|[[ProcessForm.auModificationUser]]auModificationUser |String               |User who last modified this record                                                                                                                                                    
+|[[ProcessForm.auActive]]auActive                     |Boolean              |Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.                                                                     
+|[[ProcessForm.refFormSection]]&#x25c6; refFormSection|List<<<FormSection>>>|A collection of references to FormSection objects, representing the various sections that compose this form.                                                                          
 |===
 
 ==== ProcessParameter
@@ -273,10 +314,10 @@ The ProcessParameter object represents an individual configuration parameter for
 |Name                                                         |Type          |Description                                                                                                                                            
 |[[ProcessParameter.persistenceId]]persistenceId*             |Long          |                                                                                                                                                       
 |[[ProcessParameter.fullName]]fullName*                       |String        |The complete, official name of an entity                                                                                                               
+|[[ProcessParameter.displayName]]displayName                  |String        |A user-friendly name for the process, optimized for display in user interfaces. It may be a shorter or more localized version of the process name.     
 |[[ProcessParameter.version]]version                          |String        |The version identifier for this specific process definition. Used to track changes and distinguish between different iterations.                       
 |[[ProcessParameter.shortDescription]]shortDescription        |String        |A detailed description providing comprehensive information about the purpose and scope of this process.                                                
 |[[ProcessParameter.token]]token*                             |String        |                                                                                                                                                       
-|[[ProcessParameter.displayName]]displayName                  |String        |A user-friendly name for the process, optimized for display in user interfaces. It may be a shorter or more localized version of the process name.     
 |[[ProcessParameter.appName]]appName                          |String        |Name of the application to which the process is associated.                                                                                            
 |[[ProcessParameter.autoCancellationDays]]autoCancellationDays|Integer       |The number of days after which an inactive process instance will be automatically cancelled or abandoned. A value of 0 means no automatic cancellation.
 |[[ProcessParameter.documentsFolderPath]]documentsFolderPath  |String        |The system path or identifier for the root folder where all documents attached to instances of this process will be stored.                            
@@ -304,16 +345,16 @@ Object represents the main configuration and metadata for a complete business pr
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                                    |Type                |Description                                                                                                                                                                                                                                          
-|[[ProcessSpecification.persistenceId]]persistenceId*                    |Long                |                                                                                                                                                                                                                                                     
-|[[ProcessSpecification.auCreationDate]]auCreationDate                   |String              |                                                                                                                                                                                                                                                     
-|[[ProcessSpecification.auCreationUser]]auCreationUser                   |String              |                                                                                                                                                                                                                                                     
-|[[ProcessSpecification.auModificationDate]]auModificationDate           |String              |                                                                                                                                                                                                                                                     
-|[[ProcessSpecification.auModificationUser]]auModificationUser           |String              |                                                                                                                                                                                                                                                     
-|[[ProcessSpecification.auActive]]auActive                               |String              |Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.                                                                                                                                    
-|[[ProcessSpecification.refProcessParameter]]&#x25c6; refProcessParameter|<<ProcessParameter>>|                                                                                                                                                                                                                                                     
-|[[ProcessSpecification.refStatus]]&#x25c7; refStatus                    |<<MstGenericEntry>> |Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type Status. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).
-|[[ProcessSpecification.refProcessStep]]&#x25c6; refProcessStep          |<<ProcessStep>>     |                                                                                                                                                                                                                                                     
+|Name                                                                    |Type                 |Description                                                                                                                                                                                                                                                                                                                                                                            
+|[[ProcessSpecification.persistenceId]]persistenceId*                    |Long                 |                                                                                                                                                                                                                                                                                                                                                                                       
+|[[ProcessSpecification.auCreationDate]]auCreationDate                   |OffsetDateTime       |The date and time when the process step record was created.                                                                                                                                                                                                                                                                                                                            
+|[[ProcessSpecification.auCreationUser]]auCreationUser                   |String               |The username of the user who created the process step record.                                                                                                                                                                                                                                                                                                                          
+|[[ProcessSpecification.auModificationDate]]auModificationDate           |OffsetDateTime       |The date and time of the last modification to the process step record.                                                                                                                                                                                                                                                                                                                 
+|[[ProcessSpecification.auModificationUser]]auModificationUser           |String               |The username of the user who performed the last modification.                                                                                                                                                                                                                                                                                                                          
+|[[ProcessSpecification.auActive]]auActive                               |Boolean              |Indicates the current operational status of the record: True if active and usable, False if inactive or disabled.                                                                                                                                                                                                                                                                      
+|[[ProcessSpecification.refProcessParameter]]&#x25c6; refProcessParameter|<<ProcessParameter>> |This field is a reference to a ProcessParameter object. However, the image shows it within the ProcessSpecification object, and the description for ProcessSpecification states that it "represents the main configuration and metadata for a complete business process." Therefore, refProcessParameter likely refers to a global parameter that is configured for the entire process.
+|[[ProcessSpecification.refStatus]]&#x25c7; refStatus                    |<<MstGenericEntry>>  |Unique identifier linking this process to a high-level business or functional domain, defined in the MstGenericEntry master table - type ProcessStatus. Indicates the current operational status of the process (e.g., whether it's running, stopped, etc.).                                                                                                                           
+|[[ProcessSpecification.refProcessStep]]&#x25c6; refProcessStep          |List<<<ProcessStep>>>|This is a reference to a ProcessStep object. It likely defines a collection of all the possible steps or tasks that are part of the overall business process. It confirms that a single process specification can have a list of several process steps, not just one.                                                                                                                  
 |===
 
 ==== ProcessStep
@@ -334,7 +375,7 @@ Represents a step or a stage within a business process. Each step can have assoc
 |[[ProcessStep.auCreationUser]]auCreationUser        |String                     |The username of the user who created the process step record.                                                                                                                                                                        
 |[[ProcessStep.auModificationDate]]auModificationDate|OffsetDateTime             |The date and time of the last modification to the process step record.                                                                                                                                                               
 |[[ProcessStep.auModificationUser]]auModificationUser|String                     |The username of the user who performed the last modification.                                                                                                                                                                        
-|[[ProcessStep.auActive]]auActive                    |Boolean                    |ndicates whether the process step is currently active or not. 'True' for active, 'False' for inactive.                                                                                                                               
+|[[ProcessStep.auActive]]auActive                    |Boolean                    |Indicates whether the process step is currently active or not. 'True' for active, 'False' for inactive.                                                                                                                              
 |[[ProcessStep.actionsList]]&#x25c7; actionsList     |List<<<ProcessStepAction>>>|                                                                                                                                                                                                                                     
 |===
 
@@ -346,16 +387,16 @@ Represents a single action to be executed within a process step. Each ProcessSte
 
 [grid=cols,options="header",cols="1,1e,3a",stripes=even,frame=topbot]
 |===
-|Name                                                       |Type             |Description                                                                                                   
-|[[ProcessStepAction.persistenceId]]persistenceId*          |Long             |                                                                                                              
-|[[ProcessStepAction.executionOrder]]executionOrder*        |Integer          |The order in which this action should be executed within the process step.                                    
-|[[ProcessStepAction.auCreationDate]]auCreationDate         |List<String>     |                                                                                                              
-|[[ProcessStepAction.auCreationUser]]auCreationUser         |List<String>     |                                                                                                              
-|[[ProcessStepAction.auModificationDate]]auModificationDate |String           |                                                                                                              
-|[[ProcessStepAction.auModificationUser]]auModificationUser |String           |                                                                                                              
-|[[ProcessStepAction.auActive]]auActive                     |Boolean          |Indicates whether the process step action is currently active or not. 'True' for active, 'False' for inactive.
-|[[ProcessStepAction.refAction]]&#x25c7; refAction          |<<MstActionType>>|This object links a process step to a specific action type                                                    
-|[[ProcessStepAction.refProcessForm]]&#x25c6; refProcessForm|<<ProcessForm>>  |A reference to the form to be completed. This field is used only when actionType is 'FILL_FORM'.              
+|Name                                                       |Type                |Description                                                                                                   
+|[[ProcessStepAction.persistenceId]]persistenceId*          |Long                |                                                                                                              
+|[[ProcessStepAction.executionOrder]]executionOrder*        |Integer             |The order in which this action should be executed within the process step.                                    
+|[[ProcessStepAction.auCreationDate]]auCreationDate         |List<OffsetDateTime>|The date and time when the process step record was created.                                                   
+|[[ProcessStepAction.auCreationUser]]auCreationUser         |List<String>        |                                                                                                              
+|[[ProcessStepAction.auModificationDate]]auModificationDate |OffsetDateTime      |The date and time of the last modification to the process step record.                                        
+|[[ProcessStepAction.auModificationUser]]auModificationUser |String              |The username of the user who performed the last modification.                                                 
+|[[ProcessStepAction.auActive]]auActive                     |Boolean             |Indicates whether the process step action is currently active or not. 'True' for active, 'False' for inactive.
+|[[ProcessStepAction.refAction]]&#x25c7; refAction          |<<MstActionType>>   |This object links a process step to a specific action type                                                    
+|[[ProcessStepAction.refProcessForm]]&#x25c6; refProcessForm|<<ProcessForm>>     |A reference to the form to be completed. This field is used only when actionType is 'FILL_FORM'.              
 |===
 
 == Processes
@@ -391,6 +432,16 @@ _No description available_
 _No description available_
 
 *Previous flow element(s)*: <<_93bfc34d-7305-3a87-a74b-f2e5eda00ece,Start1>>
+
+===== icon:arrow-right[] Outgoing transition(s)
+
+*To <<_c59b7094-908f-318d-bfb8-ad416287ad5f,End1>>*
+
+==== [[_c59b7094-908f-318d-bfb8-ad416287ad5f]]image:icons/EndEvent.png[title="EndEvent"] End1
+
+_No description available_
+
+*Previous flow element(s)*: <<_ba17c436-4e5c-39f7-9c90-ed13145009c3,Step1>>
 
 === image:icons/Pool.png[title="Process"] [[_344d03ff-3e2b-386d-9994-39742d16c68b]]PB_MasterDataStore (1.0)
 
@@ -564,18 +615,18 @@ _No description available_
 
 *Previous flow element(s)*: <<_62756627-bba7-3d10-af9a-d799ca8e5a74,Merge to finish>>
 
-=== image:icons/Pool.png[title="Process"] [[_4ca68921-5fed-3326-bd5b-1b1b3847c655]]PB_ProcessDefinitionEngine (1.0)
+=== image:icons/Pool.png[title="Process"] [[_2fbeebe0-fdef-346e-9732-e0252ebe9c18]]PB_ProcessSpecification (1.0)
 
 Stores and manages the blueprint for each process. It describes the structure, stages, and logic of a process, but does not contain real-time instance data.
 
-image::processes/PB_ProcessDefinitionEngine-1.0.png[]
+image::processes/PB_ProcessSpecification-1.0.png[]
 
 ==== icon:users[] Actors
 
 [grid=cols,options="header",cols="1,3a",stripes=even,frame=topbot]
 |===
 |Name                                                                                              |Description                                                                                         
-|[[_dc280987-0208-3ea9-99c1-1ff74094d00e]]Administrator icon:play-circle[title="Process initiator"]|An actor that maps to users who are administrators and are authorized to execute this admin process.
+|[[_87334984-dc9a-38f2-af08-ab46868a2f8e]]Administrator icon:play-circle[title="Process initiator"]|An actor that maps to users who are administrators and are authorized to execute this admin process.
 
 
 |===
@@ -658,27 +709,27 @@ return !("INSERT".equals(actionType) && input.persistenceId_string != null && in
 ActionType 'INSERT' is invalid for records with a non-null persistenceId. Action has been updated to 'UPDATE'.
 ----
 
-==== image:icons/Lane.png[title="Lane"] Administrator (<<_dc280987-0208-3ea9-99c1-1ff74094d00e,icon:user[title="Actor"] Administrator>>)
+==== image:icons/Lane.png[title="Lane"] Administrator (<<_87334984-dc9a-38f2-af08-ab46868a2f8e,icon:user[title="Actor"] Administrator>>)
 
 _No description available_
 
-==== [[_5de1ff15-c622-3974-a4e2-613ef2d83d54]]image:icons/StartEvent.png[title="StartEvent"] Start ProcessDefinitionEngine
+==== [[_f016b604-aee6-347e-878f-dd812b0b87bf]]image:icons/StartEvent.png[title="StartEvent"] Start ProcessDefinitionEngine
 
 _No description available_
 
 ===== icon:arrow-right[] Outgoing transition(s)
 
-*To <<_e6d6438d-a5e5-39f6-b308-4e265975571f,What business object do you want to delete?>>*
+*To <<_a14af9dd-f3aa-36c6-a30a-4cbc2729b696,What business object do you want to delete?>>*
 
-==== [[_e6d6438d-a5e5-39f6-b308-4e265975571f]]image:icons/XORGateway.png[title="XORGateway"] What business object do you want to delete?
+==== [[_a14af9dd-f3aa-36c6-a30a-4cbc2729b696]]image:icons/XORGateway.png[title="XORGateway"] What business object do you want to delete?
 
 _No description available_
 
-*Previous flow element(s)*: <<_5de1ff15-c622-3974-a4e2-613ef2d83d54,Start ProcessDefinitionEngine>>
+*Previous flow element(s)*: <<_f016b604-aee6-347e-878f-dd812b0b87bf,Start ProcessDefinitionEngine>>
 
 ===== icon:arrow-right[] Outgoing transition(s)
 
-Delete ProcessParameter: To <<_d88b11f7-fb4d-3dd9-9dbf-116de6249967,Delete ProcessParameter>>::
+Delete ProcessParameter: To <<_5bfe329c-b3e9-3700-80ef-e4e0aea182eb,Delete ProcessParameter>>::
 +
 .When:
 [source,groovy]
@@ -686,33 +737,33 @@ Delete ProcessParameter: To <<_d88b11f7-fb4d-3dd9-9dbf-116de6249967,Delete Proce
 return (auditAction.objectType.equals("ProcessParameter")) && (auditAction.actionType.equals('DELETE'));
 ----
 
-*It is not deleted.: To <<_f4d17990-a181-320f-9fb2-142ea541fdd3,Merge to finish>> (default)*
+*It is not deleted.: To <<_a20da9e4-bb12-3cc3-b381-dd6c698ec90b,Merge to finish>> (default)*
 
-==== [[_d88b11f7-fb4d-3dd9-9dbf-116de6249967]]image:icons/ScriptTask.png[title="ScriptTask"] Delete ProcessParameter
+==== [[_5bfe329c-b3e9-3700-80ef-e4e0aea182eb]]image:icons/ScriptTask.png[title="ScriptTask"] Delete ProcessParameter
 
 _No description available_
 
-*Previous flow element(s)*: <<_e6d6438d-a5e5-39f6-b308-4e265975571f,What business object do you want to delete?>>
+*Previous flow element(s)*: <<_a14af9dd-f3aa-36c6-a30a-4cbc2729b696,What business object do you want to delete?>>
 
 ===== icon:arrow-right[] Outgoing transition(s)
 
-*To <<_f4d17990-a181-320f-9fb2-142ea541fdd3,Merge to finish>>*
+*To <<_a20da9e4-bb12-3cc3-b381-dd6c698ec90b,Merge to finish>>*
 
-==== [[_f4d17990-a181-320f-9fb2-142ea541fdd3]]image:icons/XORGateway.png[title="XORGateway"] Merge to finish
+==== [[_a20da9e4-bb12-3cc3-b381-dd6c698ec90b]]image:icons/XORGateway.png[title="XORGateway"] Merge to finish
 
 _No description available_
 
-*Previous flow element(s)*: <<_d88b11f7-fb4d-3dd9-9dbf-116de6249967,Delete ProcessParameter>>, <<_e6d6438d-a5e5-39f6-b308-4e265975571f,What business object do you want to delete?>>
+*Previous flow element(s)*: <<_5bfe329c-b3e9-3700-80ef-e4e0aea182eb,Delete ProcessParameter>>, <<_a14af9dd-f3aa-36c6-a30a-4cbc2729b696,What business object do you want to delete?>>
 
 ===== icon:arrow-right[] Outgoing transition(s)
 
-*To <<_a5ebc2d8-1b02-39dd-bc3d-6233364dc859,End ProcessDefinitionEngine>>*
+*To <<_ab8ac2e6-8c8e-3c85-8df5-bd0661f06e26,End ProcessDefinitionEngine>>*
 
-==== [[_a5ebc2d8-1b02-39dd-bc3d-6233364dc859]]image:icons/EndTerminatedEvent.png[title="EndTerminatedEvent"] End ProcessDefinitionEngine
+==== [[_ab8ac2e6-8c8e-3c85-8df5-bd0661f06e26]]image:icons/EndTerminatedEvent.png[title="EndTerminatedEvent"] End ProcessDefinitionEngine
 
 _No description available_
 
-*Previous flow element(s)*: <<_f4d17990-a181-320f-9fb2-142ea541fdd3,Merge to finish>>
+*Previous flow element(s)*: <<_a20da9e4-bb12-3cc3-b381-dd6c698ec90b,Merge to finish>>
 
 === image:icons/Pool.png[title="Process"] [[_9e518a35-c4b3-353f-90d1-007b12184fd2]]PB_TestDataGenerator (1.0)
 
@@ -774,11 +825,11 @@ A visual representation of a process definition. It maps out the stages, decisio
 
 image::diagrams/PB_MasterDataStoreDiagram-1.0.png[]
 
-=== PB_ProcessDefinitionEngineDiagram (1.0)
+=== PB_ProcessSpecificationDiagram (1.0)
 
 A visual representation of a process definition. It maps out the stages, decisions, and flows, providing a clear overview of the process's structure and logic.
 
-image::diagrams/PB_ProcessDefinitionEngineDiagram-1.0.png[]
+image::diagrams/PB_ProcessSpecificationDiagram-1.0.png[]
 
 === PB_TestDataGeneratorDiagram (1.0)
 

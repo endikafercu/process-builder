@@ -4,6 +4,7 @@ sprite $composition jar:archimate/composition
 
 package com.bonitasoftprocessbuilder.model.audit {
 
+    note top of AuditAction : AuditAction stores all actions performed on various processes. It tracks the process name, action type, version, object type, and content, along with the creation date and the user who performed the action, providing a complete audit trail.
     class AuditAction {
         +persistenceId : Long
         +processName : String
@@ -27,9 +28,9 @@ package com.bonitasoftprocessbuilder.model.master {
         +label : String
         +shortDescription : String
         +dataType : String
-        +auCreationDate : String
+        +auCreationDate : OffsetDateTime
         +auCreationUser : String
-        +auModificationDate : String
+        +auModificationDate : OffsetDateTime
         +auModificationUser : String
     }
 
@@ -40,9 +41,9 @@ package com.bonitasoftprocessbuilder.model.master {
         +displayName : String
         +label : String
         +shortDescription : String
-        +auCreationDate : String
+        +auCreationDate : OffsetDateTime
         +auCreationUser : String
-        +auModificationDate : String
+        +auModificationDate : OffsetDateTime
         +auModificationUser : String
     }
 
@@ -74,11 +75,18 @@ package com.bonitasoftprocessbuilder.model.master {
         +countForFindByFullNameAndRefMstEntityTypeId(String fullName, Long refMstEntityTypeId) : MstGenericEntry
     }
 
-    note top of MstTypeFormField : he MstTypeField master table classifies and defines the available input control types for form fields. It provides a standardized and extensible list of field types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.
-    class MstTypeFormField {
+    note top of MstTypeFormWidget : It classifies and defines the available input control types for form fieldsor widgets. It provides a standardized and extensible list of field widgets types (e.g., text input, number, date), ensuring consistent form configuration and data validation. Each entry represents a predefined field type that can be assigned to a FormField.
+    class MstTypeFormWidget {
         +persistenceId : Long
         +fullName : String
+        +displayName : String
+        +label : String
         +shortDescription : String
+        +regularExpression : String
+        +errorMessage : String
+        +encrypted : Boolean
+        +maximumValue : Integer
+        +minimumValue : Integer
         +auCreationDate : OffsetDateTime
         +auCreationUser : String
         +auModificationDate : OffsetDateTime
@@ -89,25 +97,21 @@ package com.bonitasoftprocessbuilder.model.master {
 
 package com.bonitasoftprocessbuilder.model.process {
 
-    note top of FormField : The FormField object defines the properties and configuration of an individual input field within a FormSection. It specifies how the field behaves, what kind of data it collects, and how it's presented to the user. Each FormField is associated with a specific FormSection and is crucial for capturing user input.
-    class FormField {
+    note top of CaseResponse : A CaseResponse object represents the data entered by a user in a specific form within a process. It captures a single response for a particular form widget.
+    class CaseResponse {
         +persistenceId : Long
-        +identifier : String
-        +label : String
-        +displayOrder : Integer
-        +placeholder : String
-        +regularExpression : String
-        +errorMessage : String
-        +encrypted : String
+        +responseValue : String
         +auCreationDate : OffsetDateTime
         +auCreationUser : String
         +auModificationDate : OffsetDateTime
         +auModificationUser : String
     }
 
-    note top of FormSection : FormSection represents a logical division within a form, grouping related fields for improved organization, readability, and user experience. Each section has a title and description, acting as a structural component for complex forms and facilitating structured data collection.
+    note top of FormSection : FormSection represents a logical division within a form, grouping related fields or widgets for improved organization, readability, and user experience. Each section has a title and description, acting as a structural component for complex forms and facilitating structured data collection.
     class FormSection {
         +persistenceId : Long
+        +fullName : String
+        +displayName : String
         +label : String
         +fullDescription : String
         +displayOrder : Integer
@@ -115,30 +119,56 @@ package com.bonitasoftprocessbuilder.model.process {
         +auCreationUser : String
         +auModificationDate : OffsetDateTime
         +auModificationUser : String
+        +auActive : Boolean
+    }
+
+    note top of FormWidget : It defines the properties and configuration of an individual input field or widget within a FormSection. It specifies how the field or widget behaves, what kind of data it collects, and how it's presented to the user. Each FormWidget is associated with a specific FormSection and is crucial for capturing user input.
+    class FormWidget {
+        +persistenceId : Long
+        +fullName : String
+        +displayName : String
+        +label : String
+        +displayOrder : Integer
+        +placeholder : String
+        +readOnly : Boolean
+        +required : Boolean
+        +auCreationDate : OffsetDateTime
+        +auCreationUser : String
+        +auModificationDate : OffsetDateTime
+        +auModificationUser : String
+        +auActive : Boolean
     }
 
     class ProcessCase {
         +persistenceId : Long
+        +processInstanceId : Long
+        +auCreationDate : OffsetDateTime
+        +auCreationUser : String
+        +auModificationDate : OffsetDateTime
+        +auModificationUser : String
+        +auActive : Boolean
     }
 
     note top of ProcessForm : The ProcessForm object defines the structure and content of a particular form used within a process.
     class ProcessForm {
         +persistenceId : Long
         +fullName : String
+        +displayName : String
         +auCreationDate : OffsetDateTime
         +auCreationUser : String
         +auModificationDate : OffsetDateTime
         +auModificationUser : String
+        +auActive : Boolean
     }
 
     note top of ProcessParameter : The ProcessParameter object represents an individual configuration parameter for a process. It is used to store specific configuration data. Each ProcessParameter is associated with a parent ProcessSpecification, allowing for flexible and extensible configuration for each process.
     class ProcessParameter {
         +persistenceId : Long
         +fullName : String
+        +displayName : String
         +version : String
         +shortDescription : String
         +token : String
-        +displayName : String
         +appName : String
         +autoCancellationDays : Integer
         +documentsFolderPath : String
@@ -151,11 +181,11 @@ package com.bonitasoftprocessbuilder.model.process {
     note top of ProcessSpecification : Object represents the main configuration and metadata for a complete business process. This object holds global properties of the process, and other essential configuration parameters that define the process's behavior.
     class ProcessSpecification {
         +persistenceId : Long
-        +auCreationDate : String
+        +auCreationDate : OffsetDateTime
         +auCreationUser : String
-        +auModificationDate : String
+        +auModificationDate : OffsetDateTime
         +auModificationUser : String
-        +auActive : String
+        +auActive : Boolean
     }
 
     note top of ProcessStep : Represents a step or a stage within a business process. Each step can have associated actions, such as sending notifications, filling out forms, adding documents, or conditional redirects.
@@ -176,9 +206,9 @@ package com.bonitasoftprocessbuilder.model.process {
     class ProcessStepAction {
         +persistenceId : Long
         +executionOrder : Integer
-        +auCreationDate : List<String>
+        +auCreationDate : List<OffsetDateTime>
         +auCreationUser : List<String>
-        +auModificationDate : String
+        +auModificationDate : OffsetDateTime
         +auModificationUser : String
         +auActive : Boolean
     }
@@ -187,13 +217,16 @@ package com.bonitasoftprocessbuilder.model.process {
 
 MstActionType o-- "*" MstActionAttribute : refActionAttribute
 MstGenericEntry o--  MstEntityType : refMstEntityType
-FormField *--  MstTypeFormField : refTypeFormField
-FormSection o-- "*" FormField : refField
-ProcessCase o--  ProcessSpecification : processSpecification
-ProcessForm *--  FormSection : refFormSection
+CaseResponse o--  FormWidget : formWidget
+FormSection o-- "*" FormWidget : refWidget
+FormWidget *--  MstTypeFormWidget : refTypeFormWidget
+ProcessCase o--  ProcessSpecification : refProcessSpecification
+ProcessCase o--  MstGenericEntry : refStatus
+ProcessCase o-- "*" CaseResponse : refCaseResponses
+ProcessForm *-- "*" FormSection : refFormSection
 ProcessSpecification *--  ProcessParameter : refProcessParameter
 ProcessSpecification o--  MstGenericEntry : refStatus
-ProcessSpecification *--  ProcessStep : refProcessStep
+ProcessSpecification *-- "*" ProcessStep : refProcessStep
 ProcessStep o-- "*" ProcessStepAction : actionsList
 ProcessStepAction o--  MstActionType : refAction
 ProcessStepAction *--  ProcessForm : refProcessForm

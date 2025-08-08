@@ -2,6 +2,7 @@
 <businessObjectModel xmlns="http://documentation.bonitasoft.com/bdm-xml-schema/1.0" modelVersion="1.0">
     <businessObjects>
         <businessObject qualifiedName="com.bonitasoftprocessbuilder.model.audit.AuditAction">
+            <description>AuditAction stores all actions performed on various processes. It tracks the process name, action type, version, object type, and content, along with the creation date and the user who performed the action, providing a complete audit trail.</description>
             <fields>
                 <field type="STRING" length="255" name="processName" nullable="true" collection="false">
                     <description>The name of the process from which the action was initiated.</description>
