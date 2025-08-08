@@ -46,7 +46,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /process-builder/paged:
+  /getProcessParameter:
     get:
       tags:
         - process-builder
@@ -95,7 +95,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /process-builder/execute-sql-datasource:
+  /executeSql:
     get:
       tags:
         - process-builder
